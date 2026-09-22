@@ -317,7 +317,9 @@
             height: 85px;
             flex-shrink: 0;
             object-fit: contain;
-            mix-blend-mode: multiply; /* Usuwa białe tło wokół logotypów */
+            background: transparent !important;
+            filter: none !important;
+            mix-blend-mode: normal !important;
             transition: transform 0.2s ease;
         }
 
@@ -1079,7 +1081,7 @@
                     <h1>Affilacje</h1>
                     <div class="affiliations-container">
                         <div class="affiliation-card">
-                            <img src="webp/HA.webp" class="affiliation-logo" alt="Houston Astros" onclick="openMapModal('webp/HA.webp')" loading="lazy">
+                            <img src="webp/HA.webp?v=3" class="affiliation-logo" alt="Houston Astros" onclick="openMapModal('webp/HA.webp')" loading="lazy">
                             <div class="affiliation-info" onclick="openCustomGallery(['webp/hacap.webp', 'webp/hacap2.webp'])">
                                 <div class="affiliation-title">Houston Astros</div>
                                 <div class="affiliation-desc">Ulubiona drużyna wszystkich gangów spod parasolki Hoover. Logo "H" połączone z gwiazdą jest najczęściej widoczne w formie tatuaży oraz odzieży u członków sekcji.</div>
@@ -1087,7 +1089,7 @@
                         </div>
 
                         <div class="affiliation-card">
-                            <img src="webp/DT.webp" class="affiliation-logo" alt="Detroit Tigers" onclick="openMapModal('webp/DT.webp')" loading="lazy">
+                            <img src="webp/DT.webp?v=3" class="affiliation-logo" alt="Detroit Tigers" onclick="openMapModal('webp/DT.webp')" loading="lazy">
                             <div class="affiliation-info" onclick="openCustomGallery(['webp/dtcap.webp', 'webp/dtcap2.webp'])">
                                 <div class="affiliation-title">Detroit Tigers</div>
                                 <div class="affiliation-desc">Charakterystyczna kaligraficzna, staroangielska litera „D”. Drużyna i symbol, który claimuje wyłącznie sekcja 83 Hoover Criminals Gang.</div>
@@ -1095,7 +1097,7 @@
                         </div>
 
                         <div class="affiliation-card">
-                            <img src="webp/WN.webp" class="affiliation-logo" alt="Washington Nationals" onclick="openMapModal('webp/WN.webp')" loading="lazy">
+                            <img src="webp/WN.webp?v=3" class="affiliation-logo" alt="Washington Nationals" onclick="openMapModal('webp/WN.webp')" loading="lazy">
                             <div class="affiliation-info" onclick="openCustomGallery(['webp/wncap.webp', 'webp/wncap2.webp'])">
                                 <div class="affiliation-title">Washington Nationals</div>
                                 <div class="affiliation-desc">Członkowie 83HCG noszą czapki fullcap tej drużyny ze względu na wyrazistą kaligraficzną literę „W”, która w ich kulturze symbolizuje przynależność do West Side.</div>
@@ -1613,7 +1615,7 @@
                             <p>${member.bio}</p>
                         </div>
 
-                        ${imagesHTML ? `<h3>Prywatna Galeria Zdjęć</h3><div class="member-gallery">${imagesHTML}</div>` : ''}
+                        ${imagesHTML ? `<h3>Prywatna Galeria Zdjęcia</h3><div class="member-gallery">${imagesHTML}</div>` : ''}
                     `;
                 }
 
