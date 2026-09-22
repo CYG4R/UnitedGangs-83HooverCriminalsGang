@@ -14,7 +14,7 @@
     <meta name="theme-color" content="#eb6e1f">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="UNITED GANGS - W/S 83 Hoover Criminals Gang">
-    <meta name="twitter:description" content="Archiwum przestępcze dotyczące W/S 83 Hoover Criminals Gang - Los Santos, San Andreas.">
+    <meta name="twitter:description" content="Archiwum przestępcze dotyczące W/S 83 Hoover Criminals Gang [83HCG] - Los Santos, San Andreas, South Central. History, Territory, Gang Activities, Members. All in one.">
     <meta name="twitter:image" content="https://cyg4r.github.io/UnitedGangs-83HooverCriminalsGang/png/young1.png">
 
     <style>
@@ -830,6 +830,15 @@
             border-top: 1px solid #222;
         }
 
+        .ally-status-text {
+            color: #4caf50;
+            font-weight: bold;
+            font-size: 15px;
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 1px solid #222;
+        }
+
         .status-badge {
             display: inline-block;
             font-size: 10px;
@@ -1049,10 +1058,14 @@
                     <div class="key-facts">
                         <h3>Ogólne Informacje</h3>
                         <p><strong>Territory:</strong> <span class="map-link" onclick="openMapModal('webp/83hcgmap.webp')">Strawberry Avenue 83rd' [Hoover Street], Forum Drive 74rd' (Zobacz Mapę 🗺️)</span></p>
-                        <p><strong>Allies:</strong> --- </p>
+                        <p><strong>Allies:</strong> 
+                            <span class="inline-member-link" onmouseenter="showInlinePreview(event, 'member18')" onmouseleave="hidePreview()" onclick="loadMember('member18')">92' Athens Park Bloods</span>
+                        </p>
                         <p><strong>Opps:</strong> 
-                            <span class="inline-member-link" onmouseenter="showInlinePreview(event, 'member16')" onmouseleave="hidePreview()" onclick="loadMember('member16')">66 East Coast Crips </span>, 
-                            <span class="inline-member-link" onmouseenter="showInlinePreview(event, 'member17')" onmouseleave="hidePreview()" onclick="loadMember('member17')">Rollin' 40s Neighborhood Crips </span>
+                            <span class="inline-member-link" onmouseenter="showInlinePreview(event, 'member16')" onmouseleave="hidePreview()" onclick="loadMember('member16')">66 East Coast Crips</span>, 
+                            <span class="inline-member-link" onmouseenter="showInlinePreview(event, 'member17')" onmouseleave="hidePreview()" onclick="loadMember('member17')">Rollin' 40s Neighborhood Crips</span>, 
+                            <span class="inline-member-link" onmouseenter="showInlinePreview(event, 'member19')" onmouseleave="hidePreview()" onclick="loadMember('member19')">65 Menlo Neighborhood Crips</span>, 
+                            <span class="inline-member-link" onmouseenter="showInlinePreview(event, 'member20')" onmouseleave="hidePreview()" onclick="loadMember('member20')">Mad Swan Bloods</span>
                         </p>
 
                         <div class="threat-meter-box">
@@ -1080,7 +1093,7 @@
                     <h1>Affilacje</h1>
                     <div class="affiliations-container">
                         <div class="affiliation-card">
-                            <img src="PNG/HA.png?v=3" class="affiliation-logo" alt="Houston Astros" onclick="openMapModal('webp/HA.webp')" loading="lazy">
+                            <img src="png/HA.png?v=3" class="affiliation-logo" alt="Houston Astros" onclick="openMapModal('webp/HA.webp')" loading="lazy">
                             <div class="affiliation-info" onclick="openCustomGallery(['webp/hacap.webp', 'webp/hacap2.webp'])">
                                 <div class="affiliation-title">Houston Astros</div>
                                 <div class="affiliation-desc">Ulubiona drużyna wszystkich gangów spod parasolki Hoover. Logo "H" połączone z gwiazdą jest najczęściej widoczne w formie tatuaży oraz odzieży u członków sekcji.</div>
@@ -1376,6 +1389,30 @@
                 mainImage: 'webp/r40nhc.webp',
                 bio: "Rollin 40s Crips (R40s) – znani również jako Rollin 40s Neighborhood Crips (R40NHC), Rollin Forties czy Rollin Foe-Os – to afroamerykański gang uliczny, który powstał w zachodniej części południowego Los Santos w San Andreas. Grupa ta została założona w latach 70. XX wieku; należy do frakcji Rollin O’s Crips oraz do szerszego nurtu Neighborhood Crips (stąd nazwa Rollin 40s Neighborhood Crips). W skład Rollin 40s wchodzą cztery podgrupy: Rollin 40s „Western Side”, Rollin 40s „Darkside Crips”, Rollin 40s „Parkside Crips” oraz Rollin 40s „Avenue Crips”. Kontrolowany przez nich obszar rozciąga się od Vernon Avenue do Leimert, pomiędzy Crenshaw Boulevard a Figueroa Avenue. Rollin 40s uchodzą za jeden z najbardziej bezwzględnych gangów ulicznych w południowym Los Santos.",
                 images: []
+            },
+            member18: {
+                isGangAlly: true,
+                gangName: '92\' Athens Park Bloods',
+                dissName: '',
+                mainImage: 'webp/apb.webp',
+                bio: "Athens Park Bloods (APB) to przede wszystkim czarnoskóry uliczny gang przestępczy, działający w zachodniej części Rosewood (znanego również jako Athens) – w rejonie osiedla Rosedale w hrabstwie Los Santos w San Andreas. Obszar ich działalności rozciąga się od Figueroa Avenue do Avalon Boulevard. Grupa dzieli się na kilka podgrup z których najważniejsze to 124th Street oraz 127th Street. Gang ten funkcjonuje od ponad trzech dekad, a jego historia sięga lat 70. XX wieku.",
+                images: []
+            },
+            member19: {
+                isGangEnemy: true,
+                gangName: '65 Menlo Neighborhood Crips',
+                dissName: '(Mendo/Men-Hoes/Fleas)',
+                mainImage: 'webp/65menlo.webp',
+                bio: "65 Menlo Crips znany historycznie jako 65 Menlo Gangster Crips (MGC), a pierwotnie założony pod nazwą Menlo Boys to grupa przestępcza o przewadze członków pochodzenia afroamerykańskiego, działająca w zachodniej części południowego Los Santos. Z biegiem czasu ugrupowanie to zmieniło swoją przynależność z frakcji Gangster Crip (3x) na sojusz Neighborhood Crip (NHC/Deuce); była to nietypowa zmiana, postrzegana w kulturze gangów jako kontrowersyjna.Teren ich działalności koncentruje się wokół skrzyżowania 65th Street i Menlo Avenue i rozciąga się od 62nd Street do 70th Street, pomiędzy Vermont Avenue a Figueroa Street. O członkach gangu Menlo często mówi się, że funkcjonują „na wyspie” – są bowiem otoczeni przez terytoria należące do jednych z najbardziej aktywnych i wrogich grup w południowym Los Santos, w tym Hoover Criminals oraz różnych odłamów Gangster Crips. Takie położenie sprawiło, że historia gangu naznaczona jest ciągłymi konfliktami i zmieniającymi się sojuszami. <br><br> Historycznie rzecz biorąc, gang Menlo Gangster Crips utrzymywał silny sojusz z Eight Tray Gangster Crips (ETGC). Jednak gwałtowny konflikt między tymi dwiema grupami zasadniczo zmienił tożsamość Menlo. W ramach rzadkiego posunięcia, polegającego na strategicznej zmianie orientacji, członkowie Menlo Crips zerwali swoje powiązania z frakcją „3x” i zaczęli szukać ochrony oraz partnerstwa w strukturach Neighborhood Crip (NHC). Nawiązali oni szczególnie bliską więź z grupą 67 Neighborhood Crips, tworząc sojusz znany jako „657”. Przejście to wiązało się z rezygnacją z członu nazwy „Gangster” i przyjęciem nazwy 65 Menlo Neighborhood Crips, co w praktyce oznaczało przejście pod szyld „Deuce” (2x).",
+                images: []
+            },
+            member20: {
+                isGangEnemy: true,
+                gangName: 'Mad Swan Bloods',
+                dissName: '(Mad Swine/Silly Swans/Bird Brains)',
+                mainImage: 'webp/madswan.webp',
+                bio: "Mad Swan Bloods, znani również jako „The Byrd Gang”, to afroamerykański gang uliczny działający we wschodniej części południowego Los Santos w San Andreas. Grupa ta wywodzi się z formacji „Main Street Swans”, powstałej na początku lat 70. XX wieku. W skład gangu wchodzą podgrupy działające w rejonie ulic: 77th, 79th, 80th oraz 84th Street. Mad Swan Bloods operują na wschód od 84 Main Street Crips i na zachód od 76 East Coast Crips, a także na południe od 6 Pacc East Coast Crips i na północ od 88 Avalon Garden Crips.",
+                images: []
             }
         };
 
@@ -1494,7 +1531,7 @@
         }
 
         function populatePreviewData(member) {
-            if (member.isGangEnemy) {
+            if (member.isGangEnemy || member.isGangAlly) {
                 previewPhoto.style.display = 'none';
                 previewName.innerText = member.gangName;
                 previewDob.innerText = member.dissName;
@@ -1570,7 +1607,7 @@
 
             mainContent.classList.add('fade-out');
             setTimeout(() => {
-                if (member.isGangEnemy) {
+                if (member.isGangEnemy || member.isGangAlly) {
                     mainContent.innerHTML = `
                         <button class="back-btn" onclick="showMainPage()">← Powrót do profilu gangu</button>
 
@@ -1585,7 +1622,7 @@
                         <div class="key-facts">
                             <h3>Informacje o gangu</h3>
                             <p>${member.bio}</p>
-                            <div class="enemy-status-text">• Są aktywnym wrogiem 83 Hoover Criminals Gang</div>
+                            ${member.isGangEnemy ? `<div class="enemy-status-text">• Są aktywnym wrogiem 83 Hoover Criminals Gang</div>` : `<div class="ally-status-text">• Są sojusznikiem 83 Hoover Criminals Gang</div>`}
                         </div>
                     `;
                 } else {
