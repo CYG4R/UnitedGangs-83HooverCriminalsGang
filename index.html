@@ -876,7 +876,7 @@
             display: block;
             position: absolute;
             inset: 0;
-            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 255, 0, 0.06));
             z-index: 2;
             background-size: 100% 2px, 3px 100%;
             pointer-events: none;
@@ -1690,30 +1690,30 @@
         function openMapModal(imgSrc, gallerySelector = null) {
             playClickSound();
 
-            const webpSrc = imgSrc;
+            const pngSrc = convertToPngPath(imgSrc);
 
             if (gallerySelector) {
                 const galleryContainer = document.querySelector(gallerySelector);
                 if (galleryContainer) {
                     const imgs = galleryContainer.querySelectorAll('img');
-                    currentGalleryImages = Array.from(imgs).map(img => img.getAttribute('src'));
-                    currentImageIndex = currentGalleryImages.indexOf(webpSrc);
+                    currentGalleryImages = Array.from(imgs).map(img => convertToPngPath(img.getAttribute('src')));
+                    currentImageIndex = currentGalleryImages.indexOf(pngSrc);
                 }
             } else {
-                currentGalleryImages = [];
-                currentImageIndex = -1;
+                currentGalleryImages = [pngSrc];
+                currentImageIndex = 0;
             }
 
             updateNavButtons();
             modal.style.display = 'flex';
-            loadModalImage(webpSrc);
+            loadModalImage(pngSrc);
         }
 
         function openCustomGallery(imageArray) {
             playClickSound();
             if (!imageArray || imageArray.length === 0) return;
 
-            currentGalleryImages = imageArray;
+            currentGalleryImages = imageArray.map(img => convertToPngPath(img));
             currentImageIndex = 0;
 
             updateNavButtons();
