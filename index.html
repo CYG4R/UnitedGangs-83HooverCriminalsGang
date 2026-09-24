@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html lang="pl">
 <head>
     <meta charset="UTF-8">
@@ -32,7 +32,8 @@
             cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="%23eb6e1f" stroke-width="2"><circle cx="12" cy="12" r="7"/><line x1="12" y1="1" x2="12" y2="5"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="1" y1="12" x2="5" y2="12"/><line x1="19" y1="12" x2="23" y2="12"/><circle cx="12" cy="12" r="1" fill="%23eb6e1f"/></svg>') 12 12, auto;
         }
 
-        a, button, .image-wrapper, .inline-member-link, .map-link, .redacted, .close-modal, .zoom-btn, .nav-btn, .id-photo, input, .affiliation-logo, .affiliation-card, .affiliation-info {
+        /* Ulepszona lista elementów reagujących na customowy kursor klikalny */
+        a, button, img, svg, .image-wrapper, .inline-member-link, .map-link, .redacted, .close-modal, .zoom-btn, .nav-btn, .id-photo, input, .affiliation-logo, .affiliation-card, .affiliation-info, .member-mini-avatar, .member-btn, .audio-btn, .dead-homies-btn, .jail-btn, .article-image, .gang-main-header-img, .member-gallery img, .gang-gallery img {
             cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="%23d9534f" stroke="%23ffffff" stroke-width="1"><circle cx="12" cy="12" r="6"/><line x1="12" y1="2" x2="12" y2="22"/><line x1="2" y1="12" x2="22" y2="12"/></svg>') 12 12, pointer !important;
         }
 
@@ -379,6 +380,63 @@
         }
 
         .search-input:focus { border-color: #eb6e1f; }
+
+        /* Style przycisku DEAD HOMIES */
+        .dead-homies-btn {
+            width: 100%;
+            background: linear-gradient(135deg, #2b0b0b 0%, #150505 100%);
+            border: 1px solid #d9534f;
+            color: #ff8c8c;
+            padding: 10px 12px;
+            border-radius: 6px;
+            font-weight: 800;
+            font-size: 12px;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 18px;
+            margin-bottom: 10px;
+            box-shadow: 0 0 10px rgba(217, 83, 79, 0.2);
+            transition: all 0.25s ease;
+        }
+
+        .dead-homies-btn:hover {
+            background: #d9534f;
+            color: #ffffff;
+            box-shadow: 0 0 15px rgba(217, 83, 79, 0.6);
+            transform: translateY(-2px);
+        }
+
+        /* Style przycisku INCARCERATED */
+        .jail-btn {
+            width: 100%;
+            background: linear-gradient(135deg, #332200 0%, #1a1100 100%);
+            border: 1px solid #f39c12;
+            color: #f1c40f;
+            padding: 10px 12px;
+            border-radius: 6px;
+            font-weight: 800;
+            font-size: 12px;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: 18px;
+            box-shadow: 0 0 10px rgba(243, 156, 18, 0.2);
+            transition: all 0.25s ease;
+        }
+
+        .jail-btn:hover {
+            background: #f39c12;
+            color: #000000;
+            box-shadow: 0 0 15px rgba(243, 156, 18, 0.6);
+            transform: translateY(-2px);
+        }
 
         .audio-player-widget {
             background: #0d0d0d;
@@ -1025,7 +1083,7 @@
                         W/S 83 HOOVER CRIMINALS GANG 8️⃣3️⃣🟧 
                         <span class="badge-tag">WEST SIDE</span>
                     </h1>
-                    <p style="color: #777; margin-top: -5px;"><em>Los Santos, San Andreas <br><br> Informacje są powiązane z OOC oraz IC lecz stronę należy traktować jako format OOC 'Ciekawostkowy' </em></p>
+                    <p style="color: #777; margin-top: -5px;"><em>Informacje są powiązane z OOC oraz IC lecz stronę należy traktować jako format OOC 'Ciekawostkowy' <br> Los Santos, San Andreas </em></p>
 
                     <div class="image-wrapper" onclick="openMapModal('webp/zdjtytul.webp')">
                         <div class="graphic-badge-overlay">
@@ -1119,6 +1177,9 @@
 
                     <h1>Galeria Zdjęć</h1>
                     <div class="gang-gallery">
+					    <img src="webp/main14.webp" alt="Zdjęcie gangu 14" onclick="openMapModal('webp/main14.webp', '.gang-gallery')" loading="lazy">
+					    <img src="webp/main13.webp" alt="Zdjęcie gangu 13" onclick="openMapModal('webp/main13.webp', '.gang-gallery')" loading="lazy">
+					    <img src="webp/main12.webp" alt="Zdjęcie gangu 12" onclick="openMapModal('webp/main12.webp', '.gang-gallery')" loading="lazy">
                         <img src="webp/main11.webp" alt="Zdjęcie gangu 11" onclick="openMapModal('webp/main11.webp', '.gang-gallery')" loading="lazy">
                         <img src="webp/main10.webp" alt="Zdjęcie gangu 10" onclick="openMapModal('webp/main10.webp', '.gang-gallery')" loading="lazy">
                         <img src="webp/main9.webp" alt="Zdjęcie gangu 9" onclick="openMapModal('webp/main9.webp', '.gang-gallery')" loading="lazy">
@@ -1170,17 +1231,23 @@
                     <li><button class="member-btn" onmouseenter="showPreview(event, 'member1')" onmouseleave="hidePreview()" onclick="loadMember('member1')"><img src="webp/ikz1.webp" class="member-mini-avatar" loading="lazy"> Jack "IroKeZ" Smith</button></li>
                     <li><button class="member-btn" onmouseenter="showPreview(event, 'member2')" onmouseleave="hidePreview()" onclick="loadMember('member2')"><img src="webp/jb1.webp" class="member-mini-avatar" loading="lazy"> Jacob "JB" Bibi</button></li>
                     <li><button class="member-btn" onmouseenter="showPreview(event, 'member3')" onmouseleave="hidePreview()" onclick="loadMember('member3')"><img src="webp/tyka1.webp" class="member-mini-avatar" loading="lazy"> Mike "Tyka" Stick</button></li>
-                    <li><button class="member-btn" onmouseenter="showPreview(event, 'member4')" onmouseleave="hidePreview()" onclick="loadMember('member4')"><img src="webp/dj1.webp" class="member-mini-avatar" loading="lazy"> Daquan "DJ" Jones</button></li>
-                    <li><button class="member-btn" onmouseenter="showPreview(event, 'member5')" onmouseleave="hidePreview()" onclick="loadMember('member5')"><img src="webp/UnknownProf.webp" class="member-mini-avatar" loading="lazy"> Asher Backwood</button></li>
                     <li><button class="member-btn" onmouseenter="showPreview(event, 'member6')" onmouseleave="hidePreview()" onclick="loadMember('member6')"><img src="webp/scar1.webp" class="member-mini-avatar" loading="lazy"> Liam "Scarface" Bibi</button></li>
-                    <li><button class="member-btn" onmouseenter="showPreview(event, 'member7')" onmouseleave="hidePreview()" onclick="loadMember('member7')"><img src="webp/eazy1.webp" class="member-mini-avatar" loading="lazy"> Jay "Easy" Toska</button></li>
-                    <li><button class="member-btn" onmouseenter="showPreview(event, 'member10')" onmouseleave="hidePreview()" onclick="loadMember('member10')"><img src="webp/tyrone1.webp" class="member-mini-avatar" loading="lazy"> Tyrone "Lil T" Tate</button></li>
                     <li><button class="member-btn" onmouseenter="showPreview(event, 'member11')" onmouseleave="hidePreview()" onclick="loadMember('member11')"><img src="webp/crack1.webp" class="member-mini-avatar" loading="lazy"> Noah "Crackhead" Brown</button></li>
-                    <li><button class="member-btn" onmouseenter="showPreview(event, 'member12')" onmouseleave="hidePreview()" onclick="loadMember('member12')"><img src="webp/UnknownProf.webp" class="member-mini-avatar" loading="lazy"> Melvin "Eddy" Harper</button></li>
+                    <li><button class="member-btn" onmouseenter="showPreview(event, 'member21')" onmouseleave="hidePreview()" onclick="loadMember('member21')"><img src="webp/bones1.webp" class="member-mini-avatar" loading="lazy"> Davies "Bones" Jones</button></li>
+                    <li><button class="member-btn" onmouseenter="showPreview(event, 'member22')" onmouseleave="hidePreview()" onclick="loadMember('member22')"><img src="webp/UnknownProf.webp" class="member-mini-avatar" loading="lazy"> Marcus Jackson</button></li>
+                    <li><button class="member-btn" onmouseenter="showPreview(event, 'member23')" onmouseleave="hidePreview()" onclick="loadMember('member23')"><img src="webp/UnknownProf.webp" class="member-mini-avatar" loading="lazy"> Joe Jackson</button></li>
                     <li><button class="member-btn" onmouseenter="showPreview(event, 'member13')" onmouseleave="hidePreview()" onclick="loadMember('member13')"><img src="webp/UnknownProf.webp" class="member-mini-avatar" loading="lazy"> Blaze "Snowy" Norvil</button></li>
-                    <li><button class="member-btn" onmouseenter="showPreview(event, 'member14')" onmouseleave="hidePreview()" onclick="loadMember('member14')"><img src="webp/UnknownProf.webp" class="member-mini-avatar" loading="lazy"> Roodney "Kendo" Alcala</button></li>
-                    <li><button class="member-btn" onmouseenter="showPreview(event, 'member15')" onmouseleave="hidePreview()" onclick="loadMember('member15')"><img src="webp/UnknownProf.webp" class="member-mini-avatar" loading="lazy"> Trevon "Trója" Carter</button></li>
+                    <li><button class="member-btn" onmouseenter="showPreview(event, 'member7')" onmouseleave="hidePreview()" onclick="loadMember('member7')"><img src="webp/eazy1.webp" class="member-mini-avatar" loading="lazy"> Jay "Easy" Toska</button></li>
+                    <li><button class="member-btn" onmouseenter="showPreview(event, 'member28')" onmouseleave="hidePreview()" onclick="loadMember('member28')"><img src="webp/burger1.webp" class="member-mini-avatar" loading="lazy"> Myles "Burger" Brooks</button></li>
+                    <li><button class="member-btn" onmouseenter="showPreview(event, 'member29')" onmouseleave="hidePreview()" onclick="loadMember('member29')"><img src="webp/UnknownProf.webp" class="member-mini-avatar" loading="lazy"> Daquan "Goofy" Jones</button></li>
                 </ul>
+
+                <button class="dead-homies-btn" onclick="showDeadHomiesPage()">
+                    🪦 DEAD HOMIES
+                </button>
+                <button class="jail-btn" onclick="showJailPage()">
+                    ⛓️ INCARCERATED
+                </button>
 
                 <div class="member-preview-card" id="memberPreviewCard">
                     <div class="preview-header">
@@ -1200,7 +1267,6 @@
         </div>
     </div>
 
-    <!-- OpenModal -->
     <div id="mapModal" class="modal">
         <span class="close-modal" onclick="closeMapModal()">&times;</span>
         <button class="nav-btn prev-btn" id="prevBtn" onclick="navigateGallery(-1)">&#10094;</button>
@@ -1232,7 +1298,7 @@
                 picChat: 'irokez',
                 idPhoto: 'webp/ikz1.webp',
                 bio: "• Krąży plotka że Jack zabił swojego ojca... <br><br> • Jack jest wysportowany oraz silny... <br><br> • Pewnego czasu freestylowiec, teraz raper undergroundowy... <br><br> • Notatka LSPD: <span class='redacted'>Podejrzany o handel bronią palną.</span>",
-                images: ["webp/ikz2.webp", "webp/ikz3.webp", "webp/ikz4.webp", "webp/ikz5.webp", "webp/ikz6.webp"]
+                images: ["webp/ikz2.webp", "webp/ikz3.webp", "webp/ikz4.webp", "webp/ikz5.webp", "webp/ikz6.webp", "webp/ikz7.webp", "webp/ikz8.webp", "webp/ikz9.webp"]
             },
             member2: {
                 name: 'Jacob "JB" Bibi',
@@ -1242,7 +1308,7 @@
                 picChat: 'jacob',
                 idPhoto: 'webp/jb1.webp',
                 bio: "• Jacob został zaatakowany i podczas tej sytuacji przypalili mu lewą stronę twarzy... <br><br> • JB jest jednym z najbliższych homie Jack'a Smith'a... <br><br> • Jacob jest aspirującym barberem...",
-                images: ["webp/jb2.webp", "webp/jb3.webp", "webp/jb4.webp"]
+                images: ["webp/jb2.webp", "webp/jb3.webp", "webp/jb4.webp", "webp/jb5.webp", "webp/jb6.webp", "webp/jb7.webp", "webp/jb8.webp"]
             },
             member3: {
                 name: 'Mike "Tyka" Stick',
@@ -1252,11 +1318,11 @@
                 picChat: 'mtyka',
                 idPhoto: 'webp/tyka1.webp',
                 bio: "• Mike to aspirujący producent muzyczny... <br><br> • Mike ma dość dużą rodzine (4 braci oraz 2 siostry)... <br><br> • Mike jest dyslektykiem... </span>",
-                images: ["webp/tyka2.webp"]
+                images: ["webp/tyka2.webp", "webp/tyka3.webp", "webp/tyka4.webp"]
             },
             member4: {
                 name: 'Daquan "DJ" Jones',
-                status: 'ACTIVE',
+                status: 'INCARCERATED',
                 dob: '03/08/2002',
                 instaPic: '@daqj',
                 picChat: 'daqj',
@@ -1266,7 +1332,7 @@
             },
             member5: {
                 name: 'Asher Backwood',
-                status: 'ACTIVE',
+                status: 'INCARCERATED',
                 dob: '19/01/2000',
                 instaPic: '@private',
                 picChat: 'private',
@@ -1282,7 +1348,7 @@
                 picChat: 'liam_scar',
                 idPhoto: 'webp/scar1.webp',
                 bio: "• Liam jest dużym fanem motoryzacji... <br><br> • Liam urodził się na Denver lecz z braku kasy był zmuszony zamieszać na Strawberry Avenue 83rd'...",
-                images: []
+                images: ["webp/scar2.webp"]
             },
             member7: {
                 name: 'Jay "Easy" Toska',
@@ -1291,7 +1357,7 @@
                 instaPic: '@private',
                 picChat: 'private',
                 idPhoto: 'webp/eazy1.webp',
-                bio: "• Jay jest uzależniony od palenia weedu... <br><br> • Jay jest przeciwnikiem twardych narkotyków... <br><br> • Stracił przyjaciela przez crack...",
+                bio: "• Jay jest uzależniony od palenia weedu... <br><br> • Jay jest przeciwnikiem twardych narkotyków... <br><br> • Stracił przyjaciela przez crack... <br><br> • Jego największym beef'em jest beef z logopedą.",
                 images: ["webp/eazy2.webp"]
             },
             member8: {
@@ -1332,11 +1398,11 @@
                 picChat: 'private',
                 idPhoto: 'webp/crack1.webp',
                 bio: "• Noah lubi używki i jego życie opiera sie głównie tylko na tym... <br><br> • Noah jeździ starym rozwalonym autem lecz zawsze jest pomocny dla czarnuchów z 83' ",
-                images: []
+                images: ["webp/crack2.webp"]
             },
             member12: {
                 name: 'Melvin "Eddy" Harper',
-                status: 'ACTIVE',
+                status: 'DECEASED',
                 dob: 'private',
                 instaPic: '@private',
                 picChat: 'private',
@@ -1356,17 +1422,17 @@
             },
             member14: {
                 name: 'Roodney "Kendo" Alcala',
-                status: 'ACTIVE',
-                dob: 'Unknown',
-                instaPic: '@private',
-                picChat: 'private',
-                idPhoto: 'webp/UnknownProf.webp',
+                status: 'DECEASED',
+                dob: '14/11/2004',
+                instaPic: '@kendo_83',
+                picChat: 'kendo83',
+                idPhoto: 'webp/kendo1.webp',
                 bio: "• Ten profil jest prywatny lub niedostępny dla publicznego podglądu.",
                 images: []
             },
             member15: {
                 name: 'Trevon "Trója" Carter',
-                status: 'ACTIVE',
+                status: 'INCARCERATED',
                 dob: '01/03/2005',
                 instaPic: '@private',
                 picChat: 'private',
@@ -1403,7 +1469,7 @@
                 gangName: '65 Menlo Neighborhood Crips',
                 dissName: '(Mendo/Men-Hoes/Fleas)',
                 mainImage: 'webp/65menlo.webp',
-                bio: "65 Menlo Crips znany historycznie jako 65 Menlo Gangster Crips (MGC), a pierwotnie założony pod nazwą Menlo Boys to grupa przestępcza o przewadze członków pochodzenia afroamerykańskiego, działająca w zachodniej części południowego Los Santos. Z biegiem czasu ugrupowanie to zmieniło swoją przynależność z frakcji Gangster Crip (3x) na sojusz Neighborhood Crip (NHC/Deuce); była to nietypowa zmiana, postrzegana w kulturze gangów jako kontrowersyjna.Teren ich działalności koncentruje się wokół skrzyżowania 65th Street i Menlo Avenue i rozciąga się od 62nd Street do 70th Street, pomiędzy Vermont Avenue a Figueroa Street. O członkach gangu Menlo często mówi się, że funkcjonują „na wyspie” – są bowiem otoczeni przez terytoria należące do jednych z najbardziej aktywnych i wrogich grup w południowym Los Santos, w tym Hoover Criminals oraz różnych odłamów Gangster Crips. Takie położenie sprawiło, że historia gangu naznaczona jest ciągłymi konfliktami i zmieniającymi się sojuszami. <br><br> Historycznie rzecz biorąc, gang Menlo Gangster Crips utrzymywał silny sojusz z Eight Tray Gangster Crips (ETGC). Jednak gwałtowny konflikt między tymi dwiema grupami zasadniczo zmienił tożsamość Menlo. W ramach rzadkiego posunięcia, polegającego na strategicznej zmianie orientacji, członkowie Menlo Crips zerwali swoje powiązania z frakcją „3x” i zaczęli szukać ochrony oraz partnerstwa w strukturach Neighborhood Crip (NHC). Nawiązali oni szczególnie bliską więź z grupą 67 Neighborhood Crips, tworząc sojusz znany jako „657”. Przejście to wiązało się z rezygnacją z członu nazwy „Gangster” i przyjęciem nazwy 65 Menlo Neighborhood Crips, co w praktyce oznaczało przejście pod szyld „Deuce” (2x).",
+                bio: "65 Menlo Crips znany historycznie jako 65 Menlo Gangster Crips (MGC), a pierwotnie założony pod nazwą Menlo Boys to grupa przestępcza o przewadze członków pochodzenia afroamerykańskiego, działająca w zachodniej części południowego Los Santos. Z biegiem czasu ugrupowanie to zmieniło swoją przynależność z frakcji Gangster Crip (3x) na sojusz Neighborhood Crip (NHC/Deuce); była to nietypowa zmiana, postrzegana w kulturze gangów jako kontrowersyjna.Teren ich działalności koncentruje się wokół skrzyżowania 65th Street i Menlo Avenue i rozciąga się od 62nd Street do 70th Street, pomiędzy Vermont Avenue a Figueroa Street. O członkach gangu Menlo często mówi się, że funkcjonują „na wyspie” – są bowiem otoczeni przez terytoria należące do jednych z najbardziej aktywnych i wrogich grup w południowym Los Santos, w tym Hoover Criminals oraz różnych odłamów Gangster Crips. Takie położenie sprawiło, że historia gangu naznaczona jest ciągłymi konfliktami i zmieniającymi się sojuszami. <br><br> Historycznie rzecz biorąc, gang Menlo Gangster Crips utrzymywał silny sojusz z Eight Tray Gangster Crips (ETGC). Jednak gwałtowny konflikt między tymi dwiema grupami zasadniczo zmienił tożsamość Menlo. W ramach rzadkiego posunięcia, polegającego na strategicznej zmianie orientacji, członkowie Menlo Crips zerwali swoje powiązania z frakcją „3x” i zaczęli szukać ochrony oraz partnerstwa w strukturach Neighborhood Crip (NHC). Nawiązali oni szczególnie bliską więź z grupą 67 Neighborhood Crips, tworząc sojusz znany jako „657”. Przejście to wiązało się z rezygnacją z członu nazwy „Gangster” i przyjęciem nazwy 65 Menlo Neighborhood Crips, co w practical ce oznaczało przejście pod szyld „Deuce” (2x).",
                 images: []
             },
             member20: {
@@ -1412,6 +1478,106 @@
                 dissName: '(Mad Swine/Silly Swans/Bird Brains)',
                 mainImage: 'webp/madswan.webp',
                 bio: "Mad Swan Bloods, znani również jako „The Byrd Gang”, to afroamerykański gang uliczny działający we wschodniej części południowego Los Santos w San Andreas. Grupa ta wywodzi się z formacji „Main Street Swans”, powstałej na początku lat 70. XX wieku. W skład gangu wchodzą podgrupy działające w rejonie ulic: 77th, 79th, 80th oraz 84th Street. Mad Swan Bloods operują na wschód od 84 Main Street Crips i na zachód od 76 East Coast Crips, a także na południe od 6 Pacc East Coast Crips i na północ od 88 Avalon Garden Crips.",
+                images: []
+            },
+            member21: {
+                name: 'Davies "Bones" Jones',
+                status: 'ACTIVE',
+                dob: 'private',
+                instaPic: '@private',
+                picChat: 'private',
+                idPhoto: 'webp/bones1.webp',
+                bio: "• Ten profil jest prywatny lub niedostępny dla publicznego podglądu.",
+                images: []
+            },
+            member22: {
+                name: 'Marcus Jackson',
+                status: 'ACTIVE',
+                dob: 'private',
+                instaPic: '@private',
+                picChat: 'private',
+                idPhoto: 'webp/UnknownProf.webp',
+                bio: "• Ten profil jest prywatny lub niedostępny dla publicznego podglądu.",
+                images: []
+            },
+            member23: {
+                name: 'Joe Jackson',
+                status: 'ACTIVE',
+                dob: 'private',
+                instaPic: '@private',
+                picChat: 'private',
+                idPhoto: 'webp/UnknownProf.webp',
+                bio: "• Ten profil jest prywatny lub niedostępny dla publicznego podglądu.",
+                images: []
+            },
+            member24: {
+                name: 'Darnell "Dre" Jackson',
+                status: 'DECEASED',
+                dob: 'private',
+                instaPic: '@private',
+                picChat: 'private',
+                idPhoto: 'webp/UnknownProf.webp',
+                bio: "• Ten profil jest prywatny lub niedostępny dla publicznego podglądu.",
+                images: []
+            },
+            member25: {
+                name: 'Denzel "Denz" Turner',
+                status: 'DECEASED',
+                dob: 'private',
+                instaPic: '@private',
+                picChat: 'private',
+                idPhoto: 'webp/UnknownProf.webp',
+                bio: "• Ten profil jest prywatny lub niedostępny dla publicznego podglądu.",
+                images: []
+            },
+            member26: {
+                name: 'Tyson "T" Reed',
+                status: 'DECEASED',
+                dob: 'private',
+                instaPic: '@private',
+                picChat: 'private',
+                idPhoto: 'webp/UnknownProf.webp',
+                bio: "• Ten profil jest prywatny lub niedostępny dla publicznego podglądu.",
+                images: []
+            },
+            member27: {
+                name: 'Malik "Screwface" Harris',
+                status: 'DECEASED',
+                dob: 'private',
+                instaPic: '@private',
+                picChat: 'private',
+                idPhoto: 'webp/UnknownProf.webp',
+                bio: "• Ten profil jest prywatny lub niedostępny dla publicznego podglądu.",
+                images: []
+            },
+            member28: {
+                name: 'Myles "Burger" Brooks',
+                status: 'ACTIVE',
+                dob: 'private',
+                instaPic: '@private',
+                picChat: 'private',
+                idPhoto: 'webp/burger1.webp',
+                bio: "• Ten profil jest prywatny lub niedostępny dla publicznego podglądu.",
+                images: []
+            },
+            member29: {
+                name: 'Daquan "Goofy" Jones',
+                status: 'ACTIVE',
+                dob: 'private',
+                instaPic: '@private',
+                picChat: 'private',
+                idPhoto: 'webp/UnknownProf.webp',
+                bio: "• Ten profil jest prywatny lub niedostępny dla publicznego podglądu.",
+                images: []
+            },
+            member30: {
+                name: 'Tommy "T/O" O\'Connor',
+                status: 'INCARCERATED',
+                dob: 'private',
+                instaPic: '@private',
+                picChat: 'private',
+                idPhoto: 'webp/tommy1.webp',
+                bio: "• Ten profil jest prywatny lub niedostępny dla publicznego podglądu.",
                 images: []
             }
         };
@@ -1593,6 +1759,7 @@
 
         function getStatusBadge(status) {
             if (status === 'ACTIVE') return `<span class="status-badge status-active">ACTIVE</span>`;
+            if (status === 'INTERACTED') return `<span class="status-badge status-active" style="background: rgba(56, 151, 240, 0.15); color: #3897f0; border: 1px solid #3897f0;">INTERACTED</span>`;
             if (status === 'INCARCERATED') return `<span class="status-badge status-incapacitated">INCARCERATED</span>`;
             if (status === 'DECEASED') return `<span class="status-badge status-deceased">DECEASED</span>`;
             return '';
@@ -1654,6 +1821,88 @@
                     `;
                 }
 
+                mainContent.classList.remove('fade-out');
+            }, 300);
+        }
+
+        function showDeadHomiesPage() {
+            playClickSound();
+            hidePreview();
+            clearErrorTimers();
+
+            mainContent.classList.add('fade-out');
+            setTimeout(() => {
+                const deadMembersKeys = Object.keys(membersData).filter(key => membersData[key].status === 'DECEASED');
+                
+                let cardsHTML = deadMembersKeys.map(key => {
+                    const m = membersData[key];
+                    return `
+                        <div class="id-card" style="border-left-color: #d9534f; background-color: #120e0e; margin-bottom: 15px;">
+                            <img src="${m.idPhoto}" alt="${m.name}" class="id-photo" onclick="openMapModal('${m.idPhoto}')" loading="lazy">
+                            <div class="id-info">
+                                <h2>${m.name} ${getStatusBadge(m.status)}</h2>
+                                <p><strong>Date Of Birth:</strong> ${m.dob}</p>
+                                <p><strong>InstaPic:</strong> <span class="handle">${m.instaPic || '---'}</span></p>
+                                <p><strong>PicChat:</strong> <span class="snap-handle">${m.picChat || '---'}</span></p>
+                                <div style="margin-top: 10px; font-size: 13px; color: #aaa; border-top: 1px solid #222; padding-top: 8px;">
+                                    ${m.bio}
+                                </div>
+                                <button class="audio-btn" style="margin-top: 10px; max-width: 160px;" onclick="loadMember('${key}')">Zobacz Profil ➔</button>
+                            </div>
+                        </div>
+                    `;
+                }).join('');
+
+                mainContent.innerHTML = `
+                    <button class="back-btn" onclick="showMainPage()">← Powrót do profilu gangu</button>
+                    <h1> REST IN PEACE // DEAD HOMIES 🪦</h1>
+                    <p style="color: #888; font-size: 14px; margin-top: -5px;">Pamięć o poległych braciach z 83 Hoover Criminals Gang.</p>
+                    
+                    <div style="margin-top: 25px;">
+                        ${cardsHTML}
+                    </div>
+                `;
+                mainContent.classList.remove('fade-out');
+            }, 300);
+        }
+
+        function showJailPage() {
+            playClickSound();
+            hidePreview();
+            clearErrorTimers();
+
+            mainContent.classList.add('fade-out');
+            setTimeout(() => {
+                const jailMembersKeys = Object.keys(membersData).filter(key => membersData[key].status === 'INCARCERATED');
+                
+                let cardsHTML = jailMembersKeys.map(key => {
+                    const m = membersData[key];
+                    return `
+                        <div class="id-card" style="border-left-color: #f39c12; background-color: #14110b; margin-bottom: 15px;">
+                            <img src="${m.idPhoto}" alt="${m.name}" class="id-photo" onclick="openMapModal('${m.idPhoto}')" loading="lazy">
+                            <div class="id-info">
+                                <h2>${m.name} ${getStatusBadge(m.status)}</h2>
+                                <p><strong>Date Of Birth:</strong> ${m.dob}</p>
+                                <p><strong>InstaPic:</strong> <span class="handle">${m.instaPic || '---'}</span></p>
+                                <p><strong>PicChat:</strong> <span class="snap-handle">${m.picChat || '---'}</span></p>
+                                <div style="margin-top: 10px; font-size: 13px; color: #aaa; border-top: 1px solid #222; padding-top: 8px;">
+                                    ${m.bio}
+                                </div>
+                                <button class="audio-btn" style="margin-top: 10px; max-width: 160px; background: #332200; border-color: #f39c12; color: #f1c40f;" onclick="loadMember('${key}')">Zobacz Profil ➔</button>
+                            </div>
+                        </div>
+                    `;
+                }).join('');
+
+                mainContent.innerHTML = `
+                    <button class="back-btn" onclick="showMainPage()">← Powrót do profilu gangu</button>
+                    <h1> INCARCERATED ⛓️</h1>
+                    <p style="color: #888; font-size: 14px; margin-top: -5px;">Lista członków 83 Hoover Criminals Gang przebywających w zakładach karnych.</p>
+                    
+                    <div style="margin-top: 25px;">
+                        ${cardsHTML || '<p style="color:#aaa;">Brak danych o osadzonych.</p>'}
+                    </div>
+                `;
                 mainContent.classList.remove('fade-out');
             }, 300);
         }
