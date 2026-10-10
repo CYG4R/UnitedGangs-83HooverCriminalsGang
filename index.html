@@ -1177,6 +1177,7 @@
 
                     <h1>Galeria Zdjęć</h1>
                     <div class="gang-gallery">
+					    <img src="webp/main15.webp" alt="Zdjęcie gangu 15" onclick="openMapModal('webp/main15.webp', '.gang-gallery')" loading="lazy">
 					    <img src="webp/main14.webp" alt="Zdjęcie gangu 14" onclick="openMapModal('webp/main14.webp', '.gang-gallery')" loading="lazy">
 					    <img src="webp/main13.webp" alt="Zdjęcie gangu 13" onclick="openMapModal('webp/main13.webp', '.gang-gallery')" loading="lazy">
 					    <img src="webp/main12.webp" alt="Zdjęcie gangu 12" onclick="openMapModal('webp/main12.webp', '.gang-gallery')" loading="lazy">
@@ -1231,15 +1232,13 @@
                     <li><button class="member-btn" onmouseenter="showPreview(event, 'member1')" onmouseleave="hidePreview()" onclick="loadMember('member1')"><img src="webp/ikz1.webp" class="member-mini-avatar" loading="lazy"> Jack "IroKeZ" Smith</button></li>
                     <li><button class="member-btn" onmouseenter="showPreview(event, 'member2')" onmouseleave="hidePreview()" onclick="loadMember('member2')"><img src="webp/jb1.webp" class="member-mini-avatar" loading="lazy"> Jacob "JB" Bibi</button></li>
                     <li><button class="member-btn" onmouseenter="showPreview(event, 'member3')" onmouseleave="hidePreview()" onclick="loadMember('member3')"><img src="webp/tyka1.webp" class="member-mini-avatar" loading="lazy"> Mike "Tyka" Stick</button></li>
-                    <li><button class="member-btn" onmouseenter="showPreview(event, 'member6')" onmouseleave="hidePreview()" onclick="loadMember('member6')"><img src="webp/scar1.webp" class="member-mini-avatar" loading="lazy"> Liam "Scarface" Bibi</button></li>
                     <li><button class="member-btn" onmouseenter="showPreview(event, 'member11')" onmouseleave="hidePreview()" onclick="loadMember('member11')"><img src="webp/crack1.webp" class="member-mini-avatar" loading="lazy"> Noah "Crackhead" Brown</button></li>
                     <li><button class="member-btn" onmouseenter="showPreview(event, 'member21')" onmouseleave="hidePreview()" onclick="loadMember('member21')"><img src="webp/bones1.webp" class="member-mini-avatar" loading="lazy"> Davies "Bones" Jones</button></li>
-                    <li><button class="member-btn" onmouseenter="showPreview(event, 'member22')" onmouseleave="hidePreview()" onclick="loadMember('member22')"><img src="webp/UnknownProf.webp" class="member-mini-avatar" loading="lazy"> Marcus Jackson</button></li>
+                    <li><button class="member-btn" onmouseenter="showPreview(event, 'member22')" onmouseleave="hidePreview()" onclick="loadMember('member22')"><img src="webp/marcus1.webp" class="member-mini-avatar" loading="lazy"> Marcus Jackson</button></li>
                     <li><button class="member-btn" onmouseenter="showPreview(event, 'member23')" onmouseleave="hidePreview()" onclick="loadMember('member23')"><img src="webp/UnknownProf.webp" class="member-mini-avatar" loading="lazy"> Joe Jackson</button></li>
-                    <li><button class="member-btn" onmouseenter="showPreview(event, 'member13')" onmouseleave="hidePreview()" onclick="loadMember('member13')"><img src="webp/UnknownProf.webp" class="member-mini-avatar" loading="lazy"> Blaze "Snowy" Norvil</button></li>
-                    <li><button class="member-btn" onmouseenter="showPreview(event, 'member7')" onmouseleave="hidePreview()" onclick="loadMember('member7')"><img src="webp/eazy1.webp" class="member-mini-avatar" loading="lazy"> Jay "Easy" Toska</button></li>
                     <li><button class="member-btn" onmouseenter="showPreview(event, 'member28')" onmouseleave="hidePreview()" onclick="loadMember('member28')"><img src="webp/burger1.webp" class="member-mini-avatar" loading="lazy"> Myles "Burger" Brooks</button></li>
                     <li><button class="member-btn" onmouseenter="showPreview(event, 'member29')" onmouseleave="hidePreview()" onclick="loadMember('member29')"><img src="webp/UnknownProf.webp" class="member-mini-avatar" loading="lazy"> Daquan "Goofy" Jones</button></li>
+					<li><button class="member-btn" onmouseenter="showPreview(event, 'member31')" onmouseleave="hidePreview()" onclick="loadMember('member31')"><img src="webp/UnknownProf.webp" class="member-mini-avatar" loading="lazy"> Tommy "TeeJay" Jackson</button></li>
                 </ul>
 
                 <button class="dead-homies-btn" onclick="showDeadHomiesPage()">
@@ -1342,7 +1341,7 @@
             },
             member6: {
                 name: 'Liam "Scarface" Bibi',
-                status: 'ACTIVE',
+                status: 'INCARCERATED',
                 dob: '24/09/2003',
                 instaPic: '@scarface',
                 picChat: 'liam_scar',
@@ -1352,7 +1351,7 @@
             },
             member7: {
                 name: 'Jay "Easy" Toska',
-                status: 'ACTIVE',
+                status: 'INCARCERATED',
                 dob: '03/05/2008',
                 instaPic: '@private',
                 picChat: 'private',
@@ -1393,7 +1392,7 @@
             member11: {
                 name: 'Noah "Crackhead" Brown',
                 status: 'ACTIVE',
-                dob: 'private',
+                dob: '20.02.2004',
                 instaPic: '@private',
                 picChat: 'private',
                 idPhoto: 'webp/crack1.webp',
@@ -1412,7 +1411,7 @@
             },
             member13: {
                 name: 'Blaze "Snowy" Norvil',
-                status: 'ACTIVE',
+                status: 'INCARCERATED',
                 dob: 'private',
                 instaPic: '@private',
                 picChat: 'private',
@@ -1496,7 +1495,7 @@
                 dob: 'private',
                 instaPic: '@private',
                 picChat: 'private',
-                idPhoto: 'webp/UnknownProf.webp',
+                idPhoto: 'webp/marcus1.webp',
                 bio: "• Ten profil jest prywatny lub niedostępny dla publicznego podglądu.",
                 images: []
             },
@@ -1533,7 +1532,7 @@
             member26: {
                 name: 'Tyson "T" Reed',
                 status: 'DECEASED',
-                dob: 'private',
+                dob: '07.12.2004',
                 instaPic: '@private',
                 picChat: 'private',
                 idPhoto: 'webp/UnknownProf.webp',
@@ -1543,7 +1542,7 @@
             member27: {
                 name: 'Malik "Screwface" Harris',
                 status: 'DECEASED',
-                dob: 'private',
+                dob: '06.18.2007',
                 instaPic: '@private',
                 picChat: 'private',
                 idPhoto: 'webp/UnknownProf.webp',
@@ -1553,7 +1552,7 @@
             member28: {
                 name: 'Myles "Burger" Brooks',
                 status: 'ACTIVE',
-                dob: 'private',
+                dob: '03.16.2007',
                 instaPic: '@private',
                 picChat: 'private',
                 idPhoto: 'webp/burger1.webp',
@@ -1563,7 +1562,7 @@
             member29: {
                 name: 'Daquan "Goofy" Jones',
                 status: 'ACTIVE',
-                dob: 'private',
+                dob: '02.04.2006',
                 instaPic: '@private',
                 picChat: 'private',
                 idPhoto: 'webp/UnknownProf.webp',
@@ -1579,6 +1578,26 @@
                 idPhoto: 'webp/tommy1.webp',
                 bio: "• Ten profil jest prywatny lub niedostępny dla publicznego podglądu.",
                 images: []
+            },
+            member31: {
+                name: 'Toomy "TeeJay" Jackson',
+                status: 'ACTIVE',
+                dob: '07.06.2007',
+                instaPic: '@private',
+                picChat: 'private',
+                idPhoto: 'webp/UnknownProf.webp',
+                bio: "• Ten profil jest prywatny lub niedostępny dla publicznego podglądu.",
+                images: []
+            },
+            member32: {
+                name: 'Mark "G-Mark" Smith',
+                status: 'DECEASED',
+                dob: '20.10.1964',
+                instaPic: '@private',
+                picChat: 'private',
+                idPhoto: 'webp/marks1.webp',
+                bio: "• Ten profil jest prywatny lub niedostępny dla publicznego podglądu.",
+                images: ["webp/marks2.webp", "webp/marks3.webp"]
             }
         };
 
