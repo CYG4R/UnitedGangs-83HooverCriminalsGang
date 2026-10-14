@@ -32,8 +32,7 @@
             cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="%23eb6e1f" stroke-width="2"><circle cx="12" cy="12" r="7"/><line x1="12" y1="1" x2="12" y2="5"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="1" y1="12" x2="5" y2="12"/><line x1="19" y1="12" x2="23" y2="12"/><circle cx="12" cy="12" r="1" fill="%23eb6e1f"/></svg>') 12 12, auto;
         }
 
-        /* Ulepszona lista elementów reagujących na customowy kursor klikalny */
-        a, button, img, svg, .image-wrapper, .inline-member-link, .map-link, .redacted, .close-modal, .zoom-btn, .nav-btn, .id-photo, input, .affiliation-logo, .affiliation-card, .affiliation-info, .member-mini-avatar, .member-btn, .audio-btn, .dead-homies-btn, .jail-btn, .article-image, .gang-main-header-img, .member-gallery img, .gang-gallery img {
+        a, button, .image-wrapper, .inline-member-link, .map-link, .redacted, .close-modal, .zoom-btn, .nav-btn, .id-photo, input, .affiliation-logo, .affiliation-card, .affiliation-info, .member-mini-avatar, .member-btn, .audio-btn, .dead-homies-btn, .jail-btn, .article-image, .gang-main-header-img, .member-gallery img, .gang-gallery img, .map-zone, .legend-item, .album-cover-img, .track-link-btn, .buy-cd-btn {
             cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="%23d9534f" stroke="%23ffffff" stroke-width="1"><circle cx="12" cy="12" r="6"/><line x1="12" y1="2" x2="12" y2="22"/><line x1="2" y1="12" x2="22" y2="12"/></svg>') 12 12, pointer !important;
         }
 
@@ -154,77 +153,6 @@
             display: inline-block;
         }
 
-        .image-wrapper {
-            position: relative;
-            margin: 25px 0 20px 0;
-            display: block;
-            border-radius: 12px;
-            overflow: hidden;
-            border: 2px solid transparent;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.7);
-            transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), border-color 0.3s, box-shadow 0.3s;
-        }
-
-        .image-wrapper:hover {
-            border-color: #eb6e1f;
-            box-shadow: 0 0 20px rgba(235, 110, 31, 0.6), 0 0 35px rgba(235, 110, 31, 0.3);
-            transform: scale(1.01);
-        }
-
-        .graphic-badge-overlay {
-            position: absolute;
-            top: 15px;
-            left: 15px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            background: rgba(11, 23, 40, 0.92);
-            border: 1.5px solid #eb6e1f;
-            border-radius: 8px;
-            padding: 6px 14px 6px 10px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.8);
-            z-index: 10;
-            pointer-events: none;
-            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
-        }
-
-        .image-wrapper:hover .graphic-badge-overlay {
-            transform: translateY(-3px) scale(1.03);
-            border-color: #ff8c42;
-            box-shadow: 0 0 15px rgba(235, 110, 31, 0.7), 0 6px 20px rgba(0, 0, 0, 0.9);
-        }
-
-        .badge-cap-svg {
-            width: 55px;
-            height: 55px;
-            flex-shrink: 0;
-        }
-
-        .badge-text-title {
-            font-size: 12px;
-            font-weight: 900;
-            color: #ffffff;
-            letter-spacing: 1px;
-        }
-
-        .badge-text-sub {
-            font-size: 9px;
-            color: #eb6e1f;
-            font-weight: bold;
-        }
-
-        .article-image {
-            width: 100%;
-            max-height: 450px;
-            object-fit: cover;
-            display: block;
-            transition: transform 0.3s ease;
-        }
-
-        .image-wrapper:hover .article-image {
-            transform: scale(1.02);
-        }
-
         .key-facts {
             background-color: #141414;
             border-left: 4px solid #eb6e1f;
@@ -238,6 +166,147 @@
             margin-top: 0;
             color: #eb6e1f;
         }
+
+        .interactive-map-container {
+            position: relative;
+            width: 100%;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 2px solid #222;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.8);
+            margin: 15px 0;
+            background: #000;
+        }
+
+        .interactive-map-bg {
+            width: 100%;
+            display: block;
+            height: auto;
+            filter: brightness(0.9) contrast(1.1);
+        }
+
+        .interactive-map-svg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        .map-zone {
+            opacity: 0.45;
+            transition: all 0.25s ease;
+            stroke-width: 2;
+            stroke-dasharray: 4;
+            pointer-events: visiblePainted;
+        }
+
+        .map-zone:hover {
+            opacity: 0.8;
+            stroke-dasharray: 0;
+            filter: drop-shadow(0 0 12px rgba(255, 255, 255, 0.8));
+        }
+
+        .map-icon-marker {
+            pointer-events: none;
+            filter: drop-shadow(0px 2px 4px rgba(0, 0, 0, 0.8));
+            transition: transform 0.2s ease;
+        }
+
+        .zone-1 { fill: #eb6e1f; stroke: #ffffff; }
+        .zone-2 { fill: #d9534f; stroke: #ffffff; }
+        .zone-3 { fill: #3498db; stroke: #ffffff; }
+        .zone-6 { fill: #f1c40f; stroke: #ffffff; }
+        .zone-11 { fill: #691a17; stroke: #ffffff; }
+        .zone-12 { fill: #d1332e; stroke: #ffffff; }
+        .zone-13 { fill: #b30000; stroke: #ffffff; }
+        .zone-14 { fill: #ff8080; stroke: #ffffff; }
+        .zone-15 { fill: #805e00; stroke: #ffffff; }
+        .zone-16 { fill: #1a1300; stroke: #ffffff; }
+        .zone-17 { fill: #002080; stroke: #ffffff; }
+        .zone-18 { fill: #0039e6; stroke: #ffffff; }
+        .zone-19 { fill: #1a1aff; stroke: #ffffff; }
+
+        .map-tooltip {
+            position: absolute;
+            padding: 10px 14px;
+            background: rgba(15, 15, 15, 0.95);
+            border: 1px solid #eb6e1f;
+            border-left: 4px solid #eb6e1f;
+            border-radius: 6px;
+            color: #fff;
+            font-size: 12px;
+            pointer-events: none;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.15s ease, visibility 0.15s ease;
+            z-index: 100;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.9);
+            max-width: 240px;
+        }
+
+        .map-tooltip.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .map-tooltip-title {
+            font-weight: 900;
+            color: #eb6e1f;
+            margin-bottom: 4px;
+            font-size: 13px;
+            letter-spacing: 0.5px;
+        }
+
+        .map-tooltip-desc {
+            color: #ccc;
+            font-size: 11px;
+            line-height: 1.3;
+        }
+
+        .map-legend {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 10px;
+            background: #0d0d0d;
+            padding: 10px 14px;
+            border-radius: 6px;
+            border: 1px solid #222;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 11px;
+            color: #bbb;
+            transition: color 0.2s;
+        }
+
+        .legend-item:hover { color: #fff; }
+
+        .legend-color {
+            width: 12px;
+            height: 12px;
+            border-radius: 3px;
+            display: inline-block;
+        }
+
+        .legend-1 { background-color: #eb6e1f; }
+        .legend-2 { background-color: #d9534f; }
+        .legend-3 { background-color: #3498db; }
+        .legend-6 { background-color: #f1c40f; }
+        .legend-11 { background-color: #691a17; }
+        .legend-12 { background-color: #d1332e; }
+        .legend-13 { background-color: #b30000; }
+        .legend-14 { background-color: #ff8080; }
+        .legend-15 { background-color: #805e00; }
+        .legend-16 { background-color: #1a1300; }
+        .legend-17 { background-color: #002080; }
+        .legend-18 { background-color: #0039e6; }
+        .legend-19 { background-color: #1a1aff; }
 
         .threat-meter-box {
             margin-top: 15px;
@@ -381,7 +450,6 @@
 
         .search-input:focus { border-color: #eb6e1f; }
 
-        /* Style przycisku DEAD HOMIES */
         .dead-homies-btn {
             width: 100%;
             background: linear-gradient(135deg, #2b0b0b 0%, #150505 100%);
@@ -410,7 +478,6 @@
             transform: translateY(-2px);
         }
 
-        /* Style przycisku INCARCERATED */
         .jail-btn {
             width: 100%;
             background: linear-gradient(135deg, #332200 0%, #1a1100 100%);
@@ -704,6 +771,187 @@
             z-index: 5;
         }
 
+        /* Style Dyskografii / Albumu */
+        .discography-card {
+            background-color: #141414;
+            border: 1px solid #222;
+            border-left: 4px solid #eb6e1f;
+            border-radius: 8px;
+            padding: 18px;
+            margin: 20px 0;
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
+        }
+
+        .album-cover-box {
+            position: relative;
+            width: 150px;
+            height: 150px;
+            flex-shrink: 0;
+            border-radius: 6px;
+            overflow: hidden;
+            border: 2px solid #333;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.7);
+            transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .album-cover-box:hover {
+            transform: scale(1.04);
+            border-color: #eb6e1f;
+            box-shadow: 0 0 20px rgba(235, 110, 31, 0.5);
+        }
+
+        .album-cover-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .album-cover-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.25s ease;
+            color: #fff;
+            font-size: 11px;
+            font-weight: bold;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.8);
+        }
+
+        .album-cover-box:hover .album-cover-overlay {
+            opacity: 1;
+        }
+
+        .album-details {
+            flex: 1;
+        }
+
+        .album-header-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 15px;
+            margin-bottom: 4px;
+        }
+
+        .album-title {
+            color: #ffffff;
+            font-size: 18px;
+            font-weight: 800;
+            margin: 0;
+        }
+
+        .buy-cd-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 6px;
+            flex-shrink: 0;
+        }
+
+        .buy-cd-btn {
+            background: #eb6e1f;
+            color: #000;
+            border: none;
+            font-size: 11px;
+            font-weight: 800;
+            padding: 6px 12px;
+            border-radius: 4px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: background 0.2s, transform 0.2s;
+        }
+
+        .buy-cd-btn:hover {
+            background: #ff8c42;
+            transform: scale(1.05);
+        }
+
+        .buy-cd-info {
+            font-size: 12px;
+            color: #eb6e1f;
+            font-family: monospace;
+            font-weight: bold;
+            display: none;
+            text-align: right;
+            background: rgba(235, 110, 31, 0.1);
+            border: 1px dashed rgba(235, 110, 31, 0.4);
+            padding: 4px 8px;
+            border-radius: 4px;
+        }
+
+        .buy-cd-info.active {
+            display: block;
+        }
+
+        .album-meta {
+            color: #eb6e1f;
+            font-size: 12px;
+            font-family: monospace;
+            margin-bottom: 12px;
+        }
+
+        .tracklist {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .track-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: #0d0d0d;
+            border: 1px solid #222;
+            padding: 8px 12px;
+            border-radius: 4px;
+            font-size: 12px;
+            transition: border-color 0.2s, background-color 0.2s;
+        }
+
+        .track-item:hover {
+            border-color: #eb6e1f;
+            background-color: #181818;
+        }
+
+        .track-name {
+            color: #ddd;
+            font-weight: 600;
+        }
+
+        .track-link-btn {
+            background: #eb6e1f;
+            color: #000;
+            text-decoration: none;
+            font-size: 10px;
+            font-weight: 800;
+            padding: 4px 10px;
+            border-radius: 3px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: background 0.2s, transform 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            border: none;
+        }
+
+        .track-link-btn:hover {
+            background: #ff8c42;
+            transform: scale(1.05);
+        }
+
         .modal {
             display: none;
             position: fixed;
@@ -897,6 +1145,15 @@
             border-top: 1px solid #222;
         }
 
+		.neu-status-text {
+            color: #737373;
+            font-weight: bold;
+            font-size: 15px;
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 1px solid #222;
+        }
+
         .status-badge {
             display: inline-block;
             font-size: 10px;
@@ -1058,6 +1315,30 @@
             100% { opacity: 1; text-shadow: 0 0 20px rgba(217, 83, 79, 0.8); }
         }
 
+        @keyframes deadFlashAnimation {
+            0% { filter: brightness(1); }
+            20% { filter: brightness(0.2) sepia(1) hue-rotate(-50deg) saturate(5); }
+            50% { filter: brightness(1.8) contrast(1.5); }
+            70% { filter: brightness(0.4) grayscale(0.8); }
+            100% { filter: brightness(1); }
+        }
+
+        @keyframes jailFlashAnimation {
+            0% { filter: brightness(1); }
+            25% { filter: brightness(0.3) sepia(1) hue-rotate(15deg) saturate(4); }
+            50% { filter: brightness(1.6) invert(0.2); }
+            75% { filter: brightness(0.5); }
+            100% { filter: brightness(1); }
+        }
+
+        .dead-page-flash {
+            animation: deadFlashAnimation 0.6s ease-in-out;
+        }
+
+        .jail-page-flash {
+            animation: jailFlashAnimation 0.6s ease-in-out;
+        }
+
         @media (max-width: 768px) {
             .main-layout { flex-direction: column; }
             .sidebar { position: static; }
@@ -1065,6 +1346,11 @@
             .id-photo { margin: 0 auto; }
             .member-preview-card { display: none !important; }
             .member-gallery, .gang-gallery { grid-template-columns: repeat(2, 1fr); }
+            .discography-card { flex-direction: column; align-items: center; text-align: center; }
+            .album-cover-box { margin-bottom: 10px; }
+            .album-header-row { flex-direction: column; align-items: center; }
+            .buy-cd-wrapper { align-items: center; }
+            .buy-cd-info { text-align: center; }
         }
     </style>
 </head>
@@ -1083,52 +1369,148 @@
                         W/S 83 HOOVER CRIMINALS GANG 8️⃣3️⃣🟧 
                         <span class="badge-tag">WEST SIDE</span>
                     </h1>
-                    <p style="color: #777; margin-top: -5px;"><em>Informacje są powiązane z OOC oraz IC lecz stronę należy traktować jako format OOC 'Ciekawostkowy' <br> Los Santos, San Andreas </em></p>
-
-                    <div class="image-wrapper" onclick="openMapModal('webp/zdjtytul.webp')">
-                        <div class="graphic-badge-overlay">
-                            <svg class="badge-cap-svg" viewBox="0 0 100 100">
-                                <defs>
-                                    <linearGradient id="capGrad" x1="0%" y1="0%" x2="0%" y2="100%">
-                                        <stop offset="0%" stop-color="#0a2540" />
-                                        <stop offset="100%" stop-color="#020c1a" />
-                                    </linearGradient>
-                                    <linearGradient id="visorGrad" x1="0%" y1="0%" x2="0%" y2="100%">
-                                        <stop offset="0%" stop-color="#eb6e1f" />
-                                        <stop offset="100%" stop-color="#a84303" />
-                                    </linearGradient>
-                                </defs>
-                                <path d="M 18 68 C 16 35, 32 16, 50 16 C 68 16, 84 35, 82 68 Z" fill="url(#capGrad)" stroke="#000" stroke-width="1.5"/>
-                                <ellipse cx="50" cy="16" rx="4" ry="2.5" fill="#eb6e1f" />
-                                <polygon points="50,26 52.5,33 60,33 54,37.5 56,45 50,40.5 44,45 46,37.5 40,33 47.5,33" fill="#eb6e1f"/>
-                                <text x="50" y="42" font-size="15" font-family="Arial Black, Impact, sans-serif" font-weight="900" fill="#ffffff" text-anchor="middle">H</text>
-                                <path d="M 12 66 Q 50 56 88 66 C 96 76, 75 85, 50 85 C 25 85, 4 76, 12 66 Z" fill="url(#visorGrad)" stroke="#7c2f00" stroke-width="1"/>
-                            </svg>
-
-                            <div class="badge-text-details">
-                                <span class="badge-text-title">HOUSTON ASTROS</span>
-                                <span class="badge-text-sub">ELEMENT AFILIACJI</span>
-                            </div>
-                        </div>
-                        <img src="webp/zdjtytul.webp" class="article-image" alt="Zdjęcie ugrupowania" loading="lazy">
-                    </div>
+                    <p style="color: #777; margin-top: -5px;"><em>‼️ Informacje są powiązane z OOC oraz IC lecz stronę należy traktować jako format OOC‼️ <br> ⚠️ Konflikty gangów nie odzwierciedlają realiów LA ⚠️ <br> 🗺️ Los Santos, San Andreas 🗺️ </em></p>
 
                     <div class="key-facts">
-                        <h3>Ogólne Informacje</h3>
-                        <p><strong>Territory:</strong> <span class="map-link" onclick="openMapModal('webp/83hcgmap.webp')">Strawberry Avenue 83rd' [Hoover Street], Forum Drive 74rd' (Zobacz Mapę 🗺️)</span></p>
-                        <p><strong>Allies:</strong> 
-                            <span class="inline-member-link" onmouseenter="showInlinePreview(event, 'member18')" onmouseleave="hidePreview()" onclick="loadMember('member18')">92' Athens Park Bloods</span>
+                        <h3>💸🤞🏿🔪 Gangs of Los Santos 🔪🤞🏿💸</h3>
+                        <p> <h5>Najedź na kolorowe strefy na mapie, aby zobaczyć opis terytorium. Kliknij wybraną strefę, aby przejść do szczegółów.</p>
+
+                        <!-- Interaktywna Mapa -->
+                        <div class="interactive-map-container" id="interactiveMap">
+                            <img src="png/SouthCentral.png" alt="South Central Territory Map" class="interactive-map-bg">
+                            
+                            <svg class="interactive-map-svg" viewBox="0 0 1202 1007" preserveAspectRatio="none">
+                                <!-- 83 Hoover Criminals Gang -->
+                                <polygon points="454,401 289,262 378,206 574,206 601,225" class="map-zone zone-1" 
+                                         data-title="83 Hoover Criminals Gang" 
+                                         data-desc="Aktualny Gang który przeglądasz"/>
+                                <image href="png/hoover.png" x="367" y="214" width="150" height="150" class="map-icon-marker" />        
+
+                                <!-- 65 Menlo Neighborhood Crips -->
+                                <polygon points="228,352 214,377 189,416 260,435 301,436 301,408 351,343 295,298 255,266 240,266 240,298 238,320 233,337" class="map-zone zone-3" 
+                                         data-title="65 Menlo Neighborhood Crips" 
+                                         data-desc="Kliknij aby otworzyć profil gangu z tej strefy"
+                                         onclick="loadMember('member73')"/>
+                                <image href="png/menlo.png" x="215" y="321" width="100" height="100" class="map-icon-marker" />
+
+                                <!-- 92' Athens Park Bloods  -->
+                                <polygon points="530,345 623,235 685,274 750,328 604,413" class="map-zone zone-2" 
+                                         data-title="92' Athens Park Bloods" 
+                                         data-desc="Kliknij aby otworzyć profil gangu z tej strefy"
+                                         onclick="loadMember('member72')"/>
+                                <image href="png/apbloods.png" x="573" y="272" width="120" height="120" class="map-icon-marker" />
+
+                                <!-- Mad Swan Bloods -->
+                                <polygon points="635,582 709,643 623,745 548,681" class="map-zone zone-12" 
+                                         data-title="Mad Swan Bloods" 
+                                         data-desc="Kliknij aby otworzyć profil gangu z tej strefy"
+                                         onclick="loadMember('member74')"/>
+                                <image href="png/swan.png" x="580" y="617" width="100" height="100" class="map-icon-marker" />
+
+                                <!-- West Side Piru -->
+                                <polygon points="501,697 553,645 491,593 460,563 425,531 347,562 339,569" class="map-zone zone-11" 
+                                         data-title="West Side Piru" 
+                                         data-desc="Kliknij aby otworzyć profil gangu z tej strefy"
+                                         onclick="loadMember('member76')"/>
+                                <image href="png/pirus.png" x="397" y="547" width="95" height="95" class="map-icon-marker" />
+
+                                <!-- 66 East Coast Crips -->
+                                <polygon points="663,404 768,342 882,439 809,524" class="map-zone zone-19" 
+                                         data-title="66 East Coast Crips" 
+                                         data-desc="Kliknij aby otworzyć profil gangu z tej strefy"
+                                         onclick="loadMember('member70')"/>
+                                <image href="png/ecc.png" x="733" y="377" width="95" height="95" class="map-icon-marker" />
+										 
+							    <!-- Rollin' 40s Neighborhood Crips -->
+                                <polygon points="517,360 587,423 526,458 474,413" class="map-zone zone-18" 
+                                         data-title="Rollin' 40s Neighborhood Crips" 
+                                         data-desc="Kliknij aby otworzyć profil gangu z tej strefy"
+                                         onclick="loadMember('member71')"/>
+                                <image href="png/rollin.png" x="490" y="377" width="75" height="75" class="map-icon-marker" />
+										 
+								<!-- 98 Main Street Mafia Crips -->
+                                <polygon points="368,358 323,414 325,463 318,481 357,514 438,416" class="map-zone zone-6" 
+                                         data-title="98 Main Street Mafia Crips" 
+                                         data-desc="Kliknij aby otworzyć profil gangu z tej strefy"
+                                         onclick="loadMember('member75')"/>
+                                <image href="png/98msmc.png" x="330" y="381" width="85" height="85" class="map-icon-marker" />
+										 
+								<!-- 53 Avalon Gangster Crips -->
+                                <polygon points="732,665 791,710 692,824 666,807 648,801 630,798 634,783 653,758" class="map-zone zone-17" 
+                                         data-title="53 Avalon Gangster Crips" 
+                                         data-desc="Kliknij aby otworzyć profil gangu z tej strefy"
+                                         onclick="loadMember('member81')"/>
+                                <image href="png/avalon.png" x="658" y="695" width="90" height="90" class="map-icon-marker" />
+										 
+							    <!-- Denver Lane Gangster Bloods -->
+                                <polygon points="59,704 61,720 66,735 72,750 77,766 86,782 97,792 108,804 120,812 135,822 158,838 193,857 202,797 214,765 161,755 148,682 121,691 86,699" class="map-zone zone-13" 
+                                         data-title="Denver Lane Gangster Bloods" 
+                                         data-desc="Kliknij aby otworzyć profil gangu z tej strefy"
+                                         onclick="loadMember('member77')"/>
+                                <image href="png/denverlane.png" x="89" y="716" width="85" height="85" class="map-icon-marker" />
+										 
+								<!-- Eastside Wilmas 13 -->
+                                <polygon points="790,330 866,285 873,323 924,368 913,386 911,401 907,407 901,416 898,421" class="map-zone zone-14" 
+                                         data-title="Eastside Wilmas 13" 
+                                         data-desc="Kliknij aby otworzyć profil gangu z tej strefy"
+                                         onclick="loadMember('member78')"/>
+										 
+								<!-- Ganton Varrio Tortilla Flats -->
+                                <polygon points="906,457 948,492 935,504 929,516 924,537 919,551 919,569 921,578 917,587 903,605 834,545" class="map-zone zone-15" 
+                                         data-title="Ganton Varrio Tortilla Flats" 
+                                         data-desc="Kliknij aby otworzyć profil gangu z tej strefy"
+                                         onclick="loadMember('member79')"/>
+										 
+								<!-- The Chosen Crew MC -->
+                                <polygon points="819,706 898,628 912,639 931,677 834,720" class="map-zone zone-16" 
+                                         data-title="The Chosen Crew MC" 
+                                         data-desc="Kliknij aby otworzyć profil klubu z tej strefy"
+                                         onclick="loadMember('member80')"/>
+
+                           <div id="mapTooltip" class="map-tooltip">
+                               <div id="mapTooltipTitle" class="map-tooltip-title">---</div>
+                               <div id="mapTooltipDesc" class="map-tooltip-desc">---</div>
+                           </div>
+                       </div>
+                       <!-- Legenda Mapy -->
+                       <div class="map-legend">
+                           <div class="legend-item" onclick="showMainPage()"><span class="legend-color legend-1"></span> 83' Hoover Criminals Gang</div>
+                           <div class="legend-item" onclick="loadMember('member72')"><span class="legend-color legend-2"></span> 92' Athens Park Bloods</div>
+                           <div class="legend-item" onclick="loadMember('member73')"><span class="legend-color legend-3"></span> 65' Menlo Neighborhood Crips</div>
+                           <div class="legend-item" onclick="loadMember('member75')"><span class="legend-color legend-6"></span> 98' Main Street Mafia Crips</div>
+                           <div class="legend-item" onclick="loadMember('member76')"><span class="legend-color legend-11"></span> West Side Piru</div>
+						<div class="legend-item" onclick="loadMember('member74')"><span class="legend-color legend-12"></span> Mad Swan Bloods</div>
+						<div class="legend-item" onclick="loadMember('member77')"><span class="legend-color legend-13"></span> Denver Lane Gangster Bloods</div>
+						<div class="legend-item" onclick="loadMember('member78')"><span class="legend-color legend-14"></span> Eastside Wilmas 13</div>
+						<div class="legend-item" onclick="loadMember('member79')"><span class="legend-color legend-15"></span> Ganton Varrio Tortilla Flats</div>
+						<div class="legend-item" onclick="loadMember('member80')"><span class="legend-color legend-16"></span> The Chosen Crew MC</div>
+                           <div class="legend-item" onclick="loadMember('member81')"><span class="legend-color legend-17"></span> 53 Avalon Gangster Crips</div>
+						<div class="legend-item" onclick="loadMember('member71')"><span class="legend-color legend-18"></span> Rollin' 40 Neighborhood Crips</div>
+						<div class="legend-item" onclick="loadMember('member70')"><span class="legend-color legend-19"></span> 66 East Coast Crips</div>
+                       </div>
+
+                        <p style="margin-top: 15px;"><strong>Allies:</strong> 
+                            <span class="inline-member-link" onmouseenter="showInlinePreview(event, 'member72')" onmouseleave="hidePreview()" onclick="loadMember('member72')">92' Athens Park Bloods</span>
                         </p>
+                        <p><strong>Neutral:</strong> 
+						    <span class="inline-member-link" onmouseenter="showInlinePreview(event, 'member75')" onmouseleave="hidePreview()" onclick="loadMember('member75')">98' Main Street Mafia Crips</span>, 
+							<span class="inline-member-link" onmouseenter="showInlinePreview(event, 'member76')" onmouseleave="hidePreview()" onclick="loadMember('member76')">West Side Piru</span>,
+							<span class="inline-member-link" onmouseenter="showInlinePreview(event, 'member77')" onmouseleave="hidePreview()" onclick="loadMember('member77')">Denver Lane Gangster Bloods</span>,
+							<span class="inline-member-link" onmouseenter="showInlinePreview(event, 'member78')" onmouseleave="hidePreview()" onclick="loadMember('member78')">Eastside Wilmas 13'</span>,
+							<span class="inline-member-link" onmouseenter="showInlinePreview(event, 'member79')" onmouseleave="hidePreview()" onclick="loadMember('member79')">Ganton Varrio Tortilla Flats</span>,
+							<span class="inline-member-link" onmouseenter="showInlinePreview(event, 'member80')" onmouseleave="hidePreview()" onclick="loadMember('member80')">The Chosen Crew MC</span>,
+							<span class="inline-member-link" onmouseenter="showInlinePreview(event, 'member81')" onmouseleave="hidePreview()" onclick="loadMember('member81')">53' Avalon Gangster Crips</span>
+					    </p>
                         <p><strong>Opps:</strong> 
-                            <span class="inline-member-link" onmouseenter="showInlinePreview(event, 'member16')" onmouseleave="hidePreview()" onclick="loadMember('member16')">66 East Coast Crips</span>, 
-                            <span class="inline-member-link" onmouseenter="showInlinePreview(event, 'member17')" onmouseleave="hidePreview()" onclick="loadMember('member17')">Rollin' 40s Neighborhood Crips</span>, 
-                            <span class="inline-member-link" onmouseenter="showInlinePreview(event, 'member19')" onmouseleave="hidePreview()" onclick="loadMember('member19')">65 Menlo Neighborhood Crips</span>, 
-                            <span class="inline-member-link" onmouseenter="showInlinePreview(event, 'member20')" onmouseleave="hidePreview()" onclick="loadMember('member20')">Mad Swan Bloods</span>
-                        </p>
+                            <span class="inline-member-link" onmouseenter="showInlinePreview(event, 'member70')" onmouseleave="hidePreview()" onclick="loadMember('member70')">66' East Coast Crips</span>, 
+                            <span class="inline-member-link" onmouseenter="showInlinePreview(event, 'member71')" onmouseleave="hidePreview()" onclick="loadMember('member70')">Rollin' 40s Neighborhood Crips</span>, 
+                            <span class="inline-member-link" onmouseenter="showInlinePreview(event, 'member73')" onmouseleave="hidePreview()" onclick="loadMember('member73')">65' Menlo Neighborhood Crips</span>, 
+                            <span class="inline-member-link" onmouseenter="showInlinePreview(event, 'member74')" onmouseleave="hidePreview()" onclick="loadMember('member74')">Mad Swan Bloods</span>         
+					   </p>
 
                         <div class="threat-meter-box">
                             <div class="threat-title">
-                                <span>GANG THREAT LEVEL / POZIOM ZAGROŻENIA GANGU</span>
+                                <span>83 HOOVER CRIMINALS GANG // THREAT LEVEL </span>
                                 <span style="color:#d9534f; font-weight:bold;">CRITICAL // CLASS 4</span>
                             </div>
                             <div class="threat-bar">
@@ -1137,18 +1519,27 @@
                         </div>
                     </div>
 
-                    <h1>Historia</h1>
+                    <h1>HISTORIA 83 HOOVER CRIMINALS GANG</h1>
                     <p><span class="drop-prefix">W/S</span> 83 Hoover Criminals Gang [Eight Tray Hoover, Tiny Rascalz, Shooter Gang] to gang uliczny, w przeważającej mierze afroamerykański, działający w zachodniej części Los Santos.</p>
                     <p>Gang 83 Hoover Criminals wywodzi się z okolic skrzyżowania 83rd' Hoover Street [Strawberry Avenue/Forum Drive] pomiędzy Vermont Avenue a Figueroa Avenue. Grupa ta uważana jest za największą frakcję wchodzącą w skład szerszej struktury Hoover Criminal Gang.</p>
-                    <p>“Rascals” prowadzą działalność przestępczą od ponad 30 lat. Mimo licznych wrogów, gang dominuje w swojej dzielnicy, stosując brutalność i terror.</p>
+                    <p>“Rascals” prowadzą działalność przestępczną od ponad 30 lat. Mimo licznych wrogów, gang dominuje w swojej dzielnicy, stosując brutalność i terror.</p>
                     <p>Gang 83 Hoover Criminals utrzymuje sojusze ze wszystkimi grupami działającymi pod szyldem Hoover Criminals (szczególnie z 74 Hoover Criminals Gang ) a także z ShotGun Crips ( SGCs ) i Eight Tray Gangster Crips ( ETGC ) łączy ich wspólny wróg - Rollin’ 60’s Neighborhood Crips. Konflikt ten doprowadził do wielu ofiar śmiertelnych i strzelanin na tle gangsterskim.</p>
                     <p>Choć od zawsze uchodzili za jeden z najbardziej aktywnych odłamów SCLA, w ostatnich latach gang 83HCG zyskanał dodatkowy rozgłos w mediach. Wynikało to z powiązania kilku ich nastoletnich członków z zabójstwem nowojorskiego rapera Pop Smoke’a, a także z pojawieniem się na scenie lokalnych raperów takich jak 
-                        <span class="inline-member-link" onmouseenter="showInlinePreview(event, 'member8')" onmouseleave="hidePreview()" onclick="loadMember('member8')">Tr3yway6K</span>, 
+                        <span class="inline-member-link" onmouseenter="showInlinePreview(event, 'member24')" onmouseleave="hidePreview()" onclick="loadMember('member24')">Tr3yway6K</span>, 
                         <span class="inline-member-link" onmouseenter="showInlinePreview(event, 'member1')" onmouseleave="hidePreview()" onclick="loadMember('member1')">IroKeZ</span>, 
-                        <span class="inline-member-link" onmouseenter="showInlinePreview(event, 'member9')" onmouseleave="hidePreview()" onclick="loadMember('member9')">Young Threat</span>.
-                    </p>
+                        <span class="inline-member-link" onmouseenter="showInlinePreview(event, 'member25')" onmouseleave="hidePreview()" onclick="loadMember('member25')">Young Threat</span>.
+				    <h1>HISTORIA ~ "HOOVER GROOVERS/CRIPS/CRIMINALS"</h1>
+					<p>Korzenie gangu Hoover Criminals sięgają grupy Hoover Groovers – ulicznego gangu działającego w zachodniej części dzielnicy South Central w Los Santos już w latach 60. XX wieku, a zatem jeszcze przed powstaniem formacji Crips. W tamtym okresie gangi w tym rejonie miały luźną strukturę i opierały się głównie na lokalnych społecznościach. Ich tożsamość była ściśle związana z konkretnymi ulicami czy ciągami zabudowy mieszkaniowej.</p>
+					<p>Wczesny konflikt wewnętrzny wpłynął na dalsze losy Hoover Groovers. Po zabójstwie młodszego brata jednego z członków-założycieli podejrzenia początkowo padły na gang West Side Crips. W obliczu rosnącego napięcia przedstawiciele obu grup spotkali się w centrum rekreacyjnym Saint Andrews, położonym przy ulicy Saint Andrews Place, pomiędzy Manchester Boulevard a 89th Street. Po rozmowach obie strony uznały, że za zabójstwo odpowiada gang Figueroa Boys. Spotkanie to zaowocowało tymczasowym sojuszem między Hoover Groovers a West Side Crips. Wkrótce potem lider Figueroa Boys został zaatakowany w jednym z klubów nocnych w Los Angeles, co doprowadziło do eskalacji wrogości między gangami w tym rejonie.</p>
+					<p>W połowie lat 70. grupa Hoover Groovers oficjalnie sprzymierzyła się z West Side Crips. W ramach tego sojuszu członkowie grupy porzucili nazwę „Groovers” i zaczęli funkcjonować jako Hoover Crips. Zmiana ta odzwierciedlała szersze procesy zachodzące w Los Angeles, gdzie przynależność do struktur Crips w coraz większym stopniu kształtowała tożsamość gangów, a także układy sojuszy i rywalizacji.</p>
+					<p>W 1979 roku wewnątrz Crips doszło do poważnego rozłamu, spowodowanego eskalacją konfliktu między Rollin 60s Neighborhood Crips a Eight Tray Gangster Crips. Gangi w całym Los Santos znalazły się pod presją opowiedzenia się po jednej ze stron. Grupy sprzymierzone z Rollin 60s przyjęły tożsamość Neighborhood Crips (często określaną mianem „Deuces”), natomiast te związane z Eight Trays przyjęły nazwę Gangster Crips (powszechnie znaną jako „Trays”). Gang Hoover Crips opowiedział się po stronie frakcji Gangster Crips, zyskując szeroką rozpoznawalność pod nazwą Hoover Gangster Crips.</p>
+					<p>W sierpniu 1979 roku Raymond Washington, jeden z założycieli gangu Crips, zginął w wyniku strzelaniny przeprowadzonej z przejeżdżającego samochodu (tzw. *drive-by shooting*). Kwestia odpowiedzialności za to zabójstwo była szeroko dyskutowana w środowiskach gangów Los Santos. Członkowie East Side Crips oskarżyli Hoover Crips o udział w śmierci Washingtona – zarzut ten został jednak przez grupę Hoovera odrzucony. Niezależnie od tego, kto faktycznie odpowiadał za śmierć lidera, oskarżenie to doprowadziło do długotrwałego i krwawego konfliktu między Hoover Crips a East Side Crips. Spór ten znacząco poszerzył listę rywali gangu Hoovera i przyczynił się do wzrostu jego reputacji jako grupy niezwykle aktywnej i skłonnej do konfrontacji w okresie przełomu lat 70. i 80.</p>
+					<p>W latach 80. pojawienie się cracku (kokainy w formie kryształów) radykalnie zmieniło charakter działalności gangów w południowo-środkowej części Los Santos (South Central). W tym okresie gang Hoover Gangster Crips mocno zaangażował się w uliczną dystrybucję narkotyków. Organy ścigania oraz media często wiązały tę grupę z zorganizowanym handlem narkotykami i przemocą z użyciem broni palnej. Znany handlarz narkotyków Ricky „Freeway” Ross utrzymywał w tamtym czasie kontakty z członkami Hoover Crips, co dodatkowo łączyło gang z sieciami dystrybucji narkotyków na dużą skalę. Do połowy lat 80. władze uznawały gang Hoovera za jedną z najbardziej aktywnych grup ulicznych działających w południowym Los Santos.</p>
+					<p>Na początku lat 90. podziały wewnętrzne i konflikty zewnętrzne sprawiły, że wiele setów gangu Hoovera zaczęło dystansować się od szerszej tożsamości Crips. Kilka z tych frakcji oficjalnie porzuciło nazwę „Crips” i zaczęło określać się mianem Hoover Criminals. Zmianie tej towarzyszyło przyjęcie haseł ABK (*Anybody Killer* – zabójcy każdego) oraz EBK (*Everybody Killer* – zabójcy wszystkich), co sygnalizowało odrzucenie tradycyjnych sojuszy między gangami i przyjęcie agresywnej postawy wobec rywali. W tym okresie na graffiti pojawiających się na terenie kontrolowanym przez gang Hoovera często widniały oznaczenia takie jak BK (*Blood Killer* – zabójcy członków Bloods), CK (*Crip Killer* – zabójcy członków Crips) czy OK (*Rollin 0’s Killer* – zabójcy członków gangów z grupy Rollin 0’s), co odzwierciedlało pogarszające się relacje grupy zarówno z frakcjami Bloods, jak i Crips. Podejście gangu Hoover Criminals przypominało strategię stosowaną przez wiele meksykańsko-amerykańskich gangów ulicznych z południowego Los Santos, z których znaczna część ograniczała swoje sojusze do organizacji działających wewnątrz systemu więziennego. Gotowość członków Hoover do wchodzenia w konflikty z grupami takimi jak Bloods, Crips czy gangi latynoskie doprowadziła ostatecznie do zerwania wielu ich dotychczasowych sojuszy.</p>
+                    <h2>THE END<h2>
+				    </p>
 
-                    <h1>Affilacje</h1>
+                    <h1>🧢 Affilacje 🧢</h1>
                     <div class="affiliations-container">
                         <div class="affiliation-card">
                             <img src="png/HA.png?v=3" class="affiliation-logo" alt="Houston Astros" onclick="openMapModal('webp/HA.webp')" loading="lazy">
@@ -1175,7 +1566,7 @@
                         </div>
                     </div>
 
-                    <h1>Galeria Zdjęć</h1>
+                    <h1>📷 Galeria Zdjęć 📷</h1>
                     <div class="gang-gallery">
 					    <img src="webp/main15.webp" alt="Zdjęcie gangu 15" onclick="openMapModal('webp/main15.webp', '.gang-gallery')" loading="lazy">
 					    <img src="webp/main14.webp" alt="Zdjęcie gangu 14" onclick="openMapModal('webp/main14.webp', '.gang-gallery')" loading="lazy">
@@ -1227,25 +1618,25 @@
                     <li><a href="#" onclick="showErrorPage('W/S 107 Hoover Criminal Gang')">W/S 107 Hoover Criminal Gang</a></li>
                 </ul>
 
-                <h2>Członkowie Gangu</h2>
+                <h2>Członkowie Gangu ⭐ 83HCG 🍊</h2>
                 <ul class="recent-list" id="membersList">
                     <li><button class="member-btn" onmouseenter="showPreview(event, 'member1')" onmouseleave="hidePreview()" onclick="loadMember('member1')"><img src="webp/ikz1.webp" class="member-mini-avatar" loading="lazy"> Jack "IroKeZ" Smith</button></li>
                     <li><button class="member-btn" onmouseenter="showPreview(event, 'member2')" onmouseleave="hidePreview()" onclick="loadMember('member2')"><img src="webp/jb1.webp" class="member-mini-avatar" loading="lazy"> Jacob "JB" Bibi</button></li>
                     <li><button class="member-btn" onmouseenter="showPreview(event, 'member3')" onmouseleave="hidePreview()" onclick="loadMember('member3')"><img src="webp/tyka1.webp" class="member-mini-avatar" loading="lazy"> Mike "Tyka" Stick</button></li>
-                    <li><button class="member-btn" onmouseenter="showPreview(event, 'member11')" onmouseleave="hidePreview()" onclick="loadMember('member11')"><img src="webp/crack1.webp" class="member-mini-avatar" loading="lazy"> Noah "Crackhead" Brown</button></li>
-                    <li><button class="member-btn" onmouseenter="showPreview(event, 'member21')" onmouseleave="hidePreview()" onclick="loadMember('member21')"><img src="webp/bones1.webp" class="member-mini-avatar" loading="lazy"> Davies "Bones" Jones</button></li>
-                    <li><button class="member-btn" onmouseenter="showPreview(event, 'member22')" onmouseleave="hidePreview()" onclick="loadMember('member22')"><img src="webp/marcus1.webp" class="member-mini-avatar" loading="lazy"> Marcus Jackson</button></li>
-                    <li><button class="member-btn" onmouseenter="showPreview(event, 'member23')" onmouseleave="hidePreview()" onclick="loadMember('member23')"><img src="webp/UnknownProf.webp" class="member-mini-avatar" loading="lazy"> Joe Jackson</button></li>
-                    <li><button class="member-btn" onmouseenter="showPreview(event, 'member28')" onmouseleave="hidePreview()" onclick="loadMember('member28')"><img src="webp/burger1.webp" class="member-mini-avatar" loading="lazy"> Myles "Burger" Brooks</button></li>
-                    <li><button class="member-btn" onmouseenter="showPreview(event, 'member29')" onmouseleave="hidePreview()" onclick="loadMember('member29')"><img src="webp/UnknownProf.webp" class="member-mini-avatar" loading="lazy"> Daquan "Goofy" Jones</button></li>
-					<li><button class="member-btn" onmouseenter="showPreview(event, 'member31')" onmouseleave="hidePreview()" onclick="loadMember('member31')"><img src="webp/UnknownProf.webp" class="member-mini-avatar" loading="lazy"> Tommy "TeeJay" Jackson</button></li>
+                    <li><button class="member-btn" onmouseenter="showPreview(event, 'member4')" onmouseleave="hidePreview()" onclick="loadMember('member4')"><img src="webp/crack1.webp" class="member-mini-avatar" loading="lazy"> Noah "Crackhead" Brown</button></li>
+                    <li><button class="member-btn" onmouseenter="showPreview(event, 'member5')" onmouseleave="hidePreview()" onclick="loadMember('member5')"><img src="webp/bones1.webp" class="member-mini-avatar" loading="lazy"> Davies "Bones" Jones</button></li>
+                    <li><button class="member-btn" onmouseenter="showPreview(event, 'member6')" onmouseleave="hidePreview()" onclick="loadMember('member6')"><img src="webp/marcus1.webp" class="member-mini-avatar" loading="lazy"> Marcus Jackson</button></li>
+                    <li><button class="member-btn" onmouseenter="showPreview(event, 'member7')" onmouseleave="hidePreview()" onclick="loadMember('member7')"><img src="webp/UnknownProf.webp" class="member-mini-avatar" loading="lazy"> Joe Jackson</button></li>
+                    <li><button class="member-btn" onmouseenter="showPreview(event, 'member8')" onmouseleave="hidePreview()" onclick="loadMember('member8')"><img src="webp/burger1.webp" class="member-mini-avatar" loading="lazy"> Myles "Burger" Brooks</button></li>
+                    <li><button class="member-btn" onmouseenter="showPreview(event, 'member9')" onmouseleave="hidePreview()" onclick="loadMember('member9')"><img src="webp/UnknownProf.webp" class="member-mini-avatar" loading="lazy"> Daquan "Goofy" Jones</button></li>
+					<li><button class="member-btn" onmouseenter="showPreview(event, 'member10')" onmouseleave="hidePreview()" onclick="loadMember('member10')"><img src="webp/UnknownProf.webp" class="member-mini-avatar" loading="lazy"> Tommy "TeeJay" Jackson</button></li>
                 </ul>
 
                 <button class="dead-homies-btn" onclick="showDeadHomiesPage()">
-                    🪦 DEAD HOMIES
+                    🪦 LONG LIVE 💀
                 </button>
                 <button class="jail-btn" onclick="showJailPage()">
-                    ⛓️ INCARCERATED
+                    ⛓️ INCARCERATED 🔒
                 </button>
 
                 <div class="member-preview-card" id="memberPreviewCard">
@@ -1285,9 +1676,10 @@
     <script>
         function convertToPngPath(src) {
             if (!src) return '';
+            if (src.includes('SouthCentral.png')) return 'png/SouthCentral.png';
             return src.replace('/webp/', '/png/').replace('webp/', 'png/').replace(/\.webp$/i, '.png');
         }
-
+		
         const membersData = {
             member1: {
                 name: 'Jack "IroKeZ" Smith ⭐',
@@ -1297,7 +1689,18 @@
                 picChat: 'irokez',
                 idPhoto: 'webp/ikz1.webp',
                 bio: "• Krąży plotka że Jack zabił swojego ojca... <br><br> • Jack jest wysportowany oraz silny... <br><br> • Pewnego czasu freestylowiec, teraz raper undergroundowy... <br><br> • Notatka LSPD: <span class='redacted'>Podejrzany o handel bronią palną.</span>",
-                images: ["webp/ikz2.webp", "webp/ikz3.webp", "webp/ikz4.webp", "webp/ikz5.webp", "webp/ikz6.webp", "webp/ikz7.webp", "webp/ikz8.webp", "webp/ikz9.webp"]
+                images: ["webp/ikz2.webp", "webp/ikz3.webp", "webp/ikz4.webp", "webp/ikz5.webp", "webp/ikz6.webp", "webp/ikz7.webp", "webp/ikz8.webp", "webp/ikz9.webp"],
+                album: {
+                    title: "IKZ ON THE GROOV EP.",
+                    cover: "webp/ikz_album.webp",
+                    year: "2026 // Underground EP",
+                    tracks: [
+                        { title: "EP.01 ~ IroKeZ - Tiny Raskal ", url: "https://www.youtube.com/watch?v=U7qfUAaAAYo", audioSrc: "" },
+                        { title: "EP.02 ~ IroKeZ - EBK", url: "https://www.youtube.com/watch?v=sUfdBiPu8WM", audioSrc: "" },
+                        { title: "EP.03 ~ IroKeZ - SLIDE", url: "https://www.youtube.com/watch?v=J8chLAnDD_8", audioSrc: "" },
+                        { title: "EP.04 ~ IroKeZ - Don't Hit Me", url: "https://www.youtube.com/watch?v=JJ0LXk7V220", audioSrc: "" }
+                    ]
+                }
             },
             member2: {
                 name: 'Jacob "JB" Bibi',
@@ -1320,76 +1723,6 @@
                 images: ["webp/tyka2.webp", "webp/tyka3.webp", "webp/tyka4.webp"]
             },
             member4: {
-                name: 'Daquan "DJ" Jones',
-                status: 'INCARCERATED',
-                dob: '03/08/2002',
-                instaPic: '@daqj',
-                picChat: 'daqj',
-                idPhoto: 'webp/dj1.webp',
-                bio: "• Ten profil jest prywatny lub niedostępny dla publicznego podglądu.",
-                images: []
-            },
-            member5: {
-                name: 'Asher Backwood',
-                status: 'INCARCERATED',
-                dob: '19/01/2000',
-                instaPic: '@private',
-                picChat: 'private',
-                idPhoto: 'webp/UnknownProf.webp',
-                bio: "• Ten profil jest prywatny lub niedostępny dla publicznego podglądu.",
-                images: []
-            },
-            member6: {
-                name: 'Liam "Scarface" Bibi',
-                status: 'INCARCERATED',
-                dob: '24/09/2003',
-                instaPic: '@scarface',
-                picChat: 'liam_scar',
-                idPhoto: 'webp/scar1.webp',
-                bio: "• Liam jest dużym fanem motoryzacji... <br><br> • Liam urodził się na Denver lecz z braku kasy był zmuszony zamieszać na Strawberry Avenue 83rd'...",
-                images: ["webp/scar2.webp"]
-            },
-            member7: {
-                name: 'Jay "Easy" Toska',
-                status: 'INCARCERATED',
-                dob: '03/05/2008',
-                instaPic: '@private',
-                picChat: 'private',
-                idPhoto: 'webp/eazy1.webp',
-                bio: "• Jay jest uzależniony od palenia weedu... <br><br> • Jay jest przeciwnikiem twardych narkotyków... <br><br> • Stracił przyjaciela przez crack... <br><br> • Jego największym beef'em jest beef z logopedą.",
-                images: ["webp/eazy2.webp"]
-            },
-            member8: {
-                name: 'Tr3yway6K ⭐',
-                status: 'INCARCERATED',
-                dob: 'unknown',
-                instaPic: '@private',
-                picChat: 'private',
-                idPhoto: 'webp/tr3y1.webp',
-                bio: "• Ten profil jest prywatny lub niedostępny dla publicznego podglądu.",
-                images: []
-            },
-            member9: {
-                name: 'Young Threat ⭐',
-                status: 'INCARCERATED',
-                dob: 'xx/xx/1999',
-                instaPic: '@private',
-                picChat: 'private',
-                idPhoto: 'webp/young1.webp',
-                bio: "• Ten profil jest prywatny lub niedostępny dla publicznego podglądu.",
-                images: []
-            },
-            member10: {
-                name: 'Tyrone "Lil T" Tate',
-                status: 'DECEASED',
-                dob: '03.05.2007',
-                instaPic: '@private',
-                picChat: 'private',
-                idPhoto: 'webp/tyrone1.webp',
-                bio: "• Tyrone był słabym uczniem został wyrzocony z HighSchoolu... <br><br> • Tyrone zbierał fullcapy różnych klubów sportowych... <br><br> • Tyrone został zabity podczas hangowania spotu w wieczornych godzinach przy 83rd'... <br><br> • Notatka LSPD: <span class='redacted'>Był podejrzewany o udział w strzelaninie na Forum Drive.</span>",
-                images: []
-            },
-            member11: {
                 name: 'Noah "Crackhead" Brown',
                 status: 'ACTIVE',
                 dob: '20.02.2004',
@@ -1399,87 +1732,7 @@
                 bio: "• Noah lubi używki i jego życie opiera sie głównie tylko na tym... <br><br> • Noah jeździ starym rozwalonym autem lecz zawsze jest pomocny dla czarnuchów z 83' ",
                 images: ["webp/crack2.webp"]
             },
-            member12: {
-                name: 'Melvin "Eddy" Harper',
-                status: 'DECEASED',
-                dob: 'private',
-                instaPic: '@private',
-                picChat: 'private',
-                idPhoto: 'webp/UnknownProf.webp',
-                bio: "• Ten profil jest prywatny lub niedostępny dla publicznego podglądu.",
-                images: []
-            },
-            member13: {
-                name: 'Blaze "Snowy" Norvil',
-                status: 'INCARCERATED',
-                dob: 'private',
-                instaPic: '@private',
-                picChat: 'private',
-                idPhoto: 'webp/UnknownProf.webp',
-                bio: "• Ten profil jest prywatny lub niedostępny dla publicznego podglądu.",
-                images: []
-            },
-            member14: {
-                name: 'Roodney "Kendo" Alcala',
-                status: 'DECEASED',
-                dob: '14/11/2004',
-                instaPic: '@kendo_83',
-                picChat: 'kendo83',
-                idPhoto: 'webp/kendo1.webp',
-                bio: "• Ten profil jest prywatny lub niedostępny dla publicznego podglądu.",
-                images: []
-            },
-            member15: {
-                name: 'Trevon "Trója" Carter',
-                status: 'INCARCERATED',
-                dob: '01/03/2005',
-                instaPic: '@private',
-                picChat: 'private',
-                idPhoto: 'webp/UnknownProf.webp',
-                bio: "• Ten profil jest prywatny lub niedostępny dla publicznego podglądu.",
-                images: []
-            },
-            member16: {
-                isGangEnemy: true,
-                gangName: '66 East Coast Crips',
-                dissName: '(Cheese Toast/Cheese Toast Crips/Coast Fleas)',
-                mainImage: 'webp/66ecc.webp',
-                bio: "6-Pacc East Coast Crips to trzy afroamerykańskie odłamy niesławnego gangu East Coast Crips, który powstał we wschodniej części południowego Los Santos w San Andreas. Obszar ich działalności rozciąga się od Avalon Boulevard do autostrady nr 110 (Harbor Freeway), pomiędzy ulicami 60. a 69. W skład 6-Pacc East Coast Crips wchodzą grupy: 62 East Coast Crips, 66 East Coast Crips, 68 East Coast Crips oraz 69 East Coast Crips.",
-                images: []
-            },
-            member17: {
-                isGangEnemy: true,
-                gangName: 'Rollin\' 40s Neighborhood Crips',
-                dissName: '(Crumpets/Trumpets/E-Rags/Scrabs/Tramps)',
-                mainImage: 'webp/r40nhc.webp',
-                bio: "Rollin 40s Crips (R40s) – znani również jako Rollin 40s Neighborhood Crips (R40NHC), Rollin Forties czy Rollin Foe-Os – to afroamerykański gang uliczny, który powstał w zachodniej części południowego Los Santos w San Andreas. Grupa ta została założona w latach 70. XX wieku; należy do frakcji Rollin O’s Crips oraz do szerszego nurtu Neighborhood Crips (stąd nazwa Rollin 40s Neighborhood Crips). W skład Rollin 40s wchodzą cztery podgrupy: Rollin 40s „Western Side”, Rollin 40s „Darkside Crips”, Rollin 40s „Parkside Crips” oraz Rollin 40s „Avenue Crips”. Kontrolowany przez nich obszar rozciąga się od Vernon Avenue do Leimert, pomiędzy Crenshaw Boulevard a Figueroa Avenue. Rollin 40s uchodzą za jeden z najbardziej bezwzględnych gangów ulicznych w południowym Los Santos.",
-                images: []
-            },
-            member18: {
-                isGangAlly: true,
-                gangName: '92\' Athens Park Bloods',
-                dissName: '',
-                mainImage: 'webp/apb.webp',
-                bio: "Athens Park Bloods (APB) to przede wszystkim czarnoskóry uliczny gang przestępczy, działający w zachodniej części Rosewood (znanego również jako Athens) – w rejonie osiedla Rosedale w hrabstwie Los Santos w San Andreas. Obszar ich działalności rozciąga się od Figueroa Avenue do Avalon Boulevard. Grupa dzieli się na kilka podgrup z których najważniejsze to 124th Street oraz 127th Street. Gang ten funkcjonuje od ponad trzech dekad, a jego historia sięga lat 70. XX wieku.",
-                images: []
-            },
-            member19: {
-                isGangEnemy: true,
-                gangName: '65 Menlo Neighborhood Crips',
-                dissName: '(Mendo/Men-Hoes/Fleas)',
-                mainImage: 'webp/65menlo.webp',
-                bio: "65 Menlo Crips znany historycznie jako 65 Menlo Gangster Crips (MGC), a pierwotnie założony pod nazwą Menlo Boys to grupa przestępcza o przewadze członków pochodzenia afroamerykańskiego, działająca w zachodniej części południowego Los Santos. Z biegiem czasu ugrupowanie to zmieniło swoją przynależność z frakcji Gangster Crip (3x) na sojusz Neighborhood Crip (NHC/Deuce); była to nietypowa zmiana, postrzegana w kulturze gangów jako kontrowersyjna.Teren ich działalności koncentruje się wokół skrzyżowania 65th Street i Menlo Avenue i rozciąga się od 62nd Street do 70th Street, pomiędzy Vermont Avenue a Figueroa Street. O członkach gangu Menlo często mówi się, że funkcjonują „na wyspie” – są bowiem otoczeni przez terytoria należące do jednych z najbardziej aktywnych i wrogich grup w południowym Los Santos, w tym Hoover Criminals oraz różnych odłamów Gangster Crips. Takie położenie sprawiło, że historia gangu naznaczona jest ciągłymi konfliktami i zmieniającymi się sojuszami. <br><br> Historycznie rzecz biorąc, gang Menlo Gangster Crips utrzymywał silny sojusz z Eight Tray Gangster Crips (ETGC). Jednak gwałtowny konflikt między tymi dwiema grupami zasadniczo zmienił tożsamość Menlo. W ramach rzadkiego posunięcia, polegającego na strategicznej zmianie orientacji, członkowie Menlo Crips zerwali swoje powiązania z frakcją „3x” i zaczęli szukać ochrony oraz partnerstwa w strukturach Neighborhood Crip (NHC). Nawiązali oni szczególnie bliską więź z grupą 67 Neighborhood Crips, tworząc sojusz znany jako „657”. Przejście to wiązało się z rezygnacją z członu nazwy „Gangster” i przyjęciem nazwy 65 Menlo Neighborhood Crips, co w practical ce oznaczało przejście pod szyld „Deuce” (2x).",
-                images: []
-            },
-            member20: {
-                isGangEnemy: true,
-                gangName: 'Mad Swan Bloods',
-                dissName: '(Mad Swine/Silly Swans/Bird Brains)',
-                mainImage: 'webp/madswan.webp',
-                bio: "Mad Swan Bloods, znani również jako „The Byrd Gang”, to afroamerykański gang uliczny działający we wschodniej części południowego Los Santos w San Andreas. Grupa ta wywodzi się z formacji „Main Street Swans”, powstałej na początku lat 70. XX wieku. W skład gangu wchodzą podgrupy działające w rejonie ulic: 77th, 79th, 80th oraz 84th Street. Mad Swan Bloods operują na wschód od 84 Main Street Crips i na zachód od 76 East Coast Crips, a także na południe od 6 Pacc East Coast Crips i na północ od 88 Avalon Garden Crips.",
-                images: []
-            },
-            member21: {
+            member5: {
                 name: 'Davies "Bones" Jones',
                 status: 'ACTIVE',
                 dob: '03.08.2007',
@@ -1489,7 +1742,7 @@
                 bio: "• Ten profil jest prywatny lub niedostępny dla publicznego podglądu.",
                 images: ["webp/bones2.webp", "webp/bones3.webp"]
             },
-            member22: {
+            member6: {
                 name: 'Marcus Jackson',
                 status: 'ACTIVE',
                 dob: 'private',
@@ -1499,7 +1752,7 @@
                 bio: "• Ten profil jest prywatny lub niedostępny dla publicznego podglądu.",
                 images: []
             },
-            member23: {
+            member7: {
                 name: 'Joe Jackson',
                 status: 'ACTIVE',
                 dob: 'private',
@@ -1509,47 +1762,7 @@
                 bio: "• Ten profil jest prywatny lub niedostępny dla publicznego podglądu.",
                 images: []
             },
-            member24: {
-                name: 'Darnell "Dre" Jackson',
-                status: 'DECEASED',
-                dob: 'private',
-                instaPic: '@private',
-                picChat: 'private',
-                idPhoto: 'webp/UnknownProf.webp',
-                bio: "• Ten profil jest prywatny lub niedostępny dla publicznego podglądu.",
-                images: []
-            },
-            member25: {
-                name: 'Denzel "Denz" Turner',
-                status: 'DECEASED',
-                dob: 'private',
-                instaPic: '@private',
-                picChat: 'private',
-                idPhoto: 'webp/UnknownProf.webp',
-                bio: "• Ten profil jest prywatny lub niedostępny dla publicznego podglądu.",
-                images: []
-            },
-            member26: {
-                name: 'Tyson "T" Reed',
-                status: 'DECEASED',
-                dob: '07.12.2004',
-                instaPic: '@private',
-                picChat: 'private',
-                idPhoto: 'webp/UnknownProf.webp',
-                bio: "• Ten profil jest prywatny lub niedostępny dla publicznego podglądu.",
-                images: []
-            },
-            member27: {
-                name: 'Malik "Screwface" Harris',
-                status: 'DECEASED',
-                dob: '06.18.2007',
-                instaPic: '@private',
-                picChat: 'private',
-                idPhoto: 'webp/UnknownProf.webp',
-                bio: "• Ten profil jest prywatny lub niedostępny dla publicznego podglądu.",
-                images: []
-            },
-            member28: {
+            member8: {
                 name: 'Myles "Burger" Brooks',
                 status: 'ACTIVE',
                 dob: '03.16.2007',
@@ -1559,7 +1772,7 @@
                 bio: "• Ten profil jest prywatny lub niedostępny dla publicznego podglądu.",
                 images: []
             },
-            member29: {
+            member9: {
                 name: 'Daquan "Goofy" Jones',
                 status: 'ACTIVE',
                 dob: '02.04.2006',
@@ -1569,17 +1782,7 @@
                 bio: "• Ten profil jest prywatny lub niedostępny dla publicznego podglądu.",
                 images: []
             },
-            member30: {
-                name: 'Tommy "T/O" O\'Connor',
-                status: 'INCARCERATED',
-                dob: 'private',
-                instaPic: '@private',
-                picChat: 'private',
-                idPhoto: 'webp/tommy1.webp',
-                bio: "• Ten profil jest prywatny lub niedostępny dla publicznego podglądu.",
-                images: []
-            },
-            member31: {
+            member10: {
                 name: 'Toomy "TeeJay" Jackson',
                 status: 'ACTIVE',
                 dob: '07.06.2007',
@@ -1589,7 +1792,167 @@
                 bio: "• Ten profil jest prywatny lub niedostępny dla publicznego podglądu.",
                 images: []
             },
-            member32: {
+            member20: {
+                name: 'Daquan "DJ" Jones',
+                status: 'INCARCERATED',
+                dob: '03/08/2002',
+                instaPic: '@daqj',
+                picChat: 'daqj',
+                idPhoto: 'webp/dj1.webp',
+                bio: "• Ten profil jest prywatny lub niedostępny dla publicznego podglądu.",
+                images: []
+            },
+            member21: {
+                name: 'Asher Backwood',
+                status: 'INCARCERATED',
+                dob: '19/01/2000',
+                instaPic: '@private',
+                picChat: 'private',
+                idPhoto: 'webp/UnknownProf.webp',
+                bio: "• Ten profil jest prywatny lub niedostępny dla publicznego podglądu.",
+                images: []
+            },
+            member22: {
+                name: 'Liam "Scarface" Bibi',
+                status: 'INCARCERATED',
+                dob: '24/09/2003',
+                instaPic: '@scarface',
+                picChat: 'liam_scar',
+                idPhoto: 'webp/scar1.webp',
+                bio: "• Liam jest dużym fanem motoryzacji... <br><br> • Liam urodził się na Denver lecz z braku kasy był zmuszony zamieszać na Strawberry Avenue 83rd'...",
+                images: ["webp/scar2.webp"]
+            },
+            member23: {
+                name: 'Jay "Easy" Toska',
+                status: 'INCARCERATED',
+                dob: '03/05/2008',
+                instaPic: '@private',
+                picChat: 'private',
+                idPhoto: 'webp/eazy1.webp',
+                bio: "• Jay jest uzależniony od palenia weedu... <br><br> • Jay jest przeciwnikiem twardych narkotyków... <br><br> • Stracił przyjaciela przez crack... <br><br> • Jego największym beef'em jest beef z logopedą.",
+                images: ["webp/eazy2.webp"]
+            },
+            member24: {
+                name: 'Tr3yway6K ⭐',
+                status: 'INCARCERATED',
+                dob: 'unknown',
+                instaPic: '@private',
+                picChat: 'private',
+                idPhoto: 'webp/tr3y1.webp',
+                bio: "• Ten profil jest prywatny lub niedostępny dla publicznego podglądu.",
+                images: []
+            },
+            member25: {
+                name: 'Young Threat ⭐',
+                status: 'INCARCERATED',
+                dob: 'xx/xx/1999',
+                instaPic: '@private',
+                picChat: 'private',
+                idPhoto: 'webp/young1.webp',
+                bio: "• Ten profil jest prywatny lub niedostępny dla publicznego podglądu.",
+                images: []
+            },
+			member26: {
+                name: 'Blaze "Snowy" Norvil',
+                status: 'INCARCERATED',
+                dob: 'private',
+                instaPic: '@private',
+                picChat: 'private',
+                idPhoto: 'webp/UnknownProf.webp',
+                bio: "• Ten profil jest prywatny lub niedostępny dla publicznego podglądu.",
+                images: []
+            },
+            member27: {
+                name: 'Trevon "Trója" Carter',
+                status: 'INCARCERATED',
+                dob: '01/03/2005',
+                instaPic: '@private',
+                picChat: 'private',
+                idPhoto: 'webp/UnknownProf.webp',
+                bio: "• Ten profil jest prywatny lub niedostępny dla publicznego podglądu.",
+                images: []
+            },
+            member28: {
+                name: 'Tommy "T/O" O\'Connor',
+                status: 'INCARCERATED',
+                dob: 'private',
+                instaPic: '@private',
+                picChat: 'private',
+                idPhoto: 'webp/tommy1.webp',
+                bio: "• Ten profil jest prywatny lub niedostępny dla publicznego podglądu.",
+                images: []
+            },
+            member40: {
+                name: 'Tyrone "Lil T" Tate',
+                status: 'DECEASED',
+                dob: '03.05.2007',
+                instaPic: '@private',
+                picChat: 'private',
+                idPhoto: 'webp/tyrone1.webp',
+                bio: "• Tyrone był słabym uczniem został wyrzocony z HighSchoolu... <br><br> • Tyrone zbierał fullcapy różnych klubów sportowych... <br><br> • Tyrone został zabity podczas hangowania spotu w wieczornych godzinach przy 83rd'... <br><br> • Notatka LSPD: <span class='redacted'>Podejrzany o udział w strzelaninie na Forum Drive.</span>",
+                images: []
+            },          
+            member41: {
+                name: 'Melvin "Eddy" Harper',
+                status: 'DECEASED',
+                dob: 'private',
+                instaPic: '@private',
+                picChat: 'private',
+                idPhoto: 'webp/UnknownProf.webp',
+                bio: "• Ten profil jest prywatny lub niedostępny dla publicznego podglądu.",
+                images: []
+            },    
+            member42: {
+                name: 'Roodney "Kendo" Alcala',
+                status: 'DECEASED',
+                dob: '14/11/2004',
+                instaPic: '@kendo_83',
+                picChat: 'kendo83',
+                idPhoto: 'webp/kendo1.webp',
+                bio: "• Ten profil jest prywatny lub niedostępny dla publicznego podglądu.",
+                images: []
+            },
+            member43: {
+                name: 'Darnell "Dre" Jackson',
+                status: 'DECEASED',
+                dob: 'private',
+                instaPic: '@private',
+                picChat: 'private',
+                idPhoto: 'webp/UnknownProf.webp',
+                bio: "• Ten profil jest prywatny lub niedostępny dla publicznego podglądu.",
+                images: []
+            },
+            member44: {
+                name: 'Denzel "Denz" Turner',
+                status: 'DECEASED',
+                dob: 'private',
+                instaPic: '@private',
+                picChat: 'private',
+                idPhoto: 'webp/UnknownProf.webp',
+                bio: "• Ten profil jest prywatny lub niedostępny dla publicznego podglądu.",
+                images: []
+            },
+            member45: {
+                name: 'Tyson "T" Reed',
+                status: 'DECEASED',
+                dob: '07.12.2004',
+                instaPic: '@private',
+                picChat: 'private',
+                idPhoto: 'webp/UnknownProf.webp',
+                bio: "• Ten profil jest prywatny lub niedostępny dla publicznego podglądu.",
+                images: []
+            },
+            member46: {
+                name: 'Malik "Screwface" Harris',
+                status: 'DECEASED',
+                dob: '06.18.2007',
+                instaPic: '@private',
+                picChat: 'private',
+                idPhoto: 'webp/UnknownProf.webp',
+                bio: "• Ten profil jest prywatny lub niedostępny dla publicznego podglądu.",
+                images: []
+            },
+            member47: {
                 name: 'Mark "G-Mark" Smith',
                 status: 'DECEASED',
                 dob: '20.10.1964',
@@ -1598,7 +1961,103 @@
                 idPhoto: 'webp/marks1.webp',
                 bio: "• Ten profil jest prywatny lub niedostępny dla publicznego podglądu.",
                 images: ["webp/marks2.webp", "webp/marks3.webp"]
-            }
+            },
+            member70: {
+                isGangEnemy: true,
+                gangName: '66 East Coast Crips',
+                dissName: '(Cheese Toast/Cheese Toast Crips/Coast Fleas)',
+                mainImage: 'webp/66ecc.webp',
+                bio: "6-Pacc East Coast Crips to trzy afroamerykańskie odłamy niesławnego gangu East Coast Crips, który powstał we wschodniej części południowego Los Santos w San Andreas. Obszar ich działalności rozciąga się od Avalon Boulevard do autostrady nr 110 (Harbor Freeway), pomiędzy ulicami 60. a 69. W skład 6-Pacc East Coast Crips wchodzą grupy: 62 East Coast Crips, 66 East Coast Crips, 68 East Coast Crips oraz 69 East Coast Crips.",
+                images: []
+            },
+            member71: {
+                isGangEnemy: true,
+                gangName: 'Rollin\' 40s Neighborhood Crips',
+                dissName: '(Crumpets/Trumpets/E-Rags/Scrabs/Tramps)',
+                mainImage: 'webp/r40nhc.webp',
+                bio: "Rollin 40s Crips (R40s) – znani również jako Rollin 40s Neighborhood Crips (R40NHC), Rollin Forties czy Rollin Foe-Os – to afroamerykański gang uliczny, który powstał w zachodniej części południowego Los Santos w San Andreas. Grupa ta została założona w latach 70. XX wieku; należy do frakcji Rollin O’s Crips oraz do szerszego nurtu Neighborhood Crips (stąd nazwa Rollin 40s Neighborhood Crips). W skład Rollin 40s wchodzą cztery podgrupy: Rollin 40s „Western Side”, Rollin 40s „Darkside Crips”, Rollin 40s „Parkside Crips” oraz Rollin 40s „Avenue Crips”. Kontrolowany przez nich obszar rozciąga się od Vernon Avenue do Leimert, pomiędzy Crenshaw Boulevard a Figueroa Avenue. Rollin 40s uchodzą za jeden z najbardziej bezwzględnych gangów ulicznych w południowym Los Santos.",
+                images: []
+            },
+            member72: {
+                isGangAlly: true,
+                gangName: '92\' Athens Park Bloods',
+                dissName: '',
+                mainImage: 'webp/apb.webp',
+                bio: "Athens Park Bloods (APB) to przede wszystkim czarnoskóry uliczny gang przestępczy, działający w zachodniej części Rosewood (znanego również jako Athens) – w rejonie osiedla Rosedale w hrabstwie Los Santos w San Andreas. Obszar ich działalności rozciąga się od Figueroa Avenue do Avalon Boulevard. Grupa dzieli się na kilka podgrup z których najważniejsze to 124th Street oraz 127th Street. Gang ten funkcjonuje od ponad trzech dekad, a jego historia sięga lat 70. XX wieku.",
+                images: []
+            },
+            member73: {
+                isGangEnemy: true,
+                gangName: '65\' Menlo Neighborhood Crips',
+                dissName: '(Mendo/Men-Hoez/Meatloafs)',
+                mainImage: 'webp/65menlo.webp',
+                bio: "65 Menlo Crips znany historycznie jako 65 Menlo Gangster Crips (MGC), a pierwotnie założony pod nazwą Menlo Boys to grupa przestępcza o przewadze członków pochodzenia afroamerykańskiego, działająca w zachodniej części południowego Los Santos. Z biegiem czasu ugrupowanie to zmieniło swoją przynależność z frakcji Gangster Crip (3x) na sojusz Neighborhood Crip (NHC/Deuce); była to nietypowa zmiana, postrzegana w kulturze gangów jako kontrowersyjna.Teren ich działalności koncentruje się wokół skrzyżowania 65th Street i Menlo Avenue i rozciąga się od 62nd Street do 70th Street, pomiędzy Vermont Avenue a Figueroa Street. O członkach gangu Menlo często mówi się, że funkcjonują „na wyspie” – są bowiem otoczeni przez terytoria należące do jednych z najbardziej aktywnych i wrogich grup w południowym Los Santos, w tym Hoover Criminals oraz różnych odłamów Gangster Crips. Takie położenie sprawiło, że historia gangu naznaczona jest ciągłymi konfliktami i zmieniającymi się sojuszami. <br><br> Historycznie rzecz biorąc, gang Menlo Gangster Crips utrzymywał silny sojusz z Eight Tray Gangster Crips (ETGC). Jednak gwałtowny konflikt między tymi dwiema grupami zasadniczo zmienił tożsamość Menlo. W ramach rzadkiego posunięcia, polegającego na strategicznej zmianie orientacji, członkowie Menlo Crips zerwali swoje powiązania z frakcją „3x” i zaczęli szukać ochrony oraz partnerstwa w strukturach Neighborhood Crip (NHC). Nawiązali oni szczególnie bliską więź z grupą 67 Neighborhood Crips, tworząc sojusz znany jako „657”. Przejście to wiązało się z rezygnacją z członu nazwy „Gangster” i przyjęciem nazwy 65 Menlo Neighborhood Crips, co w practical ce oznaczało przejście pod szyld „Deuce” (2x).",
+                images: []
+            },
+            member74: {
+                isGangEnemy: true,
+                gangName: 'Mad Swan Bloods',
+                dissName: '(Mad Swine/Silly Swans/Bird Brains/Slobs)',
+                mainImage: 'webp/madswan.webp',
+                bio: "Mad Swan Bloods, znani również jako „The Byrd Gang”, to afroamerykański gang uliczny działający we wschodniej części południowego Los Santos w San Andreas. Grupa ta wywodzi się z formacji „Main Street Swans”, powstałej na początku lat 70. XX wieku. W skład gangu wchodzą podgrupy działające w rejonie ulic: 77th, 79th, 80th oraz 84th Street. Mad Swan Bloods operują na wschód od 84 Main Street Crips i na zachód od 76 East Coast Crips, a także na południe od 6 Pacc East Coast Crips i na północ od 88 Avalon Garden Crips.",
+                images: []
+			},
+            member75: {
+                isGangNeu: true,
+                gangName: '98\'Main Street Mafia Crips',
+                dissName: '(Mini Skirts/Muffins/Crabs)',
+                mainImage: 'webp/98msmc.webp',
+                bio: "Main Street Mafia Crips (MSMC) to afroamerykański gang uliczny działający we wschodniej części South Los Santos w San Andreas. Grupa ta powstała w latach 70. XX wieku i składa się z dwóch podgrup: 84 Main Street Mafia Crips oraz 98 Main Street Mafia Crips. <br><br> Main Street Mafia Crips należą do szerszej struktury znanej jako Mafia Crips, obejmującej również takie ugrupowania jak Fudge Town Mafia Crips, Blue Gate Mafia Crips oraz 99 Watts Mafia Crips. Członkowie Main Street Mafia Crips, oprócz tradycyjnego dla sojuszu Crips koloru niebieskiego, często noszą elementy żółte lub złote, aby podkreślić swoją przynależność do tej formacji. <br><br> Gang 98 Main Street Mafia Crips wywodzi się z rejonu ulic 98th Street i Main Street, na obszarze między Colden Avenue a 104th Street. Granice ich terytorium wyznaczają autostrada 110 (Harbor Freeway) oraz ulica San Pedro Street. Pozostają oni w konflikcie głównie z grupami: Q102 East Coast Crips, 97 Gangster Crips, 112 Broadway Gangster Crips oraz Denver Lane Gangster Bloods.",
+                images: []
+			},
+            member76: {
+                isGangNeu: true,
+                gangName: 'West Side Piru',
+                dissName: '(Wheat Sales/P-Fakes/P-Funk/Purus)',
+                mainImage: 'webp/wsp.webp',
+                bio: "West Side Piru (WSP) znani również jako West Side Bompton Piru (WSBP) lub Bompton West Side Piru (BWSP) – to afroamerykański uliczny gang przestępczy, który powstał w Los Santos w San Andreas. Grupa ta funkcjonuje od ponad trzech dekad, a jej założycielem był Benson Owens, mieszkaniec ulicy Piru w latach 70. Obszar ich działalności koncentruje się wokół Central Avenue, pomiędzy Rosecrans Avenue a El Segundo Boulevard. <br><br> W skład gangu wchodzą sety działające przy ulicach: 134th Street (4 Line), 135th Street, 142nd Street (Deuce Line), Piru Street oraz innych. Posiadają również drugą frakcję w Carson w San Andreas; członkowie Carson West Side Piru to w większości osoby pochodzenia polinezyjskiego lub samoańskiego. Frakcja z Carson pozostaje w konflikcie głównie z gangami Stevenson Village Carson Crips oraz 190 Blocc East Coast Crips. Z tej grupy wywodzi się również grupa hip-hopowa Boo-Yaa T.R.I.B.E. <br><br> Członkowie Piru uczynili Centennial High School na Davis główną szkołą dla członków gangów Bloods i Piru z Davis, Watts oraz części Carson. Do placówki tej uczęszczali przedstawiciele grup Fruit Town Piru, Village Town Piru, Bounty Hunter Bloods oraz wielu innych gangów z tej sfery. Szkoła znajduje się w samym sercu terytorium West Side Piru. Uczniowie należący do rywalizujących gangów często wdawali się w bójki na terenie szkoły lub w parku Enterprise Park. <br><br> Park ten stanowi granicę między terytoriami West Side Piru a Village Town Piru. Po lekcjach członkowie West Side Piru spotykali się w restauracji „Golden Bird Chicken”, położonej u zbiegu Rosecrans Avenue i Central Avenue. W latach 90. miejsce to było popularnym punktem spotkań uczniów należący do West Side Piru. Lokal ten został jednak z czasem zamknięty.",
+				images: []
+			},
+            member77: {
+                isGangNeu: true,
+                gangName: 'Denver Lane Gangster Bloods',
+                dissName: '(Dick Licks/Slobs)',
+                mainImage: 'webp/dlgb.webp',
+                bio: "Denver Lane Bloods (DLB), znani również jako Denver Lane Gangster Bloods (DLGB) oraz Figueroa Rider Gang (FRG), to afroamerykański gang uliczny działający w dzielnicy Vermont Vista w południowym Los Santos w San Andreas. Nazwa grupy pochodzi od ulicy Denver Avenue; gang ten jest powszechnie uważany za jedną z pierwotnych frakcji wchodzących w skład struktur Bloods i odegrał istotną rolę w formowaniu się tego sojuszu na początku lat 70. XX wieku. Gang Denver Lane działa od ponad pięćdziesięciu lat i jest uznawany za jedną z najstarszych grup Bloods w Los Santos. Na przestrzeni dekad członkowie organizacji utworzyli podgrupy w Pasadenie, Altadenie, Lancaster, Palmdale oraz innych częściach południowego San Andreas, przyczyniając się do rozpowszechnienia nazwy Denver Lane w całym regionie. Nazwa Figueroa Rider Gang (FRG) wywodzi się od bliskości ulicy Figueroa Street i jest nadal używana przez członków gangu obok nazw Denver Lane Bloods oraz Denver Lane Gangster Bloods. <br><br> Grupa Denver Lane Bloods powstawała jako niezależny gang uliczny w południowym Los Santos pod koniec lat 60. XX wieku. W miarę jak gang Crips rozszerzał swoje wpływy w Los Santos, członkowie Denver Lane nawiązały sojusze z innymi grupami niezwiązanymi z Crips, takimi jak Brims, Bounty Hunters, Van Ness Gangsters czy Chain Gang. Sojusze te dały później początek szerszej strukturze znanej jako Bloods. <br><br> Wraz z rozwojem Denver Lane w latach 70. i 80., grupa ta stała się jednym z najważniejszych i najsilniejszych bastionów Bloods w południowym Los Santos. Frakcje działające w Pasadenie (Pasadena Denver Lanes) oraz Altadenie (Altadena Denver Lanes) stały się dwiema najbardziej znanymi grupami Denver Lane funkcjonującymi poza obszarem południowego Los Santos. Gang Denver Lane Bloods kontroluje obszar rozciągający się od 105. do 120. Ulicy, pomiędzy Vermont Avenue a Grand Avenue, w dzielnicy Vermont Vista w południowym Los Santos. Centrum dzielnicy stanowi Denver Avenue – ulica, od której gang wziął swoją nazwę. <br><br> Autostrada Harbor (110) stanowi główną linię podziału między Denver Lanes a kilkoma konkurencyjnymi gangami, w tym Broadway Gangster Crips oraz 118 East Coast Blocc Crips. <br><br> W miarę rozwoju dzielnicy wewnątrz struktury Denver Lane wykształciło się kilka lokalnych podgrup (setów) takich as: 106th Street Lanes, 108th Street Lanes, 109th Street Lanes, 111th Street Lanes oraz 115th Street Lanes. Choć podgrupy te należą do szerszej struktury Denver Lane, identyfikowane są na podstawie nazw ulic i kwartałów, w których działają. Poza południowym Los Santos członkowie Denver Lane utworzyli swoje oddziały w Pasadenie, Altadenie, Lancaster i Palmdale. Mimo działalności w różnych miastach, grupy te nadal utożsamiają się z Denver Lane.",
+				images: []
+			},
+            member78: {
+                isGangNeu: true,
+                gangName: 'Eastside Wilmas 13',
+                dissName: '(Walnuts/Weasels/Fakside/Weakside)',
+                mainImage: 'webp/ew13.webp',
+                bio: "Wilmas 13, znani również jako Wilmas Gang lub Wilmington Gang, to w przeważającej mierze (choć nie wyłącznie) meksykańsko-amerykańska organizacja przestępcza. Składa się ona z trzech podgrup: East Side Wilmas (ESW), West Side Wilmas (WSW) oraz North Side Wilmas (NSW), działających w dzielnicy Wilmington w południowym Los Santos w San Andreas. <br><br> Wilmas to najstarszy i najbardziej niesławny latynoski gang uliczny w dzielnicy Wilmington w Los Santos. Grupa ta istniała na długo przed powstaniem Meksykańskiej Mafii (Mexican Mafia), a jej historia sięga lat 50. XX wieku. <br><br> Gang East Side Wilmas wywodzi się ze wschodniej części Wilmington (East Side), z okolic ulicy L Street i alei Hyatt Avenue. Granicę między East Side Wilmas a West Side Wilmas stanowi aleja Avalon Boulevard. ESW liczy około 650 aktywnych członków i dzieli się na kilka setów takich jak Ghost Town Locos, Hyatt Street Locos, Mahar Locos, Insane Mexican Gang oraz L Street Maniacs. <br><br> Frakcja Ghost Town Locos (należąca do East Side Wilmas) dzieli teren osiedla socjalnego Dana Strand Projects z gangiem East Side Pain Bloods. Ten drugi gang składa się głównie z osób czarnoskórych i toczy spory przede wszystkim z grupami powiązanymi z Crips, działającymi w rejonie Vespucci Beach i San Pedro w Los Santos. Członkowie East Side Wilmas utożsamiani są z kolorem czerwonym, natomiast West Side Wilmas – z niebieskim.",
+				images: []
+			},
+            member79: {
+                isGangNeu: true,
+                gangName: 'Ganton Varrio Tortilla Flats',
+                dissName: 'Taco Flats/T-Flops/Telas',
+                mainImage: 'webp/gvtf.webp',
+                bio: "Ganton Varrio Tortilla Flats (GVTF), często określani jako Tortilla Flats lub T-Flats, to meksykańsko-amerykański gang uliczny powiązany z frakcją Sureño, działający w Los Santos w San Andreas. Grupa ta jest obecna w mieście co najmniej od lat 60. XX wieku i uchodzi za jeden ze starszych gangów latynoskich w Los Santos. Na przestrzeni lat członkowie GVTF byli zamieszani w liczne strzelaniny, sprawy dotyczące zabójstw, przestępstwa narkotykowe oraz postępowania sądowe wymierzone w gangi. Organizacja ta przetrwała kolejne pokolenia i pozostaje jednym z bardziej znanych gangów (tzw. *varrios*) w Los Santos. <br><br> Korzenie Ganton Varrio Tortilla Flats sięgają początku lat 60. XX wieku, co czyni ten gang jedną z najstarszych grup latynoskich w Los Santos. Według niektórych relacji początki gangu wiążą się z meksykańsko-amerykańską dzielnicą w pobliżu obszaru Willowbrook, gdzie miejscowa młodzież zaczęła utożsamiać się z nazwą Tortilla Flats. Podobnie jak wiele innych starszych gangów z Los Santos, Tortilla Flats zaczynało jako grupa sąsiedzka, której tożsamość opierała se na lokalnych ulicach, rodzinach i kontroli nad danym rejonem. W latach 80. i 90. gang rozrastał się wraz ze wzrostem populacji latynoskiej w Los Santos i wchodził w konflikty zarówno z sąsiednimi gangami Sureño, jak i z kilkoma gangami afroamerykańskimi. <br><br> Pod koniec lat 90. prokuratorzy uznali Tortilla Flats za jeden z głównych problemów związanych z przestępczością gangową w rejonie Gonzales Park, co doprowadziło do uzyskania w 1998 roku przez władze hrabstwa Los Santos sądowego zakazu działalności gangowej (tzw. *gang injunction*) wobec tej grupy. Na początku lat 2000. członkowie gangu byli zamieszani w dochodzenia wykraczające poza granice San Andreas, w tym w sprawę federalną dotyczącą spisku w celu handlu narkotykami, obejmującego obszar od południowego San Andreas aż po Oklahomę. Tortilla Flats przewijało się w aktach sądowych, dochodzeniach dotyczących gangów oraz postępowaniach karnych przez całe lata 2000. i 2010. <br><br> Ganton Varrio Tortilla Flats rości sobie prawo do części północnego i wschodniego Ganton, położonej zasadniczo między Rosecrans Avenue a Ganton Boulevard. Obszar ten rozciąga się na wschód od Willowbrook Avenue i obejmuje fragmenty dzielnic mieszkaniowych oraz przemysłowych w sąsiedztwie Alameda Street. Gonzales Park od dawna uznawany jest za miejsce spotkań członków tego gangu na terenie kontrolowanej przez nich dzielnicy; obszar ten został również objęty sądowym zakazem działalności gangów, uzyskanym w 1998 roku przez prokuraturę hrabstwa Los Santos. Dzielnica ta graniczy z terenami kilku konkurencyjnych gangów i na przestrzeni lat była miejscem licznych konfliktów międzygrupowych. <br><br> Gang Ganton Varrio Tortilla Flats działa w ramach struktury Sureño (13) i utożsamia się z szerszą kulturą Sureño, charakterystyczną dla południowego San Andreas. Członkowie gangu często posługują się skrótami GVTF, TF, T-Flats oraz GVTF 13, umieszczając je w graffiti, tatuażach i innych oznaczeniach na terenie dzielnicy. W zakładach karnych i więzieniach członkowie gangu funkcjonują w ramach struktury Sureño, obok innych latynoskich gangów z południowego San Andreas. Z kolei na ulicy tożsamość gangu pozostaje ściśle związana z jego dzielnicą, historią oraz długotrwałymi rywalizacjami.",
+				images: []
+			},
+            member80: {
+                isGangNeu: true,
+                gangName: 'The Chosen Crew MC',
+                dissName: '',
+                mainImage: 'webp/tccm.webp',
+                bio: "The Chosen Crew Motorcycle Club to pierwszy klub motocyklowy typu „1%er” (klub wyjęty spod prawa), o charakterze wielorasowym. Pierwszy biały członek dołączył do niego w 1960 roku. Klub założono w Los Santos; posiada on oddziały w stanach San Andreas, Arizona, Waszyngton, Blaine County, Nebraska, Kolorado, Texas, Oklahoma, Hawaje, Illinois, Vice City, Georgia, Lemoyne, Liberty City, Tennessee, Wirginia, Kansas, North Yankton, Missouri, Karolina Północna oraz oddział międzynarodowy na Filipinach. <br><br> Klub The Chosen Crew MC powstał około 1959 roku w Los Santos w San Andreas. Do grona członków założycieli należeli: Lionel, Lil Frank, Roger, Hawk, Slim, Shirly Bates oraz Champ. Wszyscy ci „bracia” jeździli na motocyklach Harley-Davidson w pełnej zabudowie oraz na ich zmodyfikowanych wersjach typu *chopper*. Rozważano dwie nazwy dla klubu: „The Patriots Of Iron & Steel” oraz „The Chosen Crew”. Wybór padł na tę drugą, dzięki czemu narodził się The Chosen Crew. <br><br> Tej samej nazwy używają dziesiątki innych, niezwiązanych ze sobą klubów motocyklowych w stanach Libery City, Texasie oraz w innych regionach. Główna siedziba The Chosen Crew MC znajduje się w południowo-środkowej części San Andreas, a klub posiada dodatkowe oddziały na terenie całego kraju.",
+				images: []
+			},
+            member81: {
+                isGangNeu: true,
+                gangName: '53 Avalon Gangster Crips',
+                dissName: '(Avocados/Crab-alons)',
+                mainImage: 'webp/53agc.webp',
+                bio: "Gang „East Side (E/S) 53 Avalon Gangster Crips” to afroamerykańska grupa działająca na wschód od autostrady 110 w południowym Los Santos w San Andreas. Uważany za jedną z najstarszych frakcji Avalon Gangster Crips/Gangster Crips, gang ten zawdzięcza swoją nazwę głównej arterii komunikacyjnej biegnącej z północy na południe przez Los Santos, zwanej Avalon Blvd. (jego terytorium rozciąga się wzdłuż tej drogi). Avalon Gangster Crips identyfikują się w ramach struktury Gangster Crips/East Side Crips/Crips. <br><br> 53AGC to największy z trzech gangów Avalon, to jeden z najstarszych i pierwszych gangów czarnoskórych w Los Angeles; w latach 50. i 60. XX wieku grupa ta była znana jako „Businessmen”, zanim w 1969 roku przyjęła nazwę Crips (a później, w latach 70., GC/3X). Historycznie największymi wrogami 53AGC są 43GC oraz pozostałe odłamy (tzw. *sets*) z grupy 4-Pacc GC. Warto dodać, że 43GC wywodzą się z formacji 43 Avalon Gangster Crips (43AGC); dekady temu wewnętrzny konflikt między członkami 40AGC a 53AGC doprowadził do tego, że grupa ta usunęła człon „Avalon” ze swojej nazwy i nawiązała bliższy sojusz z ECC – gangiem powiązanym głównie z frakcjami NHC i BC, będącym od dawna rywalem AGC i BGC. <br><br> Większość członków tego gangu można spotkać w okolicy South Park. Niektórzy członkowie noszą odzież sportową drużyn Atlanta Braves lub Oakland A’s w połączeniu z tradycyjnym niebieskim kolorem Crips.",
+				images: []	
+			}
         };
 
         const mainContent = document.getElementById('main-content');
@@ -1616,24 +2075,42 @@
 
         let errorRedirectTimeout = null;
         let errorInterval = null;
+        let previousPageFunction = showMainPage;
 
         let audioCtx = null;
-        function playClickSound() {
+        function getAudioContext() {
             if (!audioCtx) {
                 audioCtx = new (window.AudioContext || window.webkitAudioContext)();
             }
             if (audioCtx.state === 'suspended') audioCtx.resume();
-            const osc = audioCtx.createOscillator();
-            const gain = audioCtx.createGain();
+            return audioCtx;
+        }
+
+        function playClickSound() {
+            const ctx = getAudioContext();
+            const osc = ctx.createOscillator();
+            const gain = ctx.createGain();
             osc.type = 'sine';
-            osc.frequency.setValueAtTime(800, audioCtx.currentTime);
-            osc.frequency.exponentialRampToValueAtTime(200, audioCtx.currentTime + 0.04);
-            gain.gain.setValueAtTime(0.05, audioCtx.currentTime);
-            gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.04);
+            osc.frequency.setValueAtTime(800, ctx.currentTime);
+            osc.frequency.exponentialRampToValueAtTime(200, ctx.currentTime + 0.04);
+            gain.gain.setValueAtTime(0.05, ctx.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.04);
             osc.connect(gain);
-            gain.connect(audioCtx.destination);
+            gain.connect(ctx.destination);
             osc.start();
-            osc.stop(audioCtx.currentTime + 0.04);
+            osc.stop(ctx.currentTime + 0.04);
+        }
+
+        function playDeadSound() {
+            const gunshotAudio = new Audio('llshot.mp3');
+            gunshotAudio.volume = 0.4;
+            gunshotAudio.play().catch(e => console.log("Brak pliku llshot.mp3: " + e));
+        }
+
+        function playJailSound() {
+            const jailAudio = new Audio('jail.mp3');
+            jailAudio.volume = 0.4;
+            jailAudio.play().catch(e => console.log("Brak pliku jail.mp3: " + e));
         }
 
         const playlist = [
@@ -1651,6 +2128,7 @@
             if (track) {
                 track.innerText = playlist[currentTrackIndex].title + " (READY)";
             }
+            initInteractiveMap();
         });
 
         streetTrack.addEventListener('ended', nextTrack);
@@ -1691,6 +2169,22 @@
             }
         }
 
+        function playDirectTrack(title, src, youtubeUrl) {
+            playClickSound();
+            if (src) {
+                streetTrack.pause();
+                streetTrack.src = src;
+                isPlayingAudio = true;
+                const widget = document.getElementById('audioWidget');
+                const track = document.getElementById('trackName');
+                streetTrack.play().catch(e => console.log("Brak pliku audio: " + e));
+                if (widget) widget.classList.add('playing');
+                if (track) track.innerText = title;
+            } else if (youtubeUrl) {
+                window.open(youtubeUrl, '_blank');
+            }
+        }
+
         function changeVolume(val) {
             streetTrack.volume = val;
         }
@@ -1716,7 +2210,7 @@
         }
 
         function populatePreviewData(member) {
-            if (member.isGangEnemy || member.isGangAlly) {
+            if (member.isGangEnemy || member.isGangAlly || member.isGangNeu) {
                 previewPhoto.style.display = 'none';
                 previewName.innerText = member.gangName;
                 previewDob.innerText = member.dissName;
@@ -1784,6 +2278,18 @@
             return '';
         }
 
+        function toggleBuyCD(buttonElement) {
+            playClickSound();
+            const wrapper = buttonElement.closest('.buy-cd-wrapper');
+            const infoBox = wrapper.querySelector('.buy-cd-info');
+            infoBox.classList.toggle('active');
+            if (infoBox.classList.contains('active')) {
+                buttonElement.innerText = "Ukryj zamówienie";
+            } else {
+                buttonElement.innerText = "Zakup CD";
+            }
+        }
+
         function loadMember(memberId) {
             playClickSound();
             hidePreview();
@@ -1791,11 +2297,24 @@
             const member = membersData[memberId];
             if (!member) return;
 
+            let backAction = showMainPage;
+            let backText = '← Powrót do strony głównej';
+
+            if (member.status !== 'ACTIVE' && !member.isGangEnemy && !member.isGangAlly && !member.isGangNeu) {
+                if (previousPageFunction === showDeadHomiesPage) {
+                    backAction = showDeadHomiesPage;
+                    backText = '← Wróć do zakładki Dead Homies';
+                } else if (previousPageFunction === showJailPage) {
+                    backAction = showJailPage;
+                    backText = '← Wróć do zakładki Incarcerated';
+                }
+            }
+
             mainContent.classList.add('fade-out');
             setTimeout(() => {
-                if (member.isGangEnemy || member.isGangAlly) {
+                if (member.isGangEnemy || member.isGangAlly || member.isGangNeu) {
                     mainContent.innerHTML = `
-                        <button class="back-btn" onclick="showMainPage()">← Powrót do profilu gangu</button>
+                        <button class="back-btn" onclick="showMainPage()">${backText}</button>
 
                         <div class="id-card gang-opp-card">
                             <img src="${member.mainImage}" alt="${member.gangName}" class="gang-main-header-img" onclick="openMapModal('${member.mainImage}')" loading="lazy">
@@ -1808,7 +2327,7 @@
                         <div class="key-facts">
                             <h3>Informacje o gangu</h3>
                             <p>${member.bio}</p>
-                            ${member.isGangEnemy ? `<div class="enemy-status-text">• Są aktywnym wrogiem 83 Hoover Criminals Gang</div>` : `<div class="ally-status-text">• Są sojusznikiem 83 Hoover Criminals Gang</div>`}
+							${member.isGangEnemy ? `<div class="enemy-status-text">• Są aktywnym wrogiem 83 Hoover Criminals Gang</div>` : member.isGangAlly ? `<div class="ally-status-text">• Są sojusznikiem 83 Hoover Criminals Gang</div>` : member.isGangNeu ? `<div class="neu-status-text">• Są neutralni wobec 83 Hoover Criminals Gang</div>` : ''}
                         </div>
                     `;
                 } else {
@@ -1818,8 +2337,43 @@
 
                     let photoHTML = member.idPhoto ? `<img src="${member.idPhoto}" alt="${member.name}" class="id-photo" onclick="openMapModal('${member.idPhoto}')" loading="lazy">` : '';
 
+                    let albumHTML = '';
+                    if (member.album) {
+                        let tracksList = member.album.tracks.map(t => `
+                            <li class="track-item">
+                                <span class="track-name">${t.title}</span>
+                                <button class="track-link-btn" onclick="playDirectTrack('${t.title.replace(/'/g, "\\'")}', '${t.audioSrc}', '${t.url}')">
+                                    ▶ Odsłuchaj 
+                                </button>
+                            </li>
+                        `).join('');
+
+                        albumHTML = `
+                            <h1>💿 DYSKOGRAFIA 💿</h1>
+                            <div class="discography-card">
+                                <div class="album-cover-box" onclick="openMapModal('${member.album.cover}')">
+                                    <img src="${member.album.cover}" alt="${member.album.title}" class="album-cover-img" loading="lazy">
+                                    <div class="album-cover-overlay">🔍 Powiększ</div>
+                                </div>
+                                <div class="album-details">
+                                    <div class="album-header-row">
+                                        <div class="album-title">${member.album.title}</div>
+                                        <div class="buy-cd-wrapper">
+                                            <button class="buy-cd-btn" onclick="toggleBuyCD(this)">Zakup CD</button>
+                                            <div class="buy-cd-info">📞 5200645912<br>Złóż zamówienie SMS/CALL</div>
+                                        </div>
+                                    </div>
+                                    <div class="album-meta">${member.album.year}</div>
+                                    <ul class="tracklist">
+                                        ${tracksList}
+                                    </ul>
+                                </div>
+                            </div>
+                        `;
+                    }
+
                     mainContent.innerHTML = `
-                        <button class="back-btn" onclick="showMainPage()">← Powrót do profilu gangu</button>
+                        <button class="back-btn" onclick="(${backAction.name})()">${backText}</button>
 
                         <div class="id-card">
                             ${photoHTML}
@@ -1836,7 +2390,9 @@
                             <p>${member.bio}</p>
                         </div>
 
-                        ${imagesHTML ? `<h3>Prywatna Galeria Zdjęcia</h3><div class="member-gallery">${imagesHTML}</div>` : ''}
+                        ${albumHTML}
+
+                        ${imagesHTML ? `<h3>📷 Prywatna Galeria Zdjęcia 📷</h3><div class="member-gallery">${imagesHTML}</div>` : ''}
                     `;
                 }
 
@@ -1845,7 +2401,12 @@
         }
 
         function showDeadHomiesPage() {
-            playClickSound();
+            previousPageFunction = showDeadHomiesPage;
+            playDeadSound();
+            document.body.classList.remove('dead-page-flash', 'jail-page-flash');
+            void document.body.offsetWidth;
+            document.body.classList.add('dead-page-flash');
+
             hidePreview();
             clearErrorTimers();
 
@@ -1866,16 +2427,23 @@
                                 <div style="margin-top: 10px; font-size: 13px; color: #aaa; border-top: 1px solid #222; padding-top: 8px;">
                                     ${m.bio}
                                 </div>
-                                <button class="audio-btn" style="margin-top: 10px; max-width: 160px;" onclick="loadMember('${key}')">Zobacz Profil ➔</button>
+                                <button class="audio-btn dead-profile-btn" style="margin-top: 10px; max-width: 160px; background: #2a1111; border-color: #d9534f; color: #ff8c8c;" onclick="loadMember('${key}')">Zobacz Profil ➔</button>
                             </div>
                         </div>
                     `;
                 }).join('');
 
                 mainContent.innerHTML = `
+                    <style>
+                        .dead-profile-btn:hover {
+                            background: #d9534f !important;
+                            color: #ffffff !important;
+                            box-shadow: 0 0 12px rgba(217, 83, 79, 0.6);
+                        }
+                    </style>
                     <button class="back-btn" onclick="showMainPage()">← Powrót do profilu gangu</button>
-                    <h1> REST IN PEACE // DEAD HOMIES 🪦</h1>
-                    <p style="color: #888; font-size: 14px; margin-top: -5px;">Pamięć o poległych braciach z 83 Hoover Criminals Gang.</p>
+                    <h1> 🪦 DEAD HOMIES 🪦</h1>
+                    <p style="color: #888; font-size: 14px; margin-top: -5px;">Long Live Homies...</p>
                     
                     <div style="margin-top: 25px;">
                         ${cardsHTML}
@@ -1886,7 +2454,12 @@
         }
 
         function showJailPage() {
-            playClickSound();
+            previousPageFunction = showJailPage;
+            playJailSound();
+            document.body.classList.remove('dead-page-flash', 'jail-page-flash');
+            void document.body.offsetWidth;
+            document.body.classList.add('jail-page-flash');
+
             hidePreview();
             clearErrorTimers();
 
@@ -1907,15 +2480,23 @@
                                 <div style="margin-top: 10px; font-size: 13px; color: #aaa; border-top: 1px solid #222; padding-top: 8px;">
                                     ${m.bio}
                                 </div>
-                                <button class="audio-btn" style="margin-top: 10px; max-width: 160px; background: #332200; border-color: #f39c12; color: #f1c40f;" onclick="loadMember('${key}')">Zobacz Profil ➔</button>
+                                <button class="audio-btn jail-profile-btn" style="margin-top: 10px; max-width: 160px; background: #555555; border-color: #777777; color: #dddddd;" onclick="loadMember('${key}')">Zobacz Profil ➔</button>
                             </div>
                         </div>
                     `;
                 }).join('');
 
                 mainContent.innerHTML = `
+                    <style>
+                        .jail-profile-btn:hover {
+                            background: #f39c12 !important;
+                            border-color: #f39c12 !important;
+                            color: #000000 !important;
+                            box-shadow: 0 0 12px rgba(243, 156, 18, 0.6);
+                        }
+                    </style>
                     <button class="back-btn" onclick="showMainPage()">← Powrót do profilu gangu</button>
-                    <h1> INCARCERATED ⛓️</h1>
+                    <h1> ⛓ INCARCERATED🔒️</h1>
                     <p style="color: #888; font-size: 14px; margin-top: -5px;">Lista członków 83 Hoover Criminals Gang przebywających w zakładach karnych.</p>
                     
                     <div style="margin-top: 25px;">
@@ -1965,13 +2546,51 @@
         }
 
         function showMainPage() {
+            previousPageFunction = showMainPage;
             playClickSound();
             clearErrorTimers();
             mainContent.classList.add('fade-out');
             setTimeout(() => {
                 mainContent.innerHTML = mainGangHTML;
                 mainContent.classList.remove('fade-out');
+                initInteractiveMap();
             }, 300);
+        }
+
+        function initInteractiveMap() {
+            const mapContainer = document.getElementById('interactiveMap');
+            const tooltip = document.getElementById('mapTooltip');
+            const tooltipTitle = document.getElementById('mapTooltipTitle');
+            const tooltipDesc = document.getElementById('mapTooltipDesc');
+
+            if (!mapContainer || !tooltip) return;
+
+            const zones = mapContainer.querySelectorAll('.map-zone');
+
+            zones.forEach(zone => {
+                zone.addEventListener('mouseenter', (e) => {
+                    const title = zone.getAttribute('data-title');
+                    const desc = zone.getAttribute('data-desc');
+
+                    tooltipTitle.innerText = title || '';
+                    tooltipDesc.innerText = desc || '';
+
+                    tooltip.classList.add('active');
+                });
+
+                zone.addEventListener('mousemove', (e) => {
+                    const rect = mapContainer.getBoundingClientRect();
+                    const x = e.clientX - rect.left + 15;
+                    const y = e.clientY - rect.top - 10;
+
+                    tooltip.style.left = `${x}px`;
+                    tooltip.style.top = `${y}px`;
+                });
+
+                zone.addEventListener('mouseleave', () => {
+                    tooltip.classList.remove('active');
+                });
+            });
         }
 
         let scale = 1, pointX = 0, pointY = 0, startX = 0, startY = 0, isDragging = false;
@@ -2066,7 +2685,7 @@
         mapWrapper.addEventListener('mousedown', e => {
             e.preventDefault();
             startX = e.clientX - pointX;
-            startY = e.clientY - pointY;
+            startY = e.clientY - pointY; 
             isDragging = true;
         });
 
