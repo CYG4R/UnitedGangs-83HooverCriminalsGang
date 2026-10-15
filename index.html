@@ -32,7 +32,7 @@
             cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="%23eb6e1f" stroke-width="2"><circle cx="12" cy="12" r="7"/><line x1="12" y1="1" x2="12" y2="5"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="1" y1="12" x2="5" y2="12"/><line x1="19" y1="12" x2="23" y2="12"/><circle cx="12" cy="12" r="1" fill="%23eb6e1f"/></svg>') 12 12, auto;
         }
 
-        a, button, .image-wrapper, .inline-member-link, .map-link, .redacted, .close-modal, .zoom-btn, .nav-btn, .id-photo, input, .affiliation-logo, .affiliation-card, .affiliation-info, .member-mini-avatar, .member-btn, .audio-btn, .dead-homies-btn, .jail-btn, .article-image, .gang-main-header-img, .member-gallery img, .gang-gallery img, .map-zone, .legend-item, .album-cover-img, .track-link-btn, .buy-cd-btn {
+        a, button, .image-wrapper, .inline-member-link, .map-link, .redacted, .close-modal, .zoom-btn, .nav-btn, .id-photo, input, .affiliation-logo, .affiliation-card, .affiliation-info, .member-mini-avatar, .member-btn, .audio-btn, .dead-homies-btn, .jail-btn, .article-image, .gang-main-header-img, .member-gallery img, .gang-gallery img, .legend-item, .album-cover-img, .track-link-btn, .buy-cd-btn {
             cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="%23d9534f" stroke="%23ffffff" stroke-width="1"><circle cx="12" cy="12" r="6"/><line x1="12" y1="2" x2="12" y2="22"/><line x1="2" y1="12" x2="22" y2="12"/></svg>') 12 12, pointer !important;
         }
 
@@ -176,6 +176,23 @@
             box-shadow: 0 6px 20px rgba(0, 0, 0, 0.8);
             margin: 15px 0;
             background: #000;
+            cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="%23eb6e1f" stroke-width="2"><circle cx="12" cy="12" r="7"/><line x1="12" y1="1" x2="12" y2="5"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="1" y1="12" x2="5" y2="12"/><line x1="19" y1="12" x2="23" y2="12"/><circle cx="12" cy="12" r="1" fill="%23eb6e1f"/></svg>') 12 12, auto;
+        }
+
+        .interactive-map-container.dragging {
+            cursor: grab !important;
+        }
+        .interactive-map-container.dragging:active,
+        .interactive-map-container.is-dragging {
+            cursor: grabbing !important;
+        }
+
+        .interactive-map-viewport {
+            width: 100%;
+            height: auto;
+            position: relative;
+            transform-origin: 0 0;
+            will-change: transform;
         }
 
         .interactive-map-bg {
@@ -183,6 +200,7 @@
             display: block;
             height: auto;
             filter: brightness(0.9) contrast(1.1);
+            pointer-events: none;
         }
 
         .interactive-map-svg {
@@ -200,6 +218,7 @@
             stroke-width: 2;
             stroke-dasharray: 4;
             pointer-events: visiblePainted;
+            cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="%23d9534f" stroke="%23ffffff" stroke-width="1"><circle cx="12" cy="12" r="6"/><line x1="12" y1="2" x2="12" y2="22"/><line x1="2" y1="12" x2="22" y2="12"/></svg>') 12 12, pointer !important;
         }
 
         .map-zone:hover {
@@ -208,10 +227,18 @@
             filter: drop-shadow(0 0 12px rgba(255, 255, 255, 0.8));
         }
 
-        .map-icon-marker {
-            pointer-events: none;
-            filter: drop-shadow(0px 2px 4px rgba(0, 0, 0, 0.8));
-            transition: transform 0.2s ease;
+        .map-svg-business {
+            pointer-events: visiblePainted;
+            transition: transform 0.2s ease, filter 0.2s ease;
+            transform-box: fill-box;
+            transform-origin: center;
+            filter: drop-shadow(0px 2px 4px rgba(0,0,0,0.8));
+            cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="%23d9534f" stroke="%23ffffff" stroke-width="1"><circle cx="12" cy="12" r="6"/><line x1="12" y1="2" x2="12" y2="22"/><line x1="2" y1="12" x2="22" y2="12"/></svg>') 12 12, pointer !important;
+        }
+
+        .map-svg-business:hover {
+            transform: scale(1.2);
+            filter: drop-shadow(0px 0px 8px rgba(235, 110, 31, 0.9));
         }
 
         .zone-1 { fill: #eb6e1f; stroke: #ffffff; }
@@ -227,6 +254,7 @@
         .zone-17 { fill: #002080; stroke: #ffffff; }
         .zone-18 { fill: #0039e6; stroke: #ffffff; }
         .zone-19 { fill: #1a1aff; stroke: #ffffff; }
+        .zone-20 { fill: #d35c12; stroke: #ffffff; }
 
         .map-tooltip {
             position: absolute;
@@ -263,6 +291,35 @@
             color: #ccc;
             font-size: 11px;
             line-height: 1.3;
+        }
+
+        .interactive-map-controls {
+            position: absolute;
+            bottom: 12px;
+            right: 12px;
+            display: flex;
+            gap: 6px;
+            z-index: 50;
+        }
+
+        .map-control-btn {
+            background-color: rgba(20, 20, 20, 0.85);
+            color: white;
+            border: 1px solid #444;
+            width: 32px;
+            height: 32px;
+            font-size: 16px;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        .map-control-btn:hover {
+            background-color: #eb6e1f;
+            color: #000;
+            border-color: #eb6e1f;
         }
 
         .map-legend {
@@ -307,6 +364,8 @@
         .legend-17 { background-color: #002080; }
         .legend-18 { background-color: #0039e6; }
         .legend-19 { background-color: #1a1aff; }
+		.legend-20 { background-color: #d35c12; }
+		
 
         .threat-meter-box {
             margin-top: 15px;
@@ -771,7 +830,6 @@
             z-index: 5;
         }
 
-        /* Style Dyskografii / Albumu */
         .discography-card {
             background-color: #141414;
             border: 1px solid #222;
@@ -964,8 +1022,8 @@
 
         .modal-content-wrapper {
             position: relative;
-            width: 90%;
-            height: 90%;
+            width: 100%;
+            height: 100%;
             overflow: hidden;
             display: flex;
             align-items: center;
@@ -1041,6 +1099,119 @@
 
         .prev-btn { left: 20px; }
         .next-btn { right: 20px; }
+
+        .business-modal {
+            display: none;
+            position: fixed;
+            z-index: 1050;
+            inset: 0;
+            background-color: rgba(0,0,0,0.85);
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .business-card-container {
+            background-color: #161616;
+            border: 1px solid #333;
+            border-top: 5px solid #d9534f;
+            width: 100%;
+            max-width: 480px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.9);
+            position: relative;
+            animation: modalFadeIn 0.25s ease;
+        }
+
+        @keyframes modalFadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .business-card-header {
+            background-color: #d9534f;
+            color: white;
+            padding: 12px 18px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .business-card-header-title {
+            font-size: 16px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .business-close-btn {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 26px;
+            font-weight: bold;
+            cursor: pointer;
+            line-height: 1;
+        }
+
+        .business-card-image-box {
+            width: 100%;
+            height: 220px;
+            background: #000;
+            overflow: hidden;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .business-card-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .business-card-image-box:hover .business-card-img {
+            transform: scale(1.03);
+        }
+
+        .business-card-body {
+            padding: 20px;
+        }
+
+        .business-name {
+            font-size: 22px;
+            font-weight: 950;
+            color: #fff;
+            margin: 0 0 5px 0;
+        }
+
+        .business-category {
+            font-size: 12px;
+            color: #eb6e1f;
+            font-family: monospace;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .business-details-section {
+            border-top: 1px solid #252525;
+            padding-top: 12px;
+            margin-top: 12px;
+            font-size: 13px;
+            color: #ccc;
+            line-height: 1.5;
+        }
+
+        .business-details-section p {
+            margin: 6px 0;
+        }
+
+        .business-details-section strong {
+            color: #fff;
+        }
 
         .back-btn {
             background-color: #2a2a2a;
@@ -1375,122 +1546,144 @@
                         <h3>💸🤞🏿🔪 Gangs of Los Santos 🔪🤞🏿💸</h3>
                         <p> <h5>Najedź na kolorowe strefy na mapie, aby zobaczyć opis terytorium. Kliknij wybraną strefę, aby przejść do szczegółów.</p>
 
-                        <!-- Interaktywna Mapa -->
+                        <!-- Interaktywna Mapa z obsługą zoomu i przesuwania -->
                         <div class="interactive-map-container" id="interactiveMap">
-                            <img src="png/SouthCentral.png" alt="South Central Territory Map" class="interactive-map-bg">
-                            
-                            <svg class="interactive-map-svg" viewBox="0 0 1202 1007" preserveAspectRatio="none">
-                                <!-- 83 Hoover Criminals Gang -->
-                                <polygon points="454,401 289,262 378,206 574,206 601,225" class="map-zone zone-1" 
-                                         data-title="83 Hoover Criminals Gang" 
-                                         data-desc="Aktualny Gang który przeglądasz"/>
-                                <image href="png/hoover.png" x="367" y="214" width="150" height="150" class="map-icon-marker" />        
+                            <div class="interactive-map-viewport" id="interactiveMapViewport">
+                                <img src="png/SouthCentral.png" alt="South Central Territory Map" class="interactive-map-bg">
+                                
+                                <svg class="interactive-map-svg" viewBox="0 0 1202 1007" preserveAspectRatio="none">
+                                    <!-- 83 Hoover Criminals Gang -->
+                                    <polygon points="366,326 403,286 389,250 389,206 573,206 602,224 454,399" class="map-zone zone-1" 
+                                             data-title="83 Hoover Criminals Gang" 
+                                             data-desc="Aktualny Gang który przeglądasz"/>
+                                    <image href="png/hoover.png" x="385" y="214" width="125" height="125" class="map-svg-business" onclick="openBusinessModal('gang_hoover')" data-title="83 Hoover Criminals Gang" data-desc="Gang / Terytorium - Kliknij, aby zobaczyć szczegóły" />        
 
-                                <!-- 65 Menlo Neighborhood Crips -->
-                                <polygon points="228,352 214,377 189,416 260,435 301,436 301,408 351,343 295,298 255,266 240,266 240,298 238,320 233,337" class="map-zone zone-3" 
-                                         data-title="65 Menlo Neighborhood Crips" 
-                                         data-desc="Kliknij aby otworzyć profil gangu z tej strefy"
-                                         onclick="loadMember('member73')"/>
-                                <image href="png/menlo.png" x="215" y="321" width="100" height="100" class="map-icon-marker" />
+                                    <!-- 65 Menlo Neighborhood Crips -->
+                                    <polygon points="228,352 214,377 189,416 260,435 301,436 301,408 351,343 295,298 255,266 240,266 240,298 238,320 233,337" class="map-zone zone-3" 
+                                             data-title="65 Menlo Neighborhood Crips" 
+                                             data-desc="Kliknij aby otworzyć profil gangu z tej strefy"
+                                             onclick="loadMember('member73')"/>
+                                    <image href="png/menlo.png" x="225" y="321" width="90" height="90" class="map-svg-business" onclick="openBusinessModal('gang_menlo')" data-title="65 Menlo Neighborhood Crips" data-desc="Gang / Terytorium - Kliknij, aby zobaczyć szczegóły" />
 
-                                <!-- 92' Athens Park Bloods  -->
-                                <polygon points="530,345 623,235 685,274 750,328 604,413" class="map-zone zone-2" 
-                                         data-title="92' Athens Park Bloods" 
-                                         data-desc="Kliknij aby otworzyć profil gangu z tej strefy"
-                                         onclick="loadMember('member72')"/>
-                                <image href="png/apbloods.png" x="573" y="272" width="120" height="120" class="map-icon-marker" />
+                                    <!-- 92' Athens Park Bloods  -->
+                                    <polygon points="530,345 623,235 685,274 750,328 604,413" class="map-zone zone-2" 
+                                             data-title="92' Athens Park Bloods" 
+                                             data-desc="Kliknij aby otworzyć profil gangu z tej strefy"
+                                             onclick="loadMember('member72')"/>
+                                    <image href="png/apbloods.png" x="573" y="272" width="100" height="100" class="map-svg-business" onclick="openBusinessModal('gang_apbloods')" data-title="92' Athens Park Bloods" data-desc="Gang / Terytorium - Kliknij, aby zobaczyć szczegóły" />
 
-                                <!-- Mad Swan Bloods -->
-                                <polygon points="635,582 709,643 623,745 548,681" class="map-zone zone-12" 
-                                         data-title="Mad Swan Bloods" 
-                                         data-desc="Kliknij aby otworzyć profil gangu z tej strefy"
-                                         onclick="loadMember('member74')"/>
-                                <image href="png/swan.png" x="580" y="617" width="100" height="100" class="map-icon-marker" />
+                                    <!-- Mad Swan Bloods -->
+                                    <polygon points="635,582 709,643 623,745 548,681" class="map-zone zone-12" 
+                                             data-title="Mad Swan Bloods" 
+                                             data-desc="Kliknij aby otworzyć profil gangu z tej strefy"
+                                             onclick="loadMember('member74')"/>
+                                    <image href="png/swan.png" x="580" y="617" width="100" height="100" class="map-svg-business" onclick="openBusinessModal('gang_swan')" data-title="Mad Swan Bloods" data-desc="Gang / Terytorium - Kliknij, aby zobaczyć szczegóły" />
 
-                                <!-- West Side Piru -->
-                                <polygon points="501,697 553,645 491,593 460,563 425,531 347,562 339,569" class="map-zone zone-11" 
-                                         data-title="West Side Piru" 
-                                         data-desc="Kliknij aby otworzyć profil gangu z tej strefy"
-                                         onclick="loadMember('member76')"/>
-                                <image href="png/pirus.png" x="397" y="547" width="95" height="95" class="map-icon-marker" />
+                                    <!-- West Side Piru -->
+                                    <polygon points="501,697 553,645 491,593 460,563 425,531 347,562 339,569" class="map-zone zone-11" 
+                                             data-title="West Side Piru" 
+                                             data-desc="Kliknij aby otworzyć profil gangu z tej strefy"
+                                             onclick="loadMember('member76')"/>
+                                    <image href="png/pirus.png" x="397" y="547" width="95" height="95" class="map-svg-business" onclick="openBusinessModal('gang_pirus')" data-title="West Side Piru" data-desc="Gang / Terytorium - Kliknij, aby zobaczyć szczegóły" />
 
-                                <!-- 66 East Coast Crips -->
-                                <polygon points="663,404 768,342 882,439 809,524" class="map-zone zone-19" 
-                                         data-title="66 East Coast Crips" 
-                                         data-desc="Kliknij aby otworzyć profil gangu z tej strefy"
-                                         onclick="loadMember('member70')"/>
-                                <image href="png/ecc.png" x="733" y="377" width="95" height="95" class="map-icon-marker" />
-										 
-							    <!-- Rollin' 40s Neighborhood Crips -->
-                                <polygon points="517,360 587,423 526,458 474,413" class="map-zone zone-18" 
-                                         data-title="Rollin' 40s Neighborhood Crips" 
-                                         data-desc="Kliknij aby otworzyć profil gangu z tej strefy"
-                                         onclick="loadMember('member71')"/>
-                                <image href="png/rollin.png" x="490" y="377" width="75" height="75" class="map-icon-marker" />
-										 
-								<!-- 98 Main Street Mafia Crips -->
-                                <polygon points="368,358 323,414 325,463 318,481 357,514 438,416" class="map-zone zone-6" 
-                                         data-title="98 Main Street Mafia Crips" 
-                                         data-desc="Kliknij aby otworzyć profil gangu z tej strefy"
-                                         onclick="loadMember('member75')"/>
-                                <image href="png/98msmc.png" x="330" y="381" width="85" height="85" class="map-icon-marker" />
-										 
-								<!-- 53 Avalon Gangster Crips -->
-                                <polygon points="732,665 791,710 692,824 666,807 648,801 630,798 634,783 653,758" class="map-zone zone-17" 
-                                         data-title="53 Avalon Gangster Crips" 
-                                         data-desc="Kliknij aby otworzyć profil gangu z tej strefy"
-                                         onclick="loadMember('member81')"/>
-                                <image href="png/avalon.png" x="658" y="695" width="90" height="90" class="map-icon-marker" />
-										 
-							    <!-- Denver Lane Gangster Bloods -->
-                                <polygon points="59,704 61,720 66,735 72,750 77,766 86,782 97,792 108,804 120,812 135,822 158,838 193,857 202,797 214,765 161,755 148,682 121,691 86,699" class="map-zone zone-13" 
-                                         data-title="Denver Lane Gangster Bloods" 
-                                         data-desc="Kliknij aby otworzyć profil gangu z tej strefy"
-                                         onclick="loadMember('member77')"/>
-                                <image href="png/denverlane.png" x="89" y="716" width="85" height="85" class="map-icon-marker" />
-										 
-								<!-- Eastside Wilmas 13 -->
-                                <polygon points="790,330 866,285 873,323 924,368 913,386 911,401 907,407 901,416 898,421" class="map-zone zone-14" 
-                                         data-title="Eastside Wilmas 13" 
-                                         data-desc="Kliknij aby otworzyć profil gangu z tej strefy"
-                                         onclick="loadMember('member78')"/>
-										 
-								<!-- Ganton Varrio Tortilla Flats -->
-                                <polygon points="906,457 948,492 935,504 929,516 924,537 919,551 919,569 921,578 917,587 903,605 834,545" class="map-zone zone-15" 
-                                         data-title="Ganton Varrio Tortilla Flats" 
-                                         data-desc="Kliknij aby otworzyć profil gangu z tej strefy"
-                                         onclick="loadMember('member79')"/>
-										 
-								<!-- The Chosen Crew MC -->
-                                <polygon points="819,706 898,628 912,639 931,677 834,720" class="map-zone zone-16" 
-                                         data-title="The Chosen Crew MC" 
-                                         data-desc="Kliknij aby otworzyć profil klubu z tej strefy"
-                                         onclick="loadMember('member80')"/>
+                                    <!-- 66 East Coast Crips -->
+                                    <polygon points="663,404 768,342 882,439 809,524" class="map-zone zone-19" 
+                                             data-title="66 East Coast Crips" 
+                                             data-desc="Kliknij aby otworzyć profil gangu z tej strefy"
+                                             onclick="loadMember('member70')"/>
+                                    <image href="png/ecc.png" x="733" y="377" width="90" height="90" class="map-svg-business" onclick="openBusinessModal('gang_ecc')" data-title="66 East Coast Crips" data-desc="Gang / Terytorium - Kliknij, aby zobaczyć szczegóły" />
+                                             
+                                    <!-- Rollin' 40s Neighborhood Crips -->
+                                    <polygon points="517,360 587,423 526,458 474,413" class="map-zone zone-18" 
+                                             data-title="Rollin' 40s Neighborhood Crips" 
+                                             data-desc="Kliknij aby otworzyć profil gangu z tej strefy"
+                                             onclick="loadMember('member71')"/>
+                                    <image href="png/rollin.png" x="490" y="377" width="70" height="70" class="map-svg-business" onclick="openBusinessModal('gang_rollin')" data-title="Rollin' 40s Neighborhood Crips" data-desc="Gang / Terytorium - Kliknij, aby zobaczyć szczegóły" />
+                                             
+                                    <!-- 98 Main Street Mafia Crips -->
+                                    <polygon points="368,358 323,414 325,463 318,481 357,514 438,416" class="map-zone zone-6" 
+                                             data-title="98 Main Street Mafia Crips" 
+                                             data-desc="Kliknij aby otworzyć profil gangu z tej strefy"
+                                             onclick="loadMember('member75')"/>
+                                    <image href="png/98msmc.png" x="330" y="381" width="80" height="80" class="map-svg-business" onclick="openBusinessModal('gang_98msmc')" data-title="98 Main Street Mafia Crips" data-desc="Gang / Terytorium - Kliknij, aby zobaczyć szczegóły" />
+                                             
+                                    <!-- 53 Avalon Gangster Crips -->
+                                    <polygon points="732,665 791,710 692,824 666,807 648,801 630,798 634,783 653,758" class="map-zone zone-17" 
+                                             data-title="53 Avalon Gangster Crips" 
+                                             data-desc="Kliknij aby otworzyć profil gangu z tej strefy"
+                                             onclick="loadMember('member81')"/>
+                                    <image href="png/avalon.png" x="658" y="695" width="85" height="85" class="map-svg-business" onclick="openBusinessModal('gang_avalon')" data-title="53 Avalon Gangster Crips" data-desc="Gang / Terytorium - Kliknij, aby zobaczyć szczegóły" />
+                                             
+                                    <!-- Denver Lane Gangster Bloods -->
+                                    <polygon points="59,704 61,720 66,735 72,750 77,766 86,782 97,792 108,804 120,812 135,822 158,838 193,857 202,797 214,765 161,755 148,682 121,691 86,699" class="map-zone zone-13" 
+                                             data-title="Denver Lane Gangster Bloods" 
+                                             data-desc="Kliknij aby otworzyć profil gangu z tej strefy"
+                                             onclick="loadMember('member77')"/>
+                                    <image href="png/denverlane.png" x="89" y="716" width="80" height="80" class="map-svg-business" onclick="openBusinessModal('gang_denverlane')" data-title="Denver Lane Gangster Bloods" data-desc="Gang / Terytorium - Kliknij, aby zobaczyć szczegóły" />
+                                             
+                                    <!-- Eastside Wilmas 13 -->
+                                    <polygon points="790,330 866,285 873,323 924,368 913,386 911,401 907,407 901,416 898,421" class="map-zone zone-14" 
+                                             data-title="Eastside Wilmas 13" 
+                                             data-desc="Kliknij aby otworzyć profil gangu z tej strefy"
+                                             onclick="loadMember('member78')"/>
+                                             
+                                    <!-- Ganton Varrio Tortilla Flats -->
+                                    <polygon points="906,457 948,492 935,504 929,516 924,537 919,551 919,569 921,578 917,587 903,605 834,545" class="map-zone zone-15" 
+                                             data-title="Ganton Varrio Tortilla Flats" 
+                                             data-desc="Kliknij aby otworzyć profil gangu z tej strefy"
+                                             onclick="loadMember('member79')"/>
+                                             
+                                    <!-- The Chosen Crew MC -->
+                                    <polygon points="819,706 898,628 912,639 931,677 834,720" class="map-zone zone-16" 
+                                             data-title="The Chosen Crew MC" 
+                                             data-desc="Kliknij aby otworzyć profil klubu z tej strefy"
+                                             onclick="loadMember('member80')"/>
 
-                           <div id="mapTooltip" class="map-tooltip">
-                               <div id="mapTooltipTitle" class="map-tooltip-title">---</div>
-                               <div id="mapTooltipDesc" class="map-tooltip-desc">---</div>
-                           </div>
+                                    <!-- 74 Hoover Criminals Gang -->
+                                    <polygon points="367,327 405,284 389,249 389,206 380,206 290,262" class="map-zone zone-20" 
+                                             data-title="74 Hoover Criminals Gang" 
+                                             data-desc="Kliknij aby otworzyć profil gangu z tej strefy"
+                                             onclick="loadMember('member82')"/>
+
+                                    <!-- Dynamicznie generowane ikony -->
+                                    <g id="svgBusinessMarkersContainer"></g>
+                               </svg>
+                            </div>
+
+                            <!-- Przyciski sterowania zoomem mapy Los Santos -->
+                            <div class="interactive-map-controls">
+                                <button class="map-control-btn" onclick="zoomInteractiveMap(0.25)">+</button>
+                                <button class="map-control-btn" onclick="zoomInteractiveMap(-0.25)">-</button>
+                                <button class="map-control-btn" onclick="resetInteractiveMapZoom()">↺</button>
+                            </div>
+
+                            <div id="mapTooltip" class="map-tooltip">
+                                <div id="mapTooltipTitle" class="map-tooltip-title">---</div>
+                                <div id="mapTooltipDesc" class="map-tooltip-desc">---</div>
+                            </div>
                        </div>
+
                        <!-- Legenda Mapy -->
                        <div class="map-legend">
-                           <div class="legend-item" onclick="showMainPage()"><span class="legend-color legend-1"></span> 83' Hoover Criminals Gang</div>
-                           <div class="legend-item" onclick="loadMember('member72')"><span class="legend-color legend-2"></span> 92' Athens Park Bloods</div>
-                           <div class="legend-item" onclick="loadMember('member73')"><span class="legend-color legend-3"></span> 65' Menlo Neighborhood Crips</div>
-                           <div class="legend-item" onclick="loadMember('member75')"><span class="legend-color legend-6"></span> 98' Main Street Mafia Crips</div>
-                           <div class="legend-item" onclick="loadMember('member76')"><span class="legend-color legend-11"></span> West Side Piru</div>
+                        <div class="legend-item" onclick="showMainPage()"><span class="legend-color legend-1"></span> 83' Hoover Criminals Gang</div>
+				        <div class="legend-item" onclick="loadMember('member82')"><span class="legend-color legend-20"></span> 74' Hoover Criminals Gang</div>
+					    <div class="legend-item" onclick="loadMember('member76')"><span class="legend-color legend-11"></span> West Side Piru</div>
+                        <div class="legend-item" onclick="loadMember('member72')"><span class="legend-color legend-2"></span> 92' Athens Park Bloods</div>    
 						<div class="legend-item" onclick="loadMember('member74')"><span class="legend-color legend-12"></span> Mad Swan Bloods</div>
 						<div class="legend-item" onclick="loadMember('member77')"><span class="legend-color legend-13"></span> Denver Lane Gangster Bloods</div>
-						<div class="legend-item" onclick="loadMember('member78')"><span class="legend-color legend-14"></span> Eastside Wilmas 13</div>
-						<div class="legend-item" onclick="loadMember('member79')"><span class="legend-color legend-15"></span> Ganton Varrio Tortilla Flats</div>
-						<div class="legend-item" onclick="loadMember('member80')"><span class="legend-color legend-16"></span> The Chosen Crew MC</div>
-                           <div class="legend-item" onclick="loadMember('member81')"><span class="legend-color legend-17"></span> 53 Avalon Gangster Crips</div>
+						<div class="legend-item" onclick="loadMember('member73')"><span class="legend-color legend-3"></span> 65' Menlo Neighborhood Crips</div>
+                        <div class="legend-item" onclick="loadMember('member81')"><span class="legend-color legend-17"></span> 53 Avalon Gangster Crips</div>
 						<div class="legend-item" onclick="loadMember('member71')"><span class="legend-color legend-18"></span> Rollin' 40 Neighborhood Crips</div>
-						<div class="legend-item" onclick="loadMember('member70')"><span class="legend-color legend-19"></span> 66 East Coast Crips</div>
+						<div class="legend-item" onclick="loadMember('member70')"><span class="legend-color legend-19"></span> 66' East Coast Crips</div>	
+                        <div class="legend-item" onclick="loadMember('member75')"><span class="legend-color legend-6"></span> 98' Main Street Mafia Crips</div>
+                        <div class="legend-item" onclick="loadMember('member78')"><span class="legend-color legend-14"></span> Eastside Wilmas 13</div>
+						<div class="legend-item" onclick="loadMember('member79')"><span class="legend-color legend-15"></span> Ganton Varrio Tortilla Flats</div>
+						<div class="legend-item" onclick="loadMember('member80')"><span class="legend-color legend-16"></span> The Chosen Crew MC</div>						
                        </div>
 
                         <p style="margin-top: 15px;"><strong>Allies:</strong> 
-                            <span class="inline-member-link" onmouseenter="showInlinePreview(event, 'member72')" onmouseleave="hidePreview()" onclick="loadMember('member72')">92' Athens Park Bloods</span>
+                            <span class="inline-member-link" onmouseenter="showInlinePreview(event, 'member82')" onmouseleave="hidePreview()" onclick="loadMember('member82')">74' Hoover Criminals Gang</span> 
+							<span class="inline-member-link" onmouseenter="showInlinePreview(event, 'member72')" onmouseleave="hidePreview()" onclick="loadMember('member72')">92' Athens Park Bloods</span>  
                         </p>
                         <p><strong>Neutral:</strong> 
 						    <span class="inline-member-link" onmouseenter="showInlinePreview(event, 'member75')" onmouseleave="hidePreview()" onclick="loadMember('member75')">98' Main Street Mafia Crips</span>, 
@@ -1530,12 +1723,12 @@
                         <span class="inline-member-link" onmouseenter="showInlinePreview(event, 'member25')" onmouseleave="hidePreview()" onclick="loadMember('member25')">Young Threat</span>.
 				    <h1>HISTORIA ~ "HOOVER GROOVERS/CRIPS/CRIMINALS"</h1>
 					<p>Korzenie gangu Hoover Criminals sięgają grupy Hoover Groovers – ulicznego gangu działającego w zachodniej części dzielnicy South Central w Los Santos już w latach 60. XX wieku, a zatem jeszcze przed powstaniem formacji Crips. W tamtym okresie gangi w tym rejonie miały luźną strukturę i opierały się głównie na lokalnych społecznościach. Ich tożsamość była ściśle związana z konkretnymi ulicami czy ciągami zabudowy mieszkaniowej.</p>
-					<p>Wczesny konflikt wewnętrzny wpłynął na dalsze losy Hoover Groovers. Po zabójstwie młodszego brata jednego z członków-założycieli podejrzenia początkowo padły na gang West Side Crips. W obliczu rosnącego napięcia przedstawiciele obu grup spotkali się w centrum rekreacyjnym Saint Andrews, położonym przy ulicy Saint Andrews Place, pomiędzy Manchester Boulevard a 89th Street. Po rozmowach obie strony uznały, że za zabójstwo odpowiada gang Figueroa Boys. Spotkanie to zaowocowało tymczasowym sojuszem między Hoover Groovers a West Side Crips. Wkrótce potem lider Figueroa Boys został zaatakowany w jednym z klubów nocnych w Los Angeles, co doprowadziło do eskalacji wrogości między gangami w tym rejonie.</p>
-					<p>W połowie lat 70. grupa Hoover Groovers oficjalnie sprzymierzyła się z West Side Crips. W ramach tego sojuszu członkowie grupy porzucili nazwę „Groovers” i zaczęli funkcjonować jako Hoover Crips. Zmiana ta odzwierciedlała szersze procesy zachodzące w Los Angeles, gdzie przynależność do struktur Crips w coraz większym stopniu kształtowała tożsamość gangów, a także układy sojuszy i rywalizacji.</p>
+					<p>Wczesny konflikt wewnętrzny wpłynął na dalsze losy Hoover Groovers. Po zabójstwie młodszego brata jednego z członków-założycieli podejrzenia początkowo padły na gang West Side Crips. W obliczu rosnącego napięcia przedstawiciele obu grup spotkali się w centrum rekreacyjnym Saint Andrews, położonym przy ulicy Saint Andrews Place, pomiędzy Manchester Boulevard a 89th Street. Po rozmowach obie strony uznały, że za zabójstwo odpowiada gang Figueroa Boys. Spotkanie to zaowocowało tymczasowym sojuszem między Hoover Groovers a West Side Crips. Wkrótce potem lider Figueroa Boys został zaatakowany w jednym z klubów nocnych w Los Santos, co doprowadziło do eskalacji wrogości między gangami w tym rejonie.</p>
+					<p>W połowie lat 70. grupa Hoover Groovers oficjalnie sprzymierzyła się z West Side Crips. W ramach tego sojuszu członkowie grupy porzucili nazwę „Groovers” i zaczęli funkcjonować jako Hoover Crips. Zmiana ta odzwierciedlała szersze procesy zachodzące w Los Santos, gdzie przynależność do struktur Crips w coraz większym stopniu kształtowała tożsamość gangów, a także układy sojuszy i rywalizacji.</p>
 					<p>W 1979 roku wewnątrz Crips doszło do poważnego rozłamu, spowodowanego eskalacją konfliktu między Rollin 60s Neighborhood Crips a Eight Tray Gangster Crips. Gangi w całym Los Santos znalazły się pod presją opowiedzenia się po jednej ze stron. Grupy sprzymierzone z Rollin 60s przyjęły tożsamość Neighborhood Crips (często określaną mianem „Deuces”), natomiast te związane z Eight Trays przyjęły nazwę Gangster Crips (powszechnie znaną jako „Trays”). Gang Hoover Crips opowiedział się po stronie frakcji Gangster Crips, zyskując szeroką rozpoznawalność pod nazwą Hoover Gangster Crips.</p>
 					<p>W sierpniu 1979 roku Raymond Washington, jeden z założycieli gangu Crips, zginął w wyniku strzelaniny przeprowadzonej z przejeżdżającego samochodu (tzw. *drive-by shooting*). Kwestia odpowiedzialności za to zabójstwo była szeroko dyskutowana w środowiskach gangów Los Santos. Członkowie East Side Crips oskarżyli Hoover Crips o udział w śmierci Washingtona – zarzut ten został jednak przez grupę Hoovera odrzucony. Niezależnie od tego, kto faktycznie odpowiadał za śmierć lidera, oskarżenie to doprowadziło do długotrwałego i krwawego konfliktu między Hoover Crips a East Side Crips. Spór ten znacząco poszerzył listę rywali gangu Hoovera i przyczynił się do wzrostu jego reputacji jako grupy niezwykle aktywnej i skłonnej do konfrontacji w okresie przełomu lat 70. i 80.</p>
 					<p>W latach 80. pojawienie się cracku (kokainy w formie kryształów) radykalnie zmieniło charakter działalności gangów w południowo-środkowej części Los Santos (South Central). W tym okresie gang Hoover Gangster Crips mocno zaangażował się w uliczną dystrybucję narkotyków. Organy ścigania oraz media często wiązały tę grupę z zorganizowanym handlem narkotykami i przemocą z użyciem broni palnej. Znany handlarz narkotyków Ricky „Freeway” Ross utrzymywał w tamtym czasie kontakty z członkami Hoover Crips, co dodatkowo łączyło gang z sieciami dystrybucji narkotyków na dużą skalę. Do połowy lat 80. władze uznawały gang Hoovera za jedną z najbardziej aktywnych grup ulicznych działających w południowym Los Santos.</p>
-					<p>Na początku lat 90. podziały wewnętrzne i konflikty zewnętrzne sprawiły, że wiele setów gangu Hoovera zaczęło dystansować się od szerszej tożsamości Crips. Kilka z tych frakcji oficjalnie porzuciło nazwę „Crips” i zaczęło określać się mianem Hoover Criminals. Zmianie tej towarzyszyło przyjęcie haseł ABK (*Anybody Killer* – zabójcy każdego) oraz EBK (*Everybody Killer* – zabójcy wszystkich), co sygnalizowało odrzucenie tradycyjnych sojuszy między gangami i przyjęcie agresywnej postawy wobec rywali. W tym okresie na graffiti pojawiających się na terenie kontrolowanym przez gang Hoovera często widniały oznaczenia takie jak BK (*Blood Killer* – zabójcy członków Bloods), CK (*Crip Killer* – zabójcy członków Crips) czy OK (*Rollin 0’s Killer* – zabójcy członków gangów z grupy Rollin 0’s), co odzwierciedlało pogarszające się relacje grupy zarówno z frakcjami Bloods, jak i Crips. Podejście gangu Hoover Criminals przypominało strategię stosowaną przez wiele meksykańsko-amerykańskich gangów ulicznych z południowego Los Santos, z których znaczna część ograniczała swoje sojusze do organizacji działających wewnątrz systemu więziennego. Gotowość członków Hoover do wchodzenia w konflikty z grupami takimi jak Bloods, Crips czy gangi latynoskie doprowadziła ostatecznie do zerwania wielu ich dotychczasowych sojuszy.</p>
+					<p>Na początku lat 90. podziały wewnętrzne i konflikty zewnętrzne sprawiły, że wiele setów gangu Hoovera zaczeło dystansować się od szerszej tożsamości Crips. Kilka z tych frakcji oficjalnie porzuciło nazwę „Crips” i zaczęło określać się mianem Hoover Criminals. Zmianie tej towarzyszyło przyjęcie haseł ABK (*Anybody Killer* – zabójcy każdego) oraz EBK (*Everybody Killer* – zabójcy wszystkich), co sygnalizowało odrzucenie tradycyjnych sojuszy między gangami i przyjęcie agresywnej postawy wobec rywali. W tym okresie na graffiti pojawiających się na terenie kontrolowanym przez gang Hoovera często widniały oznaczenia takie jak BK (*Blood Killer* – zabójcy członków Bloods), CK (*Crip Killer* – zabójcy członków Crips) czy OK (*Rollin 0’s Killer* – zabójcy członków gangów z grupy Rollin 0’s), co odzwierciedlało pogarszające się relacje grupy zarówno z frakcjami Bloods, jak i Crips. Podejście gangu Hoover Criminals przypominało strategię stosowaną przez wiele meksykańsko-amerykańskich gangów ulicznych z południowego Los Santos, z których znaczna część ograniczała swoje sojusze do organizacji działających wewnątrz systemu więziennego. Gotowość członków Hoover do wchodzenia w konflikty z grupami takimi jak Bloods, Crips czy gangi latynoskie doprowadziła ostatecznie do zerwania wielu ich dotychczasowych sojuszy.</p>
                     <h2>THE END<h2>
 				    </p>
 
@@ -1612,7 +1805,7 @@
 
                 <h2>Inne Zbliżone Profile</h2>
                 <ul class="recent-list" id="gangsList">
-                    <li><a href="#" onclick="showErrorPage('W/S 74 Hoover Criminal Gang')">W/S 74 Hoover Criminal Gang</a></li>
+                    <li><a href="#" onclick="loadMember('member82')">W/S 74 Hoover Criminal Gang</a></li>
                     <li><a href="#" onclick="showErrorPage('W/S 92 Hoover Criminal Gang')">W/S 92 Hoover Criminal Gang</a></li>
                     <li><a href="#" onclick="showErrorPage('W/S 94 Hoover Criminal Gang')">W/S 94 Hoover Criminal Gang</a></li>
                     <li><a href="#" onclick="showErrorPage('W/S 107 Hoover Criminal Gang')">W/S 107 Hoover Criminal Gang</a></li>
@@ -1657,6 +1850,7 @@
         </div>
     </div>
 
+    <!-- Modal standardowego powiększania zdjęć -->
     <div id="mapModal" class="modal">
         <span class="close-modal" onclick="closeMapModal()">&times;</span>
         <button class="nav-btn prev-btn" id="prevBtn" onclick="navigateGallery(-1)">&#10094;</button>
@@ -1673,11 +1867,494 @@
         </div>
     </div>
 
+    <!-- Karta Biznesu / Gangu -->
+    <div id="businessModal" class="business-modal">
+        <div class="business-card-container" id="businessCardContainer" style="transform-origin: center center; transition: transform 0.05s ease-out;">
+            <div class="business-card-header">
+                <span class="business-card-header-title" id="bizHeaderTitle">Szczegóły obiektu</span>
+                <button class="business-close-btn" onclick="closeBusinessModal()">&times;</button>
+            </div>
+            <div class="business-card-image-box" onclick="openBusinessPhotoZoom()">
+                <img id="bizImg" src="" alt="Zdjęcie obiektu" class="business-card-img">
+            </div>
+            <div class="business-card-body">
+                <h3 class="business-name" id="bizName">Nazwa</h3>
+                <span class="business-category" id="bizCategory" style="display:none;">Kategoria / Typ</span>
+                
+                <div class="business-details-section" id="bizDetailsSection">
+                    <p id="bizAddressRow" style="display:none;"><strong>Addy:</strong> <span id="bizAddress">---</span></p>
+                    <p><strong>Description:</strong> <span id="bizDesc">---</span></p>
+                </div>
+            </div>
+            <div style="padding: 10px 20px 20px 20px; display: flex; gap: 8px; justify-content: flex-end; background: #161616;">
+                <button class="zoom-btn" style="width: 32px; height: 32px; font-size: 16px;" onclick="zoomBusiness(0.25)">+</button>
+                <button class="zoom-btn" style="width: 32px; height: 32px; font-size: 16px;" onclick="zoomBusiness(-0.25)">-</button>
+                <button class="zoom-btn" style="width: 32px; height: 32px; font-size: 16px;" onclick="resetBusinessZoom()">↺</button>
+            </div>
+        </div>
+    </div>
+
     <script>
+	
+	let bizScale = 1;
+    let currentActiveBizId = null;
+
+        function zoomBusiness(amount) {
+            playClickSound();
+            bizScale = Math.min(Math.max(bizScale + amount, 0.7), 2.5);
+            updateBusinessTransform();
+        }
+
+        function resetBusinessZoom() {
+            playClickSound();
+            bizScale = 1;
+            updateBusinessTransform();
+        }
+
+        function updateBusinessTransform() {
+            const container = document.getElementById('businessCardContainer');
+            if (container) {
+                container.style.transform = `scale(${bizScale})`;
+            }
+        }
+        
+        const originalCloseMapModal = closeMapModal;
+        closeMapModal = function() {
+            playClickSound();
+            modal.style.display = 'none';
+            if (currentActiveBizId) {
+                openBusinessModal(currentActiveBizId);
+            }
+        };
+
         function convertToPngPath(src) {
             if (!src) return '';
             if (src.includes('SouthCentral.png')) return 'png/SouthCentral.png';
             return src.replace('/webp/', '/png/').replace('webp/', 'png/').replace(/\.webp$/i, '.png');
+        }
+
+        // Biznesy oraz ikony gangów na Mapie
+        const businessData = {
+            "gang_hoover": {
+                name: "Hoovers (HCG/HGC) ⭐🟠🆗",
+                category: "",
+                isGang: true,
+                address: "",
+                desc: "Znani również jako „716 Gang”, HCG jest prawdopodobnie najbardziej znienawidzonym gangiem w mieście, głównie ze względu na liczne konflikty – zarówno z grupami typu Bloods i Crips, jak i z gangami meksykańskimi. Członkowie HCG są obecni w zachodniej części południowego Los Santos od początku lat 70. XX wieku. Ugrupowanie zostało założone pod nazwą „Hoover Groovers” przez nastolatka urodzonego w Alabamie, Josepha „Hoover Joe” Stanleya (74HGC), wraz z jego przyjaciółmi z okolic 74. ulicy i Hoover Street. Gang ten słynie z szeroko zakrojonej działalności przestępczej, obejmującej handel narkotykami oraz czerpanie korzyści z prostytucji wzdłuż ulicy Figueroa, która przebiega przez samo serce kontrolowanego przez nich terytorium. Grupa HCG stanowiła niegdyś część formacji Gangster Crip/3X, lecz w latach 80. odłączyła się od niej na skutek dawnych konfliktów z frakcjami AGC, BGC, 43GC, 87GC oraz 97GC (obecnie, w czasach współczesnych, HCG utrzymuje luźne sojusze z AGC i BGC). W tamtym okresie grupa HCG rozwinęła szeroką działalność, będąc mocno zaangażowaną w handel narkotykami w czasie napędzanej przez CID epidemii cracku w latach 80. Z tego powodu członkowie grupy do dziś posługują się gestem dłoni imitującym ruchy wykonywane przy handlu („movin”), typowym dla gangów z frakcji GC/3X. Z czasem przyjęli oni kolor pomarańczowy i zaczęli określać się mianem Hoover Criminal Gang (jedynie odłam 52HGC zachował w nazwie człon „GC”).",
+                icon: "png/hoover.png",
+                x: 385, y: 214, width: 125, height: 125,
+                image: "webp/hoovers.webp"
+            },
+            "gang_menlo": {
+                name: "Menlo Crips 〽️♿",
+                category: "",
+                isGang: true,
+                address: "",
+                desc: "Korzenie grupy sięgają lat 70. XX wieku, kiedy to powstała ona pod nazwą „Menlo Boys”. Działając na obszarze podlegającym 77. dywizji policji w Los Santos (LSPD), członkowie grupy koncentrowali się wokół skrzyżowania 65th Street i Menlo Avenue; ich terytorium rozciągało się od 62nd Street do 70th Street, pomiędzy Vermont Avenue a Figueroa Street. Pod koniec lat 70. (około 1978 roku) grupa utrzymywała bliskie relacje z formacjami 52 Hoover Gangster Crips oraz 59 Hoovers. W latach 80., gdy wewnątrz ruchu Crip doszło do podziału na dwie odrębne frakcje – „Deuces” (2x / Neighborhood) oraz „Trays” (3x / Gangster) – grupa początkowo opowiedziała się po stronie tych drugich, przyjmując nazwę „Menlo Gangster Crips”. Ze względu na szacunek, jakim darzyli grupę Eight Tray Gangster Crips (ETGC), od 1984 roku zaczęli oficjalnie funkcjonować jako „Gangster Crips”. Historycznie rzecz biorąc, Menlo Gangster Crips utrzymywali silny sojusz z Eight Tray Gangster Crips (ETGC). Jednak gwałtowny konflikt między obiema grupami doprowadził do zasadniczej zmiany tożsamości Menlo. W ramach rzadkiego manewru strategicznego, Menlo Crips zerwali swoje powiązania z frakcją „3x”, szukając ochrony i partnerstwa w ramach nurtu Neighborhood Crip (NHC). Nawiązali wówczas szczególnie bliską więź z 67 Neighborhood Crips, tworząc sojusz znany jako „657”. W wyniku tej transformacji porzucili człon „Gangster” i przyjęli nazwę „65 Menlo Neighborhood Crips”, przechodząc tym samym pod szyld „Deuce” (2x).",
+                icon: "png/menlo.png",
+                x: 225, y: 321, width: 90, height: 90,
+                image: "webp/menloki.webp"
+            },
+            "gang_apbloods": {
+                name: "Bloods 🅱️👌🩸",
+                category: "",
+                isGang: true,
+                address: "",
+                desc: "Znani również jako „B-Team”, Bloodsi są – zaraz po swoich głównych rywalach, Cripsach – drugim najstarszym czarnoskórym gangiem w Los Santos.",
+                icon: "png/apbloods.png",
+                x: 573, y: 272, width: 100, height: 100,
+                image: "webp/apbeki.webp"
+            },
+            "gang_swan": {
+                name: "Swan Bloods (SB) 🦢🩸",
+                category: "",
+                isGang: true,
+                address: "",
+                desc: "Znani również jako Swan Family, Swan Bloods (MFSB/SB) stanowią odłam większego sojuszu Bloods, obecnego na East Side od lat 70. XX wieku.",
+                icon: "png/swan.png",
+                x: 580, y: 617, width: 100, height: 100,
+                image: "webp/sfan.webp"
+            },
+            "gang_pirus": {
+                name: "Pirus 🅿️👌🔴",
+                category: "",
+                isGang: true,
+                address: "",
+                desc: "Lokalizacja pierwotnej ulicy Piru Street, przy której około 1969 roku Sylvester „Puddin” Scot założył gang Piru Street Boys, zanim w 1972 roku przekształcił się on w Bloods (znanych również jako Damus).",
+                icon: "png/pirus.png",
+                x: 397, y: 547, width: 95, height: 95,
+                image: "webp/pirusy.webp"
+            },
+            "gang_ecc": {
+                name: "East Coast Crips (ECC) 🈁♿",
+                category: "",
+                isGang: true,
+                address: "",
+                desc: "Znany również jako East Coast City lub gang „For Death Doe” (FDD), ECC stanowi jedną z największych 'kart' Cripsów w Los Santos. Grupy ECC wywodzą się bezpośrednio od pierwotnego gangu East Side Crips, założonego w 1969 roku przez Raymonda Washingtona – twórcę całego ruchu Crips. Teren, w którym Washington dorastał, działał i ostatecznie został zamordowany, jest obecnie uznawany za terytorium 66ECC. ECC postrzegane jest jako wschodnio-miejski odpowiednik frakcji Rollin' Crips. Mimo że ECC jest jedną z największych i historycznie najbardziej owianych złą sławą grup w mieście, w rzeczywistości stanowi część struktur BC/NHC; każdy z „rewirów” (ang. *hoods*) należących do ECC jest bowiem powiązany z formacjami Neighborhood Crips (NHC) lub Blocc Crips (BC) i podlega ich wpływom.",
+                icon: "png/ecc.png",
+                x: 733, y: 377, width: 90, height: 90,
+                image: "webp/ecclogo.webp"
+            },
+            "gang_rollin": {
+                name: "Rollin' 40's (RFC) 🍀〽️",
+                category: "Gang / Set",
+                isGang: true,
+                address: "",
+                desc: "Neighborhood Crips (NHC), znani jako N-Hood Crips lub Hoodsta Crips, to grupa składająca się z kilku gangów, działających głównie w Los Santos. NHC wywodzi się z gangu Rollin 60s Neighborhood Crips i jest jedną z najszybciej rozwijających się struktur w historii. Rozpoznawalność Neighborhood Crips wzrosła w 1979 roku, w następstwie beefu między R60sNC a ETGC. Skutkiem tej wojny był podział gangów na opowiadające się za „Deuces” (2x) lub „Gangster Crips” (3x) – te drugie znane są również jako „Trays” (określenia „Deuces” i „Trays” odnoszą się odpowiednio do cyfr 2 i 3). Symbolika „Deuces” (2x) reprezentuje sojusz Neighborhoods, natomiast „Trays” (3x) odnosi się do ETGC. Istnieją jednak gangi zaliczane do frakcji „Deuces” (2x), które nie posługują się nazwą NHC; należą do nich m.in. Raymond Ave Crips, HardTime Hustler Crips, Geer Gang Crips oraz West Blvd Crips. Z kolei gang Menlo Crips początkowo stanowił część GC (Menlo Gangster Crips). Przeszli oni jednak do frakcji NC (Menlo Neighborhood Crips) po konflikcie z ETGC oraz kilkoma sprzymierzonymi z nimi grupami. Podgrupy wchodzące w skład struktury Neighborhood Crips są rywalami podgrup zrzeszonych w ramach nurtu Gangster Crips (3x). Istnieją jednak gangi, które wyłamują się z tego schematu, nawiązując sojusze z grupami z przeciwnego obozu. Przykładem mogą być 40’sGC, w skład których wchodzą 42GC, 43GC oraz 48GC. Te trzy gangi słyną z silnych sojuszy z formacjami NC, takimi jak ECC. Takie porozumienie jest zakazane i uznawane za akt zdrady.",
+                icon: "png/rollin.png",
+                x: 490, y: 377, width: 70, height: 70,
+                image: "webp/rollinsy.webp"
+            },
+            "gang_98msmc": {
+                name: "Main Street Mafia Crips (MSMC) 〽️🚦♿",
+                category: "",
+                isGang: true,
+                address: "",
+                desc: "Main Street Mafia Crips to największa i najbardziej aktywna grupa w ramach struktury Mafia Crip (MC), tradycyjnie utożsamianej z logo marki Maybach.",
+                icon: "png/98msmc.png",
+                x: 330, y: 381, width: 80, height: 80,
+                image: "webp/msmc.webp"
+            },
+            "gang_avalon": {
+                name: " Avalon Gangster Crips (AGC) 🅰️👌♿",
+                category: "",
+                isGang: true,
+                address: "",
+                desc: "Avalon Gangster Crips to aktywny afroamerykański gang uliczny, działający we wschodniej części południowego Los Santos w San Andreas. Grupa powstała na początku lat 70. XX wieku z inicjatywy Jimela Barnesa – znanego jako „Ojciec Chrzestny Cripsów” (The GodFather Of Crips) i byłego członka East Side Crips – oraz kilku jego przyjaciół mieszkających na osiedlu socjalnym Avalon Gardens. Powstanie Avalon Garden Crips miało miejsce po tym, jak w 1974 roku Raymond Washington, przywódca East Side Crips, trafił do więzienia pod zarzutem morderstwa. Odłam 88th Avalon Garden Crips był pierwszą podgrupą w ramach struktury Avalon Gangster Crips. Osiedle Avalon Gardens znajduje się przy 88th Place, pomiędzy ulicami Avalon Boulevard a Central Avenue. W skład Avalon Crips wchodzą cztery podgrupy: 116, 88, 53 oraz 40s Avalon Crips; wszystkie one należą do szerszej struktury znanej jako Gangster Crips. Członkowie 88 Avalon Garden Crips utrzymują sojusz ze wszystkimi pozostałymi odłamami Avalon Gangster Crips. Do ich sojuszników należą również grupy 87 Kitchen Crips, Eight Tray Gangster Crips oraz 112 Broadway Gangster Crips.",
+                icon: "png/avalon.png",
+                x: 658, y: 695, width: 85, height: 85,
+                image: "webp/avalony.webp"
+            },
+            "gang_denverlane": {
+                name: "Lane Bloods (LGB) 🚦🩸",
+                category: "",
+                isGang: true,
+                address: "",
+                desc: "Denver Lane Bloods (DLB), znani również jako Denver Lane Gangster Bloods (DLGB) oraz Figueroa Rider Gang (FRG), to afroamerykański gang uliczny działający w dzielnicy Vermont Vista w południowym Los Santos w San Andreas. Nazwa grupy pochodzi od ulicy Denver Avenue; gang ten jest powszechnie uważany za jedną z pierwotnych frakcji (tzw. *sets*) wchodzących w skład struktur Bloods i odegrał istotną rolę w formowaniu się tego sojuszu na początku lat 70. XX wieku. Gang Denver Lane działa od ponad pięćdziesięciu lat i jest uznawany za jedną z najstarszych grup Bloods w Los Angeles. Na przestrzeni dekad członkowie organizacji utworzyli podgrupy w Pasadenie, Altadenie, Lancaster, Palmdale oraz innych częściach południowym San Andreas, przyczyniając się do rozpowszechnienia nazwy Denver Lane w całym regionie.",
+                icon: "png/denverlane.png",
+                x: 89, y: 716, width: 80, height: 80,
+                image: "webp/denver.webp"
+            },
+            "biz1": {
+                name: "Benny's Original Motor Works",
+                category: "Warsztat Samochodowy",
+                address: "Alta St, Los Santos",
+                desc: "Największy warsztat samochodowy na całym South Central.",
+                icon: "png/imech.png",
+                x: 268,   
+                y: 136,   
+                width: 45, 
+                height: 45,
+                image: "webp/benny.webp"
+            },
+            "biz2": {
+                name: "Tow & Trade",
+                category: "Car Dealer",
+                address: "Innocence Blvd, Los Santos",
+                desc: "Największy Car Dealer na całym South Central.",
+                icon: "png/icd.png",
+                x: 260,
+                y: 190,
+                width: 40,
+                height: 40,
+                image: "webp/btow.webp"
+            },
+            "biz3": {
+                name: "Globe Oil",
+                category: "Gas Station",
+                address: "Innocence Blvd, Los Santos",
+                desc: "Stacja Benzynowa Globe Oil stacjonuje na pograniczu South Central/Little Seul.",
+                icon: "png/igas.png",
+                x: 170,
+                y: 278,
+                width: 42,
+                height: 42,
+                image: "webp/gasglobe.webp"
+            },
+            "biz4": {
+                name: "24/7 SUPERMARKET",
+                category: "Store: Twenty Four Seven",
+                address: "Innocence Blvd/Strawberry Avenue, Los Santos",
+                desc: "Całodobowy sklep spożywczy pushujący tagline 'Go All Night' ",
+                icon: "png/ishop.png",
+                x: 480,
+                y: 137,
+                width: 44,
+                height: 44,
+                image: "webp/strshop.webp"
+            },
+            "biz5": {
+                name: "Hands-On Car Wash",
+                category: "Car Wash",
+                address: "Innocence Blvd/Strawberry Avenue, Los Santos",
+                desc: "Myjnia Samochodowa Hands-On otwarta 24/7",
+                icon: "png/icw.png",
+                x: 487,
+                y: 195,
+                width: 40,
+                height: 40,
+                image: "webp/strcw.webp"
+            },
+            "biz6": {
+                name: "Discount Store",
+                category: "Clothes Shop",
+                address: "Innocence Blvd/Strawberry Avenue, Los Santos",
+                desc: "Discount Store to sklep odzieżowy z niskimi cenami.",
+                icon: "png/iclo.png",
+                x: 550,
+                y: 206,
+                width: 41,
+                height: 41,
+                image: "webp/dclo.webp"
+            },
+            "biz7": {
+                name: "Moretti & Sons",
+                category: "Cigars Store",
+                address: "Innocence Blvd/Strawberry Avenue, Los Santos",
+                desc: "Moretti & Sons to włoska firma zajmująca się produkcją oraz sprzedażą eksluzywnych cygar.",
+                icon: "png/ismoke.png",
+                x: 577,
+                y: 162,
+                width: 41,
+                height: 41,
+                image: "webp/bsmoke.webp"
+            },
+            "biz8": {
+                name: "Vanilla Unicorn",
+                category: "Strip Club",
+                address: "Innocence Blvd/Strawberry Avenue, Los Santos",
+                desc: "Klub ze striptizem założony w 1984r. Klub jest cały czas aktywny.",
+                icon: "png/ivu.png",
+                x: 583,
+                y: 120,
+                width: 41,
+                height: 41,
+                image: "webp/vu.webp"
+            },
+            "biz9": {
+                name: "XERO GAS",
+                category: "Gas Station",
+                address: "Strawberry Avenue/Crusade Rd, Los Santos",
+                desc: "Stacja Benzynowa XERO GAS stacjonuje na pograniczu South Central/Downtown",
+                icon: "png/igas.png",
+                x: 700,
+                y: 86,
+                width: 40,
+                height: 40,
+                image: "webp/xerogas.webp"
+            },
+            "biz10": {
+                name: "Bishop's Chicken",
+                category: "Fast Food",
+                address: "Davis Ave, Los Santos",
+                desc: "Bishop's Chicken to sieć restauracji typu fast food, specjalizująca się w daniach z kurczaka.",
+                icon: "png/ifood.png",
+                x: 622,
+                y: 418,
+                width: 39,
+                height: 39,
+                image: "webp/bis.webp"
+            },
+            "biz11": {
+                name: "LTD GASOLINE",
+                category: "Gas Station",
+                address: "Davis Ave/Macdonald St, Los Santos",
+                desc: "Stacja Benzynowa LTD GASOLINE położona między Davis Avenue a Macdonald Street w samym środku South Central.",
+                icon: "png/igas.png",
+                x: 684,
+                y: 388,
+                width: 36,
+                height: 36,
+                image: "webp/dgas.webp"
+            },
+            "biz12": {
+                name: "Herr Kutz Barber",
+                category: "Barber",
+                address: "Brouge Ave/Carson Ave, Los Santos",
+                desc: "Herr Kutz Barter to sieć salonów fryzjerskich rozsianych po całym South Central.",
+                icon: "png/ibb.png",
+                x: 579,
+                y: 483,
+                width: 38,
+                height: 38,
+                image: "webp/brobb.webp"
+            },
+            "biz13": {
+                name: "Luxury Car Wash",
+                category: "Car Wash",
+                address: "Brouge Ave/Carson Ave, Los Santos",
+                desc: "Luxury Car Wash to sieć myjni rozsianych po całym South Central.",
+                icon: "png/icw.png",
+                x: 610,
+                y: 510,
+                width: 38,
+                height: 38,
+                image: "webp/brocw.webp"
+            },
+            "biz14": {
+                name: "24/7 SUPERMARKET",
+                category: "Store: Twenty Four Seven",
+                address: "Autopia Pkwy, Los Santos",
+                desc: "Całodobowy sklep spożywczy pushujący tagline 'Go All Night' ",
+                icon: "png/ishop.png",
+                x: 248,
+                y: 673,
+                width: 38,
+                height: 38,
+                image: "webp/mshop.webp"
+            },
+            "biz15": {
+                name: "Herr Kutz Barber",
+                category: "Barber",
+                address: "Autopia Pkwy, Los Santos",
+                desc: "Herr Kutz Barber to sieć salonów fryzjerskich rozsianych po całym South Central.",
+                icon: "png/ibb.png",
+                x: 278,
+                y: 691,
+                width: 38,
+                height: 38,
+                image: "webp/mbb.webp"
+            },
+            "biz16": {
+                name: "Ammu-Nation",
+                category: "Gun Store",
+                address: "Autopia Pkwy, Los Santos",
+                desc: "Ammu-Nation to sieć sklepów z bronią i amunicją rozsianych po całym South Central.",
+                icon: "png/igun.png",
+                x: 223,
+                y: 692,
+                width: 37,
+                height: 37,
+                image: "webp/mgun.webp"
+            },
+            "biz17": {
+                name: "Luxury Car Wash",
+                category: "Car Wash",
+                address: "Autopia Pkwy, Los Santos",
+                desc: "Luxury Car Wash to sieć myjni rozsianych po całym South Central.",
+                icon: "png/icw.png",
+                x: 285,
+                y: 733,
+                width: 38,
+                height: 38,
+                image: "webp/mcw.webp"
+            },
+            "biz18": {
+                name: "SubUrban",
+                category: "Clothes Shop",
+                address: "Autopia Pkwy, Los Santos",
+                desc: "SubUrban to sieć sklepów odzieżowych lepszej jakości niż Discount Store.",
+                icon: "png/iclo.png",
+                x: 270,
+                y: 811,
+                width: 38,
+                height: 38,
+                image: "webp/mclo.webp"
+            },
+            "biz19": {
+                name: "LTD GASOLINE",
+                category: "Gas Station",
+                address: "Grove St/Dutch London St, Los Santos",
+                desc: "Stacja Benzynowa LTD GASOLINE położona między Grove Street a Dutch London Street.",
+                icon: "png/igas.png",
+                x: 565,
+                y: 756,
+                width: 35,
+                height: 35,
+                image: "webp/grovgas.webp"
+             },
+            "biz20": {
+                name: "The Projects",
+                category: "The Hood",
+                address: "Strawberry Avenue 83rd', Los Santos",
+                desc: "Osiedle wybudowane na Strawberry Avenue które zamieszkują mieszkańcy afro-amerykańscy głównie powiązani z gangiem 83 Hoover Criminals Gang. Na osiedlu roi się od niebezpiecznych osób oraz widocznych graffiti affilujących oraz wskazujących na wystepujący set.",
+                icon: "png/imotel.png",
+                x: 432,
+                y: 340,
+                width: 44,
+                height: 44,
+                images: ["webp/83h1.webp", "webp/83h2.webp"]
+            }     
+        };
+
+        // Automatyczne generowanie ikonek
+        function renderBusinessMarkers() {
+            const container = document.getElementById('svgBusinessMarkersContainer');
+            if (!container) return;
+            container.innerHTML = "";
+
+            for (const [id, biz] of Object.entries(businessData)) {
+                const imgElement = document.createElementNS("http://www.w3.org/2000/svg", "image");
+                imgElement.setAttribute("href", biz.icon);
+                imgElement.setAttribute("x", biz.x);
+                imgElement.setAttribute("y", biz.y);
+                imgElement.setAttribute("width", biz.width);
+                imgElement.setAttribute("height", biz.height);
+                imgElement.setAttribute("class", "map-svg-business");
+                imgElement.setAttribute("data-title", biz.name);
+                imgElement.setAttribute("data-desc", biz.isGang ? "Gang / Terytorium - Kliknij, aby zobaczyć szczegóły" : `${biz.category} - Kliknij, aby zobaczyć szczegóły`);
+                
+                imgElement.onclick = () => openBusinessModal(id);
+                container.appendChild(imgElement);
+            }
+        }
+
+        let currentActiveBizImages = [];
+
+        function openBusinessModal(bizId) {
+            playClickSound();
+            currentActiveBizId = bizId;
+            const biz = businessData[bizId];
+            if (!biz) return;
+            
+            if (biz.images && Array.isArray(biz.images) && biz.images.length > 0) {
+                currentActiveBizImages = biz.images;
+            } else if (biz.image) {
+                currentActiveBizImages = [biz.image];
+            } else {
+                currentActiveBizImages = [];
+            }
+
+            const headerTitleEl = document.getElementById('bizHeaderTitle');
+            const categoryEl = document.getElementById('bizCategory');
+            const addressRowEl = document.getElementById('bizAddressRow');
+            const addressEl = document.getElementById('bizAddress');
+
+            if (biz.isGang) {
+                headerTitleEl.innerText = "";
+                categoryEl.style.display = 'none';
+                addressRowEl.style.display = 'none';
+            } else {
+                headerTitleEl.innerText = biz.category || "Szczegóły obiektu";
+                categoryEl.innerText = biz.category || "";
+                categoryEl.style.display = biz.category ? 'block' : 'none';
+                addressEl.innerText = biz.address || "---";
+                addressRowEl.style.display = biz.address ? 'block' : 'none';
+            }
+
+            document.getElementById('bizName').innerText = biz.name;
+            document.getElementById('bizDesc').innerText = biz.desc;
+            
+            document.getElementById('bizImg').src = currentActiveBizImages.length > 0 ? currentActiveBizImages[0] : '';
+
+            document.getElementById('businessModal').style.display = 'flex';
+        }
+
+        function closeBusinessModal() {
+            playClickSound();
+            currentActiveBizId = null;
+            document.getElementById('businessModal').style.display = 'none';
+        }
+
+        function openBusinessPhotoZoom() {
+            if (currentActiveBizImages.length === 0) return;
+            document.getElementById('businessModal').style.display = 'none';
+            
+            currentGalleryImages = currentActiveBizImages.map(img => convertToPngPath(img));
+            currentImageIndex = 0;
+            updateNavButtons();
+            modal.style.display = 'flex';
+            loadModalImage(currentGalleryImages[0]);
         }
 		
         const membersData = {
@@ -2039,7 +2716,7 @@
                 gangName: 'Ganton Varrio Tortilla Flats',
                 dissName: 'Taco Flats/T-Flops/Telas',
                 mainImage: 'webp/gvtf.webp',
-                bio: "Ganton Varrio Tortilla Flats (GVTF), często określani jako Tortilla Flats lub T-Flats, to meksykańsko-amerykański gang uliczny powiązany z frakcją Sureño, działający w Los Santos w San Andreas. Grupa ta jest obecna w mieście co najmniej od lat 60. XX wieku i uchodzi za jeden ze starszych gangów latynoskich w Los Santos. Na przestrzeni lat członkowie GVTF byli zamieszani w liczne strzelaniny, sprawy dotyczące zabójstw, przestępstwa narkotykowe oraz postępowania sądowe wymierzone w gangi. Organizacja ta przetrwała kolejne pokolenia i pozostaje jednym z bardziej znanych gangów (tzw. *varrios*) w Los Santos. <br><br> Korzenie Ganton Varrio Tortilla Flats sięgają początku lat 60. XX wieku, co czyni ten gang jedną z najstarszych grup latynoskich w Los Santos. Według niektórych relacji początki gangu wiążą się z meksykańsko-amerykańską dzielnicą w pobliżu obszaru Willowbrook, gdzie miejscowa młodzież zaczęła utożsamiać się z nazwą Tortilla Flats. Podobnie jak wiele innych starszych gangów z Los Santos, Tortilla Flats zaczynało jako grupa sąsiedzka, której tożsamość opierała se na lokalnych ulicach, rodzinach i kontroli nad danym rejonem. W latach 80. i 90. gang rozrastał się wraz ze wzrostem populacji latynoskiej w Los Santos i wchodził w konflikty zarówno z sąsiednimi gangami Sureño, jak i z kilkoma gangami afroamerykańskimi. <br><br> Pod koniec lat 90. prokuratorzy uznali Tortilla Flats za jeden z głównych problemów związanych z przestępczością gangową w rejonie Gonzales Park, co doprowadziło do uzyskania w 1998 roku przez władze hrabstwa Los Santos sądowego zakazu działalności gangowej (tzw. *gang injunction*) wobec tej grupy. Na początku lat 2000. członkowie gangu byli zamieszani w dochodzenia wykraczające poza granice San Andreas, w tym w sprawę federalną dotyczącą spisku w celu handlu narkotykami, obejmującego obszar od południowego San Andreas aż po Oklahomę. Tortilla Flats przewijało się w aktach sądowych, dochodzeniach dotyczących gangów oraz postępowaniach karnych przez całe lata 2000. i 2010. <br><br> Ganton Varrio Tortilla Flats rości sobie prawo do części północnego i wschodniego Ganton, położonej zasadniczo między Rosecrans Avenue a Ganton Boulevard. Obszar ten rozciąga się na wschód od Willowbrook Avenue i obejmuje fragmenty dzielnic mieszkaniowych oraz przemysłowych w sąsiedztwie Alameda Street. Gonzales Park od dawna uznawany jest za miejsce spotkań członków tego gangu na terenie kontrolowanej przez nich dzielnicy; obszar ten został również objęty sądowym zakazem działalności gangów, uzyskanym w 1998 roku przez prokuraturę hrabstwa Los Santos. Dzielnica ta graniczy z terenami kilku konkurencyjnych gangów i na przestrzeni lat była miejscem licznych konfliktów międzygrupowych. <br><br> Gang Ganton Varrio Tortilla Flats działa w ramach struktury Sureño (13) i utożsamia się z szerszą kulturą Sureño, charakterystyczną dla południowego San Andreas. Członkowie gangu często posługują się skrótami GVTF, TF, T-Flats oraz GVTF 13, umieszczając je w graffiti, tatuażach i innych oznaczeniach na terenie dzielnicy. W zakładach karnych i więzieniach członkowie gangu funkcjonują w ramach struktury Sureño, obok innych latynoskich gangów z południowego San Andreas. Z kolei na ulicy tożsamość gangu pozostaje ściśle związana z jego dzielnicą, historią oraz długotrwałymi rywalizacjami.",
+                bio: "Ganton Varrio Tortilla Flats (GVTF), często określani jako Tortilla Flats lub T-Flats, to meksykańsko-amerykański gang uliczny powiązany z frakcją Sureño, działający w Los Santos w San Andreas. Grupa ta jest obecna w mieście co najmniej od lat 60. XX wieku i uchodzi za jeden ze starszych gangów latynoskich w Los Santos. Na przestrzeni lat członkowie GVTF byli zamieszani w liczne strzelaniny, sprawy dotyczące zabójstw, przestępstwa narkotykowe oraz postępowania sądowe wymierzone w gangi. Organizacja ta przetrwała kolejne pokolenia i pozostaje jednym z bardziej znanych gangów (tzw. *varrios*) w Los Santos. <br><br> Korzenie Ganton Varrio Tortilla Flats sięgają początku lat 60. XX wieku, co czyni ten gang jedną z najstarszych grup latynoskich w Los Santos. Według niektórych relacji początki gangu wiążą się z meksykańsko-amerykańską dzielnicą w pobliżu obszaru Willowbrook, gdzie miejscowa młodzież zaczęła utożsamiać się z nazwą Tortilla Flats. Podobnie jak wiele innych starszych gangów z Los Santos, Tortilla Flats zaczął jako grupa sąsiedzka, której tożsamość opierała se na lokalnych ulicach, rodzinach i kontroli nad danym rejonem. W latach 80. i 90. gang rozrastał się wraz ze wzrostem populacji latynoskiej w Los Santos i wchodził w konflikty zarówno z sąsiednimi gangami Sureño, jak i z kilkoma gangami afroamerykańskimi. <br><br> Pod koniec lat 90. prokuratorzy uznali Tortilla Flats za jeden z głównych problemów związanych z przestępczością gangową w rejonie Gonzales Park, co doprowadziło do uzyskania w 1998 roku przez władze hrabstwa Los Santos sądowego zakazu działalności gangowej (tzw. *gang injunction*) wobec tej grupy. Na początku lat 2000. członkowie gangu byli zamieszani w dochodzenia wykraczające poza granice San Andreas, w tym w sprawę federalną dotyczącą spisku w celu handlu narkotykami, obejmującego obszar od południowego San Andreas aż po Oklahomę. Tortilla Flats przewijało się w aktach sądowych, dochodzeniach dotyczących gangów oraz postępowaniach karnych przez całe lata 2000. i 2010. <br><br> Ganton Varrio Tortilla Flats rości sobie prawo do części północnego i wschodniego Ganton, położonej zasadniczo między Rosecrans Avenue a Ganton Boulevard. Obszar ten rozciąga się na wschód od Willowbrook Avenue i obejmuje fragmenty dzielnic mieszkaniowych oraz przemysłowych w sąsiedztwie Alameda Street. Gonzales Park od dawna uznawany jest za miejsce spotkań członków tego gangu na terenie kontrolowanej przez nich dzielnicy; obszar ten został również objęty sądowym zakazem działalności gangów, uzyskanym w 1998 roku przez prokuraturę hrabstwa Los Santos. Dzielnica ta graniczy z terenami kilku konkurencyjnych gangów i na przestrzeni lat była miejscem licznych konfliktów międzygrupowych. <br><br> Gang Ganton Varrio Tortilla Flats działa w ramach struktury Sureño (13) i utożsamia się z szerszą kulturą Sureño, charakterystyczną dla południowego San Andreas. Członkowie gangu często posługują się skrótami GVTF, TF, T-Flats oraz GVTF 13, umieszczając je w graffiti, tatuażach i innych oznaczeniach na terenie dzielnicy. W zakładach karnych i więzieniach członkowie gangu funkcjonują w ramach struktury Sureño, obok innych latynoskich gangów z południowego San Andreas. Z kolei na ulicy tożsamość gangu pozostaje ściśle związana z jego dzielnicą, historią oraz długotrwałymi rywalizacjami.",
 				images: []
 			},
             member80: {
@@ -2055,7 +2732,15 @@
                 gangName: '53 Avalon Gangster Crips',
                 dissName: '(Avocados/Crab-alons)',
                 mainImage: 'webp/53agc.webp',
-                bio: "Gang „East Side (E/S) 53 Avalon Gangster Crips” to afroamerykańska grupa działająca na wschód od autostrady 110 w południowym Los Santos w San Andreas. Uważany za jedną z najstarszych frakcji Avalon Gangster Crips/Gangster Crips, gang ten zawdzięcza swoją nazwę głównej arterii komunikacyjnej biegnącej z północy na południe przez Los Santos, zwanej Avalon Blvd. (jego terytorium rozciąga się wzdłuż tej drogi). Avalon Gangster Crips identyfikują się w ramach struktury Gangster Crips/East Side Crips/Crips. <br><br> 53AGC to największy z trzech gangów Avalon, to jeden z najstarszych i pierwszych gangów czarnoskórych w Los Angeles; w latach 50. i 60. XX wieku grupa ta była znana jako „Businessmen”, zanim w 1969 roku przyjęła nazwę Crips (a później, w latach 70., GC/3X). Historycznie największymi wrogami 53AGC są 43GC oraz pozostałe odłamy (tzw. *sets*) z grupy 4-Pacc GC. Warto dodać, że 43GC wywodzą się z formacji 43 Avalon Gangster Crips (43AGC); dekady temu wewnętrzny konflikt między członkami 40AGC a 53AGC doprowadził do tego, że grupa ta usunęła człon „Avalon” ze swojej nazwy i nawiązała bliższy sojusz z ECC – gangiem powiązanym głównie z frakcjami NHC i BC, będącym od dawna rywalem AGC i BGC. <br><br> Większość członków tego gangu można spotkać w okolicy South Park. Niektórzy członkowie noszą odzież sportową drużyn Atlanta Braves lub Oakland A’s w połączeniu z tradycyjnym niebieskim kolorem Crips.",
+                bio: "Gang „East Side (E/S) 53 Avalon Gangster Crips” to afroamerykańska grupa działająca na wschód od autostrady 110 w południowym Los Santos w San Andreas. Uważany za jedną z najstarszych frakcji Avalon Gangster Crips/Gangster Crips, gang ten zawdzięcza swoją nazwę głównej arterii komunikacyjnej biegnącej z północy na południe przez Los Santos, zwanej Avalon Blvd. (jego terytorium rozciąga się wzdłuż tej drogi). Avalon Gangster Crips identyfikują się w ramach struktury Gangster Crips/East Side Crips/Crips. <br><br> 53AGC to największy z trzech gangów Avalon, to jeden z najstarszych i pierwszych gangów czarnoskórych w Los Santos; w latach 50. i 60. XX wieku grupa ta była znana jako „Businessmen”, zanim w 1969 roku przyjęła nazwę Crips (a później, w latach 70., GC/3X). Historycznie największymi wrogami 53AGC są 43GC oraz pozostałe odłamy (tzw. *sets*) z grupy 4-Pacc GC. Warto dodać, że 43GC wywodzą się z formacji 43 Avalon Gangster Crips (43AGC); dekady temu wewnętrzny konflikt między członkami 40AGC a 53AGC doprowadził do tego, że grupa ta usunęła człon „Avalon” ze swojej nazwy i nawiązała bliższy sojusz z ECC – gangiem powiązanym głównie z frakcjami NHC i BC, będącym od dawna rywalem AGC i BGC. <br><br> Większość członków tego gangu można spotkać w okolicy South Park. Niektórzy członkowie noszą odzież sportową drużyn Atlanta Braves lub Oakland A’s w połączeniu z tradycyjnym niebieskim kolorem Crips.",
+				images: []	
+			},
+            member82: {
+                isGangAlly: true,
+                gangName: '74 Hoover Criminals Gang',
+                dissName: '',
+                mainImage: 'webp/74hcg.webp',
+                bio: "Gang 74 Hoover Criminals (74HCG), znany również jako Seven-Fo Hoover Criminals Gang – a do początku lat 90. funkcjonujący pod nazwą 74 Hoover Crips – to grupa przestępcza składająca się głównie z Afroamerykanów, działająca w zachodniej części dzielnicy South Central w Los Santos. 74 Hoover Criminals stanowią aktywny set większej struktury znanej jako Hoover Criminals Gang. <br><br> Członkowie 74 Hoover Criminals Gang, nazywani również „Bay Bays”, wywodzą się z okolic 74. ulicy (74th Street) i ulicy Hoover (Hoover Street), położonych pomiędzy alejami Vermont i Figueroa. Grupa ta działa od ponad trzydziestu lat i jest uznawana za trzecią co do wielkości frakcję w ramach organizacji Hoover Criminals Gang. <br><br> W latach 80. XX wieku gangi 52 Hoover Gangster Crips oraz 74 Hoover Criminals odgrywały kluczową rolę w handlu narkotykami, prowadząc liczne punkty sprzedaży narkotyków na terenie South Central w Los Santos. Według szacunków agentów federalnych oraz lokalnych organów ścigania, grupy te osiągały miesięczne zyski w gotówce rzędu od 500 000 do nawet 1 miliona dolarów.",
 				images: []	
 			}
         };
@@ -2129,6 +2814,17 @@
                 track.innerText = playlist[currentTrackIndex].title + " (READY)";
             }
             initInteractiveMap();
+            renderBusinessMarkers();
+            
+            // Blokada propagacji zdarzeń scrollowania i myszy w karcie biznesu/gangu, aby mapa pod spodem nie reagowała
+            const bizModalEl = document.getElementById('businessModal');
+            if (bizModalEl) {
+                ['wheel', 'mousedown', 'mousemove', 'mouseup', 'touchstart', 'touchmove', 'touchend'].forEach(evt => {
+                    bizModalEl.addEventListener(evt, (e) => {
+                        e.stopPropagation();
+                    });
+                });
+            }
         });
 
         streetTrack.addEventListener('ended', nextTrack);
@@ -2392,7 +3088,7 @@
 
                         ${albumHTML}
 
-                        ${imagesHTML ? `<h3>📷 Prywatna Galeria Zdjęcia 📷</h3><div class="member-gallery">${imagesHTML}</div>` : ''}
+                        ${imagesHTML ? `<h3>📷 Prywatna Galeria Zdjęć 📷</h3><div class="member-gallery">${imagesHTML}</div>` : ''}
                     `;
                 }
 
@@ -2554,7 +3250,57 @@
                 mainContent.innerHTML = mainGangHTML;
                 mainContent.classList.remove('fade-out');
                 initInteractiveMap();
+                renderBusinessMarkers();
             }, 300);
+        }
+
+        /* Skrypty interaktywnej mapy głównej (Zoom, Pan, Wheel) */
+        let mapScale = 1, mapPointX = 0, mapPointY = 0, isMapDragging = false, mapStartX = 0, mapStartY = 0;
+
+        function updateInteractiveMapTransform() {
+            const viewport = document.getElementById('interactiveMapViewport');
+            const mapContainer = document.getElementById('interactiveMap');
+            if (viewport) {
+                viewport.style.transform = `translate(${mapPointX}px, ${mapPointY}px) scale(${mapScale})`;
+            }
+            if (mapContainer) {
+                if (mapScale > 1) {
+                    mapContainer.classList.add('pannable');
+                } else {
+                    mapContainer.classList.remove('pannable');
+                }
+            }
+        }
+
+        function clampMapPosition() {
+            const mapContainer = document.getElementById('interactiveMap');
+            if (!mapContainer) return;
+            const W = mapContainer.clientWidth;
+            const H = mapContainer.clientHeight;
+
+            const minX = W * (1 - mapScale);
+            const minY = H * (1 - mapScale);
+
+            mapPointX = Math.min(Math.max(mapPointX, minX), 0);
+            mapPointY = Math.min(Math.max(mapPointY, minY), 0);
+        }
+
+        function zoomInteractiveMap(amount) {
+            mapScale = Math.min(Math.max(mapScale + amount, 1), 4);
+            if (mapScale === 1) {
+                mapPointX = 0;
+                mapPointY = 0;
+            } else {
+                clampMapPosition();
+            }
+            updateInteractiveMapTransform();
+        }
+
+        function resetInteractiveMapZoom() {
+            mapScale = 1;
+            mapPointX = 0;
+            mapPointY = 0;
+            updateInteractiveMapTransform();
         }
 
         function initInteractiveMap() {
@@ -2565,12 +3311,42 @@
 
             if (!mapContainer || !tooltip) return;
 
-            const zones = mapContainer.querySelectorAll('.map-zone');
+            mapContainer.addEventListener('mousedown', (e) => {
+                if (mapScale <= 1) return;
+                if (e.target.closest('.map-control-btn') || e.target.closest('.map-zone') || e.target.closest('.map-svg-business')) return;
+                isMapDragging = true;
+                mapStartX = e.clientX - mapPointX;
+                mapStartY = e.clientY - mapPointY;
+                mapContainer.classList.add('is-dragging');
+            });
+
+            window.addEventListener('mousemove', (e) => {
+                if (!isMapDragging || mapScale <= 1) return;
+                mapPointX = e.clientX - mapStartX;
+                mapPointY = e.clientY - mapStartY;
+                clampMapPosition();
+                updateInteractiveMapTransform();
+            });
+
+            window.addEventListener('mouseup', () => {
+                isMapDragging = false;
+                mapContainer.classList.remove('is-dragging');
+            });
+
+            mapContainer.addEventListener('wheel', (e) => {
+                e.preventDefault();
+                const zoomFactor = e.deltaY < 0 ? 0.15 : -0.15;
+                zoomInteractiveMap(zoomFactor);
+            }, { passive: false });
+
+            const zones = mapContainer.querySelectorAll('.map-zone, .map-svg-business');
 
             zones.forEach(zone => {
                 zone.addEventListener('mouseenter', (e) => {
                     const title = zone.getAttribute('data-title');
                     const desc = zone.getAttribute('data-desc');
+
+                    if (!title) return;
 
                     tooltipTitle.innerText = title || '';
                     tooltipDesc.innerText = desc || '';
@@ -2579,6 +3355,7 @@
                 });
 
                 zone.addEventListener('mousemove', (e) => {
+                    if (!zone.getAttribute('data-title')) return;
                     const rect = mapContainer.getBoundingClientRect();
                     const x = e.clientX - rect.left + 15;
                     const y = e.clientY - rect.top - 10;
@@ -2669,6 +3446,7 @@
 
         function closeMapModal() {
             playClickSound();
+            currentActiveBizId = null;
             modal.style.display = 'none';
         }
 
@@ -2709,6 +3487,9 @@
                 if (e.key === 'ArrowLeft') navigateGallery(-1);
                 else if (e.key === 'ArrowRight') navigateGallery(1);
                 else if (e.key === 'Escape') closeMapModal();
+            }
+            if (document.getElementById('businessModal').style.display === 'flex') {
+                if (e.key === 'Escape') closeBusinessModal();
             }
         });
     </script>
